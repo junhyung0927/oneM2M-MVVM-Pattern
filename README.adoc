@@ -1,0 +1,60 @@
+:author: WiSoft Avocado Team
+:email: <contact@wisoft.io>
+:revision: 2021.22.0
+:icons: font
+:main-title: oneM2M
+:sub-title: IN-AE
+:description: 
+:git_service: https://git.wisoft.io
+:project_root: oneM2M
+:project_group: IN-AE
+:project_name: oneM2M-IN-AE
+:project_license: Private
+:experimental:
+:hardbreaks:
+
+
+= {main-title}: {sub-title}
+
+image:https://img.shields.io/badge/version-{revision}-blue.svg[link="./CHANGELOG",title="version"]  image:https://img.shields.io/badge/license-{project_license}-lightgrey.svg[link="./LICENSE",title="license"]
+
+
+== Introduction
+
+* 코틀린으로 구현한 IN-AE Andorid Application 입니다.
+
+
+== Status
+
+Version {revision}
+
+* link:./CHANGELOG[History]
+* link:{git_service}/groups/{project_root}/-/issues[Issues List] / link:{git_service}/groups/{project_root}/-/boards[Issues Board]
+
+== Usage
+
+. Clone a copy of the repository:
++
+[subs="attributes"]
+----
+$ git clone {git_service}/{project_root}/{project_group}/{project_name}
+----
++
+
+. Change to the project directory:
++
+[subs="attributes"]
+----
+$ cd {project_name}
+----
+
+
+== License
+
+* LICENSE: link:./LICENSE[{project_license}]
+
+
+== Contributors
+
+* {author} {email}
+
