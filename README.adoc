@@ -1,4 +1,4 @@
-:author: WiSoft Avocado Team
+:author: WiSoft oneM2M Team
 :email: <contact@wisoft.io>
 :revision: 2021.22.0
 :icons: font
