@@ -3,11 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.view.INAEActivity">
 
         <ImageView
             android:layout_width="100dp"
@@ -31,7 +30,33 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
-        <com.github.chrisbanes.photoview.PhotoView
+<!--        <EditText-->
+<!--            android:id="@+id/editText_csePort_input"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:ems="15"-->
+<!--            android:hint="CSE PORT 입력"-->
+
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/photoView_search_image"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:importantForAutofill="no" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/button_cseBase_link"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/navy"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:text="link"-->
+
+<!--            android:fontFamily="@font/esamanru_otf_bold"-->
+<!--            app:layout_constraintStart_toEndOf="@id/editText_csePort_input"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/editText_csePort_input"-->
+<!--            />-->
+
+        <ImageView
             android:id="@+id/photoView_search_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,6 +65,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <ImageView
