@@ -8,7 +8,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single<INAERepository> {
         INAERepositoryImpl(
-            inAeDataSource = get()
+            inAEDataSource = get()
         )
     }
 }

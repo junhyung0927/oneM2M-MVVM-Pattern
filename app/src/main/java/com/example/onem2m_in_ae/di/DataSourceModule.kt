@@ -6,5 +6,5 @@ import com.example.onem2m_in_ae.repository.INAERepositoryImpl
 import org.koin.dsl.module
 
 val dataSourceModule = module {
-    single<INAEDataSource> { INAERemoteDataSource( inAEDataSource = get() )}
+    single<INAEDataSource> { INAERemoteDataSource( inAEDataService = get() )}
 }
