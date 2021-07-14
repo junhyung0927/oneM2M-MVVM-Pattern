@@ -4,6 +4,9 @@ import android.os.Bundle
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.ui.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
+import org.json.JSONObject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class INAEActivity : BaseActivity() {
@@ -14,11 +17,15 @@ class INAEActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         binding.lifecycleOwner = this
+        Logger.addLogAdapter(AndroidLogAdapter())
 
-        inAEViewModel.getAE()
 
-//        inAEViewModel.getAEInfo.observe(this){
-//            println(it.m2mAe.aei)
-//        }
+        inAEViewModel.createAEInfo().observe(this){
+            Logger.d("AE 생성: $it")
+        }
+
+        inAEViewModel.getAE().observe(this) {
+            Logger.d("AE 검색: $it")
+        }
     }
 }

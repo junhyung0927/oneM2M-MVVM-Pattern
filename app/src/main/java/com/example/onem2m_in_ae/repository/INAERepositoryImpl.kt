@@ -8,25 +8,18 @@ import com.example.onem2m_in_ae.model.ResponseAE
 class INAERepositoryImpl(
     val inAEDataSource: INAEDataSource
 ) : INAERepository {
-    override suspend fun getAEInfoList(): ResponseAE {
+    override suspend fun createAEInfoList(): Unit {
         val requestAE = RequestAE(
             RequestM2mAE(
-                "junhyung",
+                "junhyung_4",
                 "0.2.481.2.0001.001.000111",
                 arrayListOf("key1", "key2"),
                 true)
         )
-
-        return inAEDataSource.getAEINInfoList(hashMapOf(
-            "rn" to requestAE.m2mAe.rn,
-            "api" to requestAE.m2mAe.api,
-            "lbl" to requestAE.m2mAe.lbl,
-            "rr" to requestAE.m2mAe.rr,
-        ))
+        return inAEDataSource.createAEINInfoList(requestAE)
     }
 
     override suspend fun getAE(): ResponseAE {
         return inAEDataSource.getAE()
     }
-
 }
