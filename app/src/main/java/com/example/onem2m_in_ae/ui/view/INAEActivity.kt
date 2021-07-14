@@ -10,18 +10,15 @@ class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel : INAEViewModel by viewModel()
 
-    companion object {
-        const val CSENAME = "Mobius"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        binding.apply {
-            lifecycleOwner = this@INAEActivity
-        }
+        binding.lifecycleOwner = this
 
-        inAEViewModel.getAEInfo()
+        inAEViewModel.getAE()
+
+//        inAEViewModel.getAEInfo.observe(this){
+//            println(it.m2mAe.aei)
+//        }
     }
 }

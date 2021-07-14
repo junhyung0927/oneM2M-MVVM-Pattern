@@ -12,4 +12,7 @@ class INAERemoteDataSource(
         return inAEDataService.getAEInfoList(param)
     }
 
+    override suspend fun getAE(): ResponseAE {
+        return inAEDataService.getAE()
+    }
 }

@@ -9,13 +9,13 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL = "192.168.10.0:7081"
-
 fun getNetworkModule(baseUrl: String) = module {
     single {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = if (BuildConfig.DEBUG) {
+                    HttpLoggingInterceptor.Level.HEADERS
+                    HttpLoggingInterceptor.Level.BASIC
                     HttpLoggingInterceptor.Level.BODY
                 } else {
                     HttpLoggingInterceptor.Level.NONE
@@ -36,16 +36,4 @@ fun getNetworkModule(baseUrl: String) = module {
             .build()
             .create(INAEDataService::class.java)
     }
-}
-
-val networkModule = module {
-    single { provideRetrofit(get())}
-}
-
-fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
 }
