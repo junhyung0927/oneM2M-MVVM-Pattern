@@ -9,7 +9,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class INAEApp : Application() {
-    val BASE_URL = "http://192.168.10.62:7579"
+    val MOBIUS_BASE_URL = "http://192.168.10.62:7579"
+//    val ZINNIA_BASE_URL = "http://192.168.10.74:8072"
 
     override fun onCreate() {
         super.onCreate()
@@ -17,7 +18,7 @@ class INAEApp : Application() {
             androidContext(this@INAEApp)
             modules(dataSourceModule)
             modules(repositoryModule)
-            modules(getNetworkModule(BASE_URL))
+            modules(getNetworkModule(MOBIUS_BASE_URL))
             modules(viewModelModule)
         }
     }

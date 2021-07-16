@@ -1,6 +1,8 @@
 package com.example.onem2m_in_ae.di
 
 import com.example.onem2m_in_ae.service.INAEDataService
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.BuildConfig
@@ -14,25 +16,24 @@ fun getNetworkModule(baseUrl: String) = module {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = if (BuildConfig.DEBUG) {
-                    HttpLoggingInterceptor.Level.HEADERS
-                    HttpLoggingInterceptor.Level.BASIC
                     HttpLoggingInterceptor.Level.BODY
                 } else {
-                    HttpLoggingInterceptor.Level.NONE
+                    HttpLoggingInterceptor.Level.BODY
                 }
             })
             .build()
     }
 
     single {
-        GsonConverterFactory.create() as Converter.Factory
+        GsonConverterFactory
+            .create(GsonBuilder().setLenient().create()) as Converter.Factory
     }
 
     single {
         Retrofit.Builder()
             .client(get())
-            .addConverterFactory(get())
             .baseUrl(baseUrl)
+            .addConverterFactory(get())
             .build()
             .create(INAEDataService::class.java)
     }

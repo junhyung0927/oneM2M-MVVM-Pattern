@@ -106,4 +106,7 @@ dependencies {
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     // Koin Android Experimental features
     implementation "org.koin:koin-android-ext:$koin_version"
+
+    //pretty Logger
+    implementation 'com.orhanobut:logger:2.2.0'
 }
