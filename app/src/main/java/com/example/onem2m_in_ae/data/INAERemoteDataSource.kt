@@ -17,6 +17,6 @@ class INAERemoteDataSource(
     }
 
     override suspend fun getContentInstanceInfo(): ResponseCnt {
-        return inAEDataService.getOwnResourceContentInstanceInfo(2,4)
+        return inAEDataService.getChildResourceContentInstanceInfo()
     }
 }
