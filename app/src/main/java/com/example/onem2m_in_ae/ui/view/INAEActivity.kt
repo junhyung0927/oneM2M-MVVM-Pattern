@@ -11,7 +11,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
-    private val inAEViewModel : INAEViewModel by viewModel()
+    private val inAEViewModel: INAEViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +20,20 @@ class INAEActivity : BaseActivity() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
 
-        inAEViewModel.createAEInfo().observe(this){
-            Logger.d("AE 생성: $it")
+        inAEViewModel.apply {
+            createAEInfo().observe(this@INAEActivity) {
+                Logger.d("AE 생성: $it")
+            }
+
+            getAE().observe(this@INAEActivity) {
+                Logger.d("AE 검색: $it")
+            }
         }
 
-        inAEViewModel.getAE().observe(this) {
-            Logger.d("AE 검색: $it")
+        binding.ledControlButton.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                inAEViewModel.
+            }
         }
     }
 }

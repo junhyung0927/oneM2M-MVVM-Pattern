@@ -24,6 +24,8 @@ class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel(
         }
     }
 
+    fun controlLedOn() = liveData<> {  }
+
     override fun onError(e: Exception) {
         super.onError(e)
         when(e) {
