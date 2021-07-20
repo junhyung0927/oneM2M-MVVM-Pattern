@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">onem2m-IN-AE</string>
     <string name="main_head_text">Wisoft IoT Platform</string>
+    <string name="led_button_off_text">LED 끄기</string>
+    <string name="led_button_on_text">LED 켜기</string>
 </resources>

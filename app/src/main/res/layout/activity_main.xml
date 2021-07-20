@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/icon_view"
@@ -17,20 +15,37 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/led_control_button"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView_title"
+            style="@style/Text.HeadStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_head_text"
-            style="@style/Text.HeadStyle"
-
             android:layout_marginStart="15dp"
+
             android:layout_marginTop="15dp"
+            android:text="@string/main_head_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/led_control_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/led_button_on_text"
+            android:textOn="@string/led_button_off_text"
+            android:textColor="@drawable/select_toggle_color"
+            android:textColorHighlight="#FFBB00"
+            android:background="#FFFFFF"
+            android:outlineSpotShadowColor="#FFFFFF"
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_view"
             />
+
 
         <ImageView
             android:id="@+id/photoView_search_image"
@@ -39,18 +54,18 @@
             android:src="@drawable/ic_serch_background"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:src="@drawable/wisoft"
-
             android:layout_marginEnd="10dp"
+
             android:layout_marginBottom="10dp"
+            android:src="@drawable/wisoft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:ignore="ContentDescription" />
