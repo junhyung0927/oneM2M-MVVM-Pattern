@@ -4,6 +4,7 @@ import com.example.onem2m_in_ae.data.INAEDataSource
 import com.example.onem2m_in_ae.model.RequestAE
 import com.example.onem2m_in_ae.model.RequestM2mAE
 import com.example.onem2m_in_ae.model.ResponseAE
+import com.example.onem2m_in_ae.model.ResponseCnt
 
 class INAERepositoryImpl(
     val inAEDataSource: INAEDataSource
@@ -21,5 +22,9 @@ class INAERepositoryImpl(
 
     override suspend fun getAE(): ResponseAE {
         return inAEDataSource.getAE()
+    }
+
+    override suspend fun getContentInstanceInfo(): ResponseCnt {
+        return inAEDataSource.getContentInstanceInfo()
     }
 }

@@ -32,7 +32,11 @@ class INAEActivity : BaseActivity() {
 
         binding.ledControlButton.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked) {
-                inAEViewModel.
+                inAEViewModel.getContentInstanceInfo().observe(this) {
+                    Logger.d("CNT 검색: $it")
+                }
+            } else {
+                println("Trun off")
             }
         }
     }
