@@ -3,10 +3,7 @@ package com.example.onem2m_in_ae.service
 import com.example.onem2m_in_ae.model.RequestAE
 import com.example.onem2m_in_ae.model.ResponseAE
 import com.example.onem2m_in_ae.model.ResponseCnt
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface INAEDataService {
     @Headers(
@@ -33,6 +30,49 @@ interface INAEDataService {
         "X-M2M-RI: 12345",
         "X-M2M-Origin: Swisoft",
     )
-    @GET("/Mobius/IYAHN_DEMO/co2/la")
+    @GET("/Mobius/IYAHN_DEMO/co2")
     suspend fun getContentInstanceInfo(): ResponseCnt
+
+    @Headers(
+        "Accept: application/json",
+        "X-M2M-RI: 12345",
+        "X-M2M-Origin: Swisoft",
+    )
+    @GET("/Mobius/IYAHN_DEMO/co2")
+    suspend fun getChildResourceContentInstanceInfo(
+        @Query("fu") fu: Int,
+        @Query("rcn") rcn: Int
+    ): ResponseCnt
+
+    @Headers(
+        "Accept: application/json",
+        "X-M2M-RI: 12345",
+        "X-M2M-Origin: Swisoft",
+    )
+    @GET("/Mobius/IYAHN_DEMO/co2")
+    suspend fun getDetailedChildResourceContentInstanceInfo(
+        @Query("fu") fu: Int,
+        @Query("rcn") rcn: Int
+    ): ResponseCnt
+
+    @Headers(
+        "Accept: application/json",
+        "X-M2M-RI: 12345",
+        "X-M2M-Origin: Swisoft",
+    )
+    @GET("/Mobius/IYAHN_DEMO/co2")
+    suspend fun getOwnResourceContentInstanceInfo(
+        @Query("fu") fu: Int,
+        @Query("rcn") rcn: Int
+    ): ResponseCnt
+
+    @Headers(
+        "Accept: application/json",
+        "X-M2M-RI: 12345",
+        "X-M2M-Origin: Swisoft",
+    )
+    @GET("/Mobius/IYAHN_DEMO/co2")
+    suspend fun getContentInstanceChildResourceListInfo(): ResponseCnt
+
+
 }
