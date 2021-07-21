@@ -42,6 +42,22 @@
             android:background="#FFFFFF"
             android:outlineSpotShadowColor="#FFFFFF"
             android:textStyle="bold"
+            android:visibility="gone"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_view"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/container_control_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/get_container_control_text"
+            android:textColor="@drawable/select_toggle_color"
+            android:textColorHighlight="#FFBB00"
+            android:background="#FAFAFA"
+            android:outlineSpotShadowColor="#FFFFFF"
+            android:textStyle="bold"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_view"

@@ -3,4 +3,5 @@
     <string name="main_head_text">Wisoft IoT Platform</string>
     <string name="led_button_off_text">LED 끄기</string>
     <string name="led_button_on_text">LED 켜기</string>
+    <string name="get_container_control_text">Container 조회</string>
 </resources>

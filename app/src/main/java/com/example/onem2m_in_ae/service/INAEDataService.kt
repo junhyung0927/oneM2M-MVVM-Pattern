@@ -19,8 +19,8 @@ interface INAEDataService {
 
     @Headers(
         "Accept: application/json",
-        "X-M2M-RI: 1234asdfadd5",
-        "X-M2M-Origin: S20170713200332320Bdfl",
+        "X-M2M-RI: 12345",
+        "X-M2M-Origin: Swisoft",
     )
     @GET("/Mobius/junhyung_4")
     suspend fun getAE(): ResponseAE

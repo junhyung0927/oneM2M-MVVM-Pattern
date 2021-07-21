@@ -30,14 +30,19 @@ class INAEActivity : BaseActivity() {
             }
         }
 
-        binding.ledControlButton.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) {
-                inAEViewModel.getContentInstanceInfo().observe(this) {
-                    Logger.d("CNT 검색: $it")
-                }
-            } else {
-                println("Trun off")
+        binding.containerControlButton.setOnClickListener {
+            inAEViewModel.getContentInstanceInfo().observe(this) {
+                Logger.d("CNT 조회: $it")
             }
         }
+//        binding.ledControlButton.setOnCheckedChangeListener { _, isChecked ->
+//            if(isChecked) {
+//                inAEViewModel.getContentInstanceInfo().observe(this) {
+//                    Logger.d("CNT 검색: $it")
+//                }
+//            } else {
+//                println("Trun off")
+//            }
+//        }
     }
 }
