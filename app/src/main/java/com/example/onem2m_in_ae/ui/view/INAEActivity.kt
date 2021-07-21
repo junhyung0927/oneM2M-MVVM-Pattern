@@ -6,7 +6,6 @@ import com.example.onem2m_in_ae.ui.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import org.json.JSONObject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class INAEActivity : BaseActivity() {
@@ -21,11 +20,11 @@ class INAEActivity : BaseActivity() {
 
 
         inAEViewModel.apply {
-            createAEInfo().observe(this@INAEActivity) {
+            createAE().observe(this@INAEActivity) {
                 Logger.d("AE 생성: $it")
             }
 
-            getAE().observe(this@INAEActivity) {
+            getAEInfo().observe(this@INAEActivity) {
                 Logger.d("AE 검색: $it")
             }
         }
@@ -35,6 +34,7 @@ class INAEActivity : BaseActivity() {
                 Logger.d("CNT 조회: $it")
             }
         }
+
 //        binding.ledControlButton.setOnCheckedChangeListener { _, isChecked ->
 //            if(isChecked) {
 //                inAEViewModel.getContentInstanceInfo().observe(this) {

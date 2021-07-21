@@ -6,7 +6,7 @@ import com.example.onem2m_in_ae.model.ResponseCnt
 import com.example.onem2m_in_ae.model.ResponseM2mAE
 
 interface INAERepository {
-    suspend fun createAEInfoList() : Unit
-    suspend fun getAE() : ResponseAE
+    suspend fun createAE() : Unit
+    suspend fun getAEInfo() : ResponseAE
     suspend fun getContentInstanceInfo() : ResponseCnt
 }

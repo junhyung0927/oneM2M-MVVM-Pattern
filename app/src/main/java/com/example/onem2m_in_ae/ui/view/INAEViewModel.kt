@@ -9,14 +9,14 @@ import retrofit2.HttpException
 import java.lang.Exception
 
 class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
-    fun createAEInfo() = liveData<Unit> {
-        handle { inAERepository.createAEInfoList() }?.let {
+    fun createAE() = liveData<Unit> {
+        handle { inAERepository.createAE() }?.let {
             emit(it)
         }
     }
 
-    fun getAE() = liveData<ResponseAE> {
-        handle { inAERepository.getAE() }?.let {
+    fun getAEInfo() = liveData<ResponseAE> {
+        handle { inAERepository.getAEInfo() }?.let {
             emit(it)
         }
     }

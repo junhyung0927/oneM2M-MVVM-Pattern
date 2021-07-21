@@ -13,7 +13,7 @@ interface INAEDataService {
         "Content-Type: application/json;ty=2",
     )
     @POST("/Mobius")
-    suspend fun createAEInfoList(
+    suspend fun createAE(
         @Body param: RequestAE
     ): Unit
 
@@ -23,7 +23,7 @@ interface INAEDataService {
         "X-M2M-Origin: Swisoft",
     )
     @GET("/Mobius/junhyung_4")
-    suspend fun getAE(): ResponseAE
+    suspend fun getAEInfo(): ResponseAE
 
     @Headers(
         "Accept: application/json",

@@ -5,7 +5,7 @@ import com.example.onem2m_in_ae.model.ResponseAE
 import com.example.onem2m_in_ae.model.ResponseCnt
 
 interface INAEDataSource {
-    suspend fun createAEINInfoList(param: RequestAE): Unit
-    suspend fun getAE(): ResponseAE
+    suspend fun createAE(param: RequestAE): Unit
+    suspend fun getAEInfo(): ResponseAE
     suspend fun getContentInstanceInfo(): ResponseCnt
 }
