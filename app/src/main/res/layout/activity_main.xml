@@ -5,7 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.view.INAEActivity">
 
         <ImageView
             android:id="@+id/icon_view"
@@ -47,6 +48,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_view"
             />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager2_activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/container_control_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/photoView_search_image"
+            />
+
+        <ImageView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layout_constraintTop_toBottomOf="@id/container_control_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/photoView_search_image"
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/container_control_button"
