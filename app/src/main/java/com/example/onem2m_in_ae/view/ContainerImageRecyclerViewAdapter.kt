@@ -1,18 +1,14 @@
 package com.example.onem2m_in_ae.view
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onem2m_in_ae.databinding.ContainerListItemBinding
-import com.example.onem2m_in_ae.model.ContainerImage
-import com.example.onem2m_in_ae.view.ui.activity.AirPurifierActivity
 import com.example.onem2m_in_ae.view.ui.activity.INAEViewModel
 
 class ContainerImageRecyclerViewAdapter(
     val inaeViewModel: INAEViewModel, val containerImage
-    : List<ContainerImage>
+    : List<Int>
 ) :
     RecyclerView.Adapter<ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>() {
 
@@ -31,10 +27,10 @@ class ContainerImageRecyclerViewAdapter(
     inner class ContainerImageViewHolder(val binding: ContainerListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ContainerImage) {
-            binding.item = item.containerImage
+        fun bind(item: Int) {
+            binding.item = item
             binding.containerItemImageView.setOnClickListener {
-                inaeViewModel.callOnContainerImageEvent(item.containerImage)
+                inaeViewModel.callOnContainerImageEvent(item)
             }
             binding.executePendingBindings()
         }

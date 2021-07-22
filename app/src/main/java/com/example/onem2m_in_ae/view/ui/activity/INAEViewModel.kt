@@ -12,19 +12,19 @@ import retrofit2.HttpException
 import java.lang.Exception
 
 class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
-    fun createAE() = liveData<Unit> {
+    val createAE = liveData<Unit> {
         handle { inAERepository.createAE() }?.let {
             emit(it)
         }
     }
 
-    fun getAEInfo() = liveData<ResponseAE> {
+    val getAEInfo = liveData<ResponseAE> {
         handle { inAERepository.getAEInfo() }?.let {
             emit(it)
         }
     }
 
-    fun getContentInstanceInfo() = liveData<ResponseCnt> {
+    val getContentInstanceInfo = liveData<ResponseCnt> {
         handle { inAERepository.getContentInstanceInfo() }?.let {
             emit(it)
         }
