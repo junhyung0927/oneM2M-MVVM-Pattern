@@ -7,6 +7,7 @@ import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
 import com.example.onem2m_in_ae.model.ContainerImage
+import com.example.onem2m_in_ae.util.Event
 import com.example.onem2m_in_ae.util.EventObserver
 import com.example.onem2m_in_ae.view.ContainerImageRecyclerViewAdapter
 import com.orhanobut.logger.AndroidLogAdapter
@@ -48,11 +49,12 @@ class INAEActivity : BaseActivity() {
                 ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
+
                     when (position) {
                         0 -> {
-                            println("포지션: ${position}")
                             inAEViewModel.onContainerImageEvent.observe(
-                                this@INAEActivity, EventObserver {
+                                this@INAEActivity, EventObserver
+                                {
                                     val intent = Intent(
                                         this@INAEActivity, AirConditionalActivity::class.java
                                     )
@@ -60,9 +62,9 @@ class INAEActivity : BaseActivity() {
                                 })
                         }
                         1 -> {
-                            println("포지션: ${position}")
                             inAEViewModel.onContainerImageEvent.observe(
-                                this@INAEActivity, EventObserver {
+                                this@INAEActivity, EventObserver
+                                {
                                     val intent = Intent(
                                         this@INAEActivity, AirPurifierActivity::class.java
                                     )
@@ -70,14 +72,14 @@ class INAEActivity : BaseActivity() {
                                 })
                         }
                         2 -> {
-                            println("포지션: ${position}")
                             inAEViewModel.onContainerImageEvent.observe(
-                                this@INAEActivity, EventObserver {
+                                this@INAEActivity, { event: Event<Int> ->
                                     val intent = Intent(
                                         this@INAEActivity, BoilerActivity::class.java
                                     )
                                     startActivity(intent)
-                                })
+                                }
+                            )
                         }
                     }
                 }

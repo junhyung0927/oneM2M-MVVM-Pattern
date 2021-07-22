@@ -13,6 +13,8 @@ class AirPurifierActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.apply {
+            lifecycleOwner = this@AirPurifierActivity
+        }
     }
-
 }
