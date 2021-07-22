@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.INAEActivity">
+        tools:context=".view.ui.activity.INAEActivity">
 
         <ImageView
             android:id="@+id/icon_view"
@@ -85,7 +85,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_view"
             />
-
 
         <ImageView
             android:id="@+id/photoView_search_image"

@@ -1,12 +1,16 @@
-package com.example.onem2m_in_ae.ui
+package com.example.onem2m_in_ae.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onem2m_in_ae.databinding.ContainerListItemBinding
 import com.example.onem2m_in_ae.model.ContainerImage
+import com.example.onem2m_in_ae.view.ui.activity.INAEViewModel
 
-class ContainerImageRecyclerViewAdapter(val containerImage: List<ContainerImage>) :
+class ContainerImageRecyclerViewAdapter(
+    val inaeViewModel: INAEViewModel, val containerImage
+    : List<ContainerImage>
+) :
     RecyclerView.Adapter<ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContainerImageViewHolder {
@@ -23,13 +27,18 @@ class ContainerImageRecyclerViewAdapter(val containerImage: List<ContainerImage>
 
     inner class ContainerImageViewHolder(val binding: ContainerListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: ContainerImage) {
             binding.item = item.containerImage
             binding.executePendingBindings()
+            binding.containerItemImageView.setOnClickListener {
+                inaeViewModel.callOnContainerImageEvent(item.containerImage)
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return containerImage.size
     }
+
 }

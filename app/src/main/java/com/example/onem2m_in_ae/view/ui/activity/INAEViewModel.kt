@@ -1,10 +1,13 @@
-package com.example.onem2m_in_ae.ui.view
+package com.example.onem2m_in_ae.view.ui.activity
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.model.ResponseAE
-import com.example.onem2m_in_ae.ui.base.BaseViewModel
+import com.example.onem2m_in_ae.view.base.BaseViewModel
 import com.example.onem2m_in_ae.repository.INAERepository
 import androidx.lifecycle.liveData
 import com.example.onem2m_in_ae.model.ResponseCnt
+import com.example.onem2m_in_ae.util.Event
 import retrofit2.HttpException
 import java.lang.Exception
 
@@ -25,6 +28,14 @@ class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel(
         handle { inAERepository.getContentInstanceInfo() }?.let {
             emit(it)
         }
+    }
+
+    private val _onContainerImageEvent = MutableLiveData<Event<Int>>()
+    val onContainerImageEvent: LiveData<Event<Int>>
+        get() = _onContainerImageEvent
+
+    fun callOnContainerImageEvent(containerImageId: Int) {
+        _onContainerImageEvent.value = Event(containerImageId)
     }
 
     override fun onError(e: Exception) {

@@ -6,8 +6,8 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.github.chrisbanes.photoview.PhotoView
 
-@BindingAdapter("bind:test")
-fun setPhotoId(
+@BindingAdapter("bind:containerImageSelectedId")
+fun setContainerImageId(
     imageView: ImageView,
     containerId: Int,
 ){

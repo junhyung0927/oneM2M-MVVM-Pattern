@@ -14,11 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreenTheme"
         >
-        <activity android:name="com.example.onem2m_in_ae.ui.view.INAEActivity">
+        <activity android:name="com.example.onem2m_in_ae.view.ui.activity.INAEActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".view.ui.activity.AirConditionalActivity">
+        </activity>
+
+        <activity android:name=".view.ui.activity.AirPurifierActivity">
+        </activity>
+
+        <activity android:name=".view.ui.activity.BoilerActivity">
         </activity>
     </application>
 </manifest>
