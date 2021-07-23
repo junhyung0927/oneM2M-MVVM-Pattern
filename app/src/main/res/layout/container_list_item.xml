@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/container_item_imageView"
+            android:id="@+id/container_item_imageView_AirConditionerActivity"
             bind:containerImageSelectedId="@{item}"
 
             android:scaleType="centerInside"

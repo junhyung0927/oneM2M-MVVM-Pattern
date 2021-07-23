@@ -6,7 +6,7 @@ import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
 import com.example.onem2m_in_ae.util.EventObserver
-import com.example.onem2m_in_ae.view.ContainerImageRecyclerViewAdapter
+import com.example.onem2m_in_ae.view.ui.adapter.ContainerImageRecyclerViewAdapter
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -14,6 +14,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel: INAEViewModel by viewModel()
+
+    companion object {
+        const val KEY_CONTAINER_IMAGE_DATA: String = "container_src"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,20 +49,15 @@ class INAEActivity : BaseActivity() {
                 }
 
                 val intent = Intent(this@INAEActivity, destinationActivity)
+                intent.putExtra(KEY_CONTAINER_IMAGE_DATA, it)
                 startActivity(intent)
             })
         }
 
         binding.apply {
-            viewpager2ActivityMain.adapter = ContainerImageRecyclerViewAdapter(
+            viewpager2INAEActivity.adapter = ContainerImageRecyclerViewAdapter(
                 inAEViewModel, containerImageList
             )
-
-            containerControlButton.setOnClickListener {
-                inAEViewModel.getContentInstanceInfo.observe(this@INAEActivity) {
-                    Logger.d("CNT 조회: $it")
-                }
-            }
         }
     }
 }

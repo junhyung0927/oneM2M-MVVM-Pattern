@@ -17,54 +17,24 @@ interface INAEDataService {
         @Body param: RequestAE
     ): Unit
 
-    @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 12345",
-        "X-M2M-Origin: Swisoft",
-    )
     @GET("/Mobius/junhyung_4")
     suspend fun getAEInfo(): ResponseAE
 
-    @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 12345",
-        "X-M2M-Origin: Swisoft",
-    )
     @GET("/Mobius/IYAHN_DEMO/co2/la")
     suspend fun getContentInstanceLastResource(): ResponseCnt
 
-    @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 12345",
-        "X-M2M-Origin: Swisoft",
-    )
     @GET("/Mobius/IYAHN_DEMO/co2?fu=1&rcn=1")
     suspend fun getChildResourceContentInstanceInfo(): ResponseCnt
 
-    @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 12345",
-        "X-M2M-Origin: Swisoft",
-    )
     @GET("/Mobius/IYAHN_DEMO/co2")
     suspend fun getDetailedChildResourceContentInstanceInfo(
         @Query("fu") fu: Int,
         @Query("rcn") rcn: Int
     ): ResponseCnt
 
-    @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 12345",
-        "X-M2M-Origin: Swisoft",
-    )
     @GET("/Mobius/IYAHN_DEMO/co2?fcn=2&rcn=1")
     suspend fun getOwnResourceContentInstanceInfo(): ResponseCnt
 
-    @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 12345",
-        "X-M2M-Origin: Swisoft",
-    )
     @GET("/Mobius/IYAHN_DEMO/co2")
     suspend fun getContentInstanceChildResourceListInfo(): ResponseCnt
 

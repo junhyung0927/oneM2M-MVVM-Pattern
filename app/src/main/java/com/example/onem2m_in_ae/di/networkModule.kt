@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.di
 
+import com.example.onem2m_in_ae.service.HeaderInterceptor
 import com.example.onem2m_in_ae.service.INAEDataService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -14,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 fun getNetworkModule(baseUrl: String) = module {
     single {
         OkHttpClient.Builder()
+            .addInterceptor(HeaderInterceptor())
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = if (BuildConfig.DEBUG) {
                     HttpLoggingInterceptor.Level.BODY

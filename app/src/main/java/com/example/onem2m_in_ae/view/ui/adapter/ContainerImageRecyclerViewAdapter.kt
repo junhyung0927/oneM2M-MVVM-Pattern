@@ -1,4 +1,4 @@
-package com.example.onem2m_in_ae.view
+package com.example.onem2m_in_ae.view.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -29,7 +29,7 @@ class ContainerImageRecyclerViewAdapter(
 
         fun bind(item: Int) {
             binding.item = item
-            binding.containerItemImageView.setOnClickListener {
+            binding.containerItemImageViewAirConditionerActivity.setOnClickListener {
                 inaeViewModel.callOnContainerImageEvent(item)
             }
             binding.executePendingBindings()
