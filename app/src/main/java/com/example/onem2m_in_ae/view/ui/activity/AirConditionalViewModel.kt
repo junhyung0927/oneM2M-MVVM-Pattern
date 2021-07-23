@@ -7,9 +7,10 @@ import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
 import java.lang.Exception
 
-class AirConditionalViewModel(private val inAERepository: INAERepository): BaseViewModel() {
-    val getContentInstanceInfo = liveData<ResponseCnt> {
-        handle { inAERepository.getContentInstanceInfo() }?.let {
+class AirConditionalViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
+    fun getContentInstanceInfo() = liveData<ResponseCnt> {
+        val getContentInstanceInfo = handle {
+            inAERepository.getContentInstanceInfo() }?.let {
             emit(it)
         }
     }

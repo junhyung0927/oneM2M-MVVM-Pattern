@@ -63,7 +63,7 @@
                     android:id="@+id/airconditioner_searchData_mode_AppCompactButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FAFAFA"
+                    android:background="@drawable/ripple_custom"
                     android:outlineSpotShadowColor="#FFFFFF"
                     android:text="@string/get_container_control_text"
                     android:textColor="@drawable/select_toggle_color"

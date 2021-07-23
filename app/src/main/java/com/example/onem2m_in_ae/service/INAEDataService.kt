@@ -26,13 +26,10 @@ interface INAEDataService {
     @GET("/Mobius/IYAHN_DEMO/co2?fu=1&rcn=1")
     suspend fun getChildResourceContentInstanceInfo(): ResponseCnt
 
-    @GET("/Mobius/IYAHN_DEMO/co2")
-    suspend fun getDetailedChildResourceContentInstanceInfo(
-        @Query("fu") fu: Int,
-        @Query("rcn") rcn: Int
-    ): ResponseCnt
+    @GET("/Mobius/IYAHN_DEMO/co2?fu=2&rcn=4")
+    suspend fun getDetailedChildResourceContentInstanceInfo(): ResponseCnt
 
-    @GET("/Mobius/IYAHN_DEMO/co2?fcn=2&rcn=1")
+    @GET("/Mobius/IYAHN_DEMO/co2?fu=2&rcn=1")
     suspend fun getOwnResourceContentInstanceInfo(): ResponseCnt
 
     @GET("/Mobius/IYAHN_DEMO/co2")

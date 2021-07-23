@@ -23,7 +23,7 @@ class AirConditionalActivity: BaseActivity() {
             item = containerImageSrc
 
             airconditionerSearchDataModeAppCompactButton.setOnClickListener {
-                airConditionalViewModel.getContentInstanceInfo.observe(this@AirConditionalActivity) {
+                airConditionalViewModel.getContentInstanceInfo().observe(this@AirConditionalActivity) {
                     Logger.d("CNT 조회: $it")
                 }
             }
