@@ -1,4 +1,4 @@
-package com.example.onem2m_in_ae.ui.base
+package com.example.onem2m_in_ae.view.base
 
 import androidx.lifecycle.ViewModel
 import java.lang.Exception

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -109,4 +110,7 @@ dependencies {
 
     //pretty Logger
     implementation 'com.orhanobut:logger:2.2.0'
+
+    //viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }

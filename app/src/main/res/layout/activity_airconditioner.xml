@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/container_item_imageView_AirConditionerActivity"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:containerImageSelectedId="@{item}" />
+
+        <ScrollView
+            android:id="@+id/scrollView_AirConditionerActivity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                >
+                <androidx.appcompat.widget.AppCompatToggleButton
+                    android:id="@+id/airconditioner_control_mode_AppCompactButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:textOff="@string/airCon_control_off_control_text"
+                    android:textOn="@string/airCon_control_on_control_text"
+
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:textStyle="bold"
+                    android:layout_margin="15dp"
+
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/airconditioner_searchData_mode_AppCompactButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_custom"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/get_container_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:textStyle="bold"
+                    android:layout_margin="15dp"
+
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/airconditioner_dehumidification_mode_AppCompactButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/dehumidification_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/airconditioner_power_mode_AppCompactButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/power_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/airconditioner_timer_mode_AppCompactButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/timer_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/test5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/nonDecide_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/test6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/nonDecide_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/test7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/nonDecide_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
