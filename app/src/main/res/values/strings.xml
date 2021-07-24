@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">onem2m-IN-AE</string>
-    <string name="main_head_text">Wisoft IoT Platform</string>
+    <string name="main_head_text">oneM2M2 IoT Platform</string>
+    <string name="led_button_off_text">LED 끄기</string>
+    <string name="led_button_on_text">LED 켜기</string>
+    <string name="get_container_control_text">Container 조회</string>
+    <string name="timer_mode_control_text">타이머 모드</string>
+    <string name="dehumidification_mode_control_text">제습 모드</string>
+    <string name="power_mode_control_text">파워 모드</string>
+    <string name="airCon_control_off_control_text">전원 끄기</string>
+    <string name="airCon_control_on_control_text">전원 켜기</string>
+    <string name="nonDecide_mode_control_text">미구현 모드</string>
 </resources>

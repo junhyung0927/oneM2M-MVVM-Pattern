@@ -4,11 +4,12 @@ import com.example.onem2m_in_ae.data.INAEDataSource
 import com.example.onem2m_in_ae.model.RequestAE
 import com.example.onem2m_in_ae.model.RequestM2mAE
 import com.example.onem2m_in_ae.model.ResponseAE
+import com.example.onem2m_in_ae.model.ResponseCon
 
 class INAERepositoryImpl(
     val inAEDataSource: INAEDataSource
 ) : INAERepository {
-    override suspend fun createAEInfoList(): Unit {
+    override suspend fun createAE(): Unit {
         val requestAE = RequestAE(
             RequestM2mAE(
                 "junhyung_4",
@@ -16,10 +17,14 @@ class INAERepositoryImpl(
                 arrayListOf("key1", "key2"),
                 true)
         )
-        return inAEDataSource.createAEINInfoList(requestAE)
+        return inAEDataSource.createAE(requestAE)
     }
 
-    override suspend fun getAE(): ResponseAE {
-        return inAEDataSource.getAE()
+    override suspend fun getAEInfo(): ResponseAE {
+        return inAEDataSource.getAEInfo()
+    }
+
+    override suspend fun getContentInstanceInfo(): ResponseCon {
+        return inAEDataSource.getContentInstanceInfo()
     }
 }

@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        tools:context=".view.ui.activity.INAEActivity">
 
-        <ImageView
-            android:id="@+id/icon_view"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_undraw_well_done_i2wr"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/textView_title"
+            android:id="@+id/head_textView_INAEActivity"
+            style="@style/Text.HeadStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_head_text"
-            style="@style/Text.HeadStyle"
-
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/viewpager2_INAEActivity"
+            />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager2_INAEActivity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/head_textView_INAEActivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/photoView_search_ImageView_INAEActivity"
             />
 
         <ImageView
-            android:id="@+id/photoView_search_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/photoView_search_ImageView_INAEActivity"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
             android:src="@drawable/ic_serch_background"
-
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewpager2_INAEActivity"
             tools:ignore="ContentDescription" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:src="@drawable/wisoft"
-
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            android:src="@drawable/wisoft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:ignore="ContentDescription" />

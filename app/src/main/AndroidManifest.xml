@@ -12,12 +12,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Onem2mINAE">
-        <activity android:name="com.example.onem2m_in_ae.ui.view.INAEActivity">
+        android:theme="@style/FullScreenTheme"
+        >
+        <activity android:name="com.example.onem2m_in_ae.view.ui.activity.INAEActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".view.ui.activity.AirConditionalActivity">
+        </activity>
+
+        <activity android:name=".view.ui.activity.AirPurifierActivity">
+        </activity>
+
+        <activity android:name=".view.ui.activity.BoilerActivity">
         </activity>
     </application>
 </manifest>
