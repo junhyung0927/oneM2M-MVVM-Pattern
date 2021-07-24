@@ -29,5 +29,8 @@
 
         <activity android:name=".view.ui.activity.BoilerActivity">
         </activity>
+
+        <activity android:name=".view.ui.activity.ContainerRegisterActivity">
+        </activity>
     </application>
 </manifest>

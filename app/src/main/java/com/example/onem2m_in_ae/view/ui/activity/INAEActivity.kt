@@ -43,6 +43,7 @@ class INAEActivity : BaseActivity() {
             getContainerInfo.observe(this@INAEActivity) {
                 Logger.d("CON 검색: $it")
             }
+
             onContainerImageEvent.observe(this@INAEActivity, EventObserver
             {
                 val destinationActivity = when (it) {
@@ -61,6 +62,11 @@ class INAEActivity : BaseActivity() {
             viewpager2INAEActivity.adapter = ContainerImageRecyclerViewAdapter(
                 inAEViewModel, containerImageList
             )
+
+            floatingButtonAddContainerINAEActivity.setOnClickListener {
+                val intent= Intent(this@INAEActivity, ContainerRegisterActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
