@@ -1,14 +1,14 @@
 package com.example.onem2m_in_ae.view.ui.activity
 
 import androidx.lifecycle.liveData
-import com.example.onem2m_in_ae.model.ResponseCnt
+import com.example.onem2m_in_ae.model.ResponseCon
 import com.example.onem2m_in_ae.repository.INAERepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
 import java.lang.Exception
 
 class AirConditionalViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
-    fun getContentInstanceInfo() = liveData<ResponseCnt> {
+    fun getContentInstanceInfo() = liveData<ResponseCon> {
         val getContentInstanceInfo = handle {
             inAERepository.getContentInstanceInfo() }?.let {
             emit(it)

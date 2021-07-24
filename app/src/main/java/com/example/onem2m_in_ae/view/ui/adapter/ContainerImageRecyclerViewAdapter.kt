@@ -39,5 +39,4 @@ class ContainerImageRecyclerViewAdapter(
     override fun getItemCount(): Int {
         return containerImage.size
     }
-
 }

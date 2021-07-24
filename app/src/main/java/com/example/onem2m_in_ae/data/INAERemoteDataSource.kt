@@ -2,7 +2,7 @@ package com.example.onem2m_in_ae.data
 
 import com.example.onem2m_in_ae.model.RequestAE
 import com.example.onem2m_in_ae.model.ResponseAE
-import com.example.onem2m_in_ae.model.ResponseCnt
+import com.example.onem2m_in_ae.model.ResponseCon
 import com.example.onem2m_in_ae.service.INAEDataService
 
 class INAERemoteDataSource(
@@ -16,7 +16,7 @@ class INAERemoteDataSource(
         return inAEDataService.getAEInfo()
     }
 
-    override suspend fun getContentInstanceInfo(): ResponseCnt {
-        return inAEDataService.getContentInstanceLastResource()
+    override suspend fun getContentInstanceInfo(): ResponseCon {
+        return inAEDataService.getDetailedChildResourceContentInstanceInfo()
     }
 }
