@@ -1,8 +1,8 @@
-package com.example.onem2m_in_ae.model
+package com.example.onem2m_in_ae.model.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseCon(
+data class ResponseCon (
     @SerializedName("m2m:cnt")
     val m2MCon: ResponseM2MCon
 )

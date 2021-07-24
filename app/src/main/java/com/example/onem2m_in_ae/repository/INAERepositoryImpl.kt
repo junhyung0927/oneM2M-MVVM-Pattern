@@ -1,10 +1,11 @@
 package com.example.onem2m_in_ae.repository
 
 import com.example.onem2m_in_ae.data.INAEDataSource
-import com.example.onem2m_in_ae.model.RequestAE
-import com.example.onem2m_in_ae.model.RequestM2mAE
-import com.example.onem2m_in_ae.model.ResponseAE
-import com.example.onem2m_in_ae.model.ResponseCon
+import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestM2mAE
+import com.example.onem2m_in_ae.model.response.ResponseAE
+import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCon
 
 class INAERepositoryImpl(
     val inAEDataSource: INAEDataSource
@@ -20,11 +21,19 @@ class INAERepositoryImpl(
         return inAEDataSource.createAE(requestAE)
     }
 
+//    override suspend fun createContainerInstance() {
+//        TODO("Not yet implemented")
+//    }
+
     override suspend fun getAEInfo(): ResponseAE {
         return inAEDataSource.getAEInfo()
     }
 
-    override suspend fun getContentInstanceInfo(): ResponseCon {
+    override suspend fun getContentInstanceInfo(): ResponseCnt {
         return inAEDataSource.getContentInstanceInfo()
+    }
+
+    override suspend fun getContainerInfo(): ResponseCon {
+        return inAEDataSource.getContainerInfo()
     }
 }

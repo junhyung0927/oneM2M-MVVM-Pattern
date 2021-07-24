@@ -1,4 +1,4 @@
-package com.example.onem2m_in_ae.model
+package com.example.onem2m_in_ae.model.response
 
 
 import com.google.gson.annotations.SerializedName

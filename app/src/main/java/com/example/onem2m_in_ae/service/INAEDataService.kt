@@ -1,8 +1,9 @@
 package com.example.onem2m_in_ae.service
 
-import com.example.onem2m_in_ae.model.RequestAE
-import com.example.onem2m_in_ae.model.ResponseAE
-import com.example.onem2m_in_ae.model.ResponseCon
+import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.response.ResponseAE
+import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCon
 import retrofit2.http.*
 
 interface INAEDataService {
@@ -21,17 +22,20 @@ interface INAEDataService {
     suspend fun getAEInfo(): ResponseAE
 
     @GET("/Mobius/IYAHN_DEMO/co2/la")
-    suspend fun getContentInstanceLastResource(): ResponseCon
+    suspend fun getContentInstanceLastResource(): ResponseCnt
 
     @GET("/Mobius/IYAHN_DEMO/co2?fu=1&rcn=1")
-    suspend fun getChildResourceContentInstanceInfo(): ResponseCon
+    suspend fun getChildResourceContentInstanceInfo(): ResponseCnt
 
     @GET("/Mobius/IYAHN_DEMO/co2?fu=2&rcn=4")
-    suspend fun getDetailedChildResourceContentInstanceInfo(): ResponseCon
+    suspend fun getDetailedChildResourceContentInstanceInfo(): ResponseCnt
 
     @GET("/Mobius/IYAHN_DEMO/co2?fu=2&rcn=1")
-    suspend fun getOwnResourceContentInstanceInfo(): ResponseCon
+    suspend fun getOwnResourceContentInstanceInfo(): ResponseCnt
 
     @GET("/Mobius/IYAHN_DEMO/co2")
-    suspend fun getContentInstanceResourceInfo(): ResponseCon
+    suspend fun getContentInstanceResourceInfo(): ResponseCnt
+
+    @GET("/Mobius?fu=1&rcn=1")
+    suspend fun getContainerInfo(): ResponseCon
 }
