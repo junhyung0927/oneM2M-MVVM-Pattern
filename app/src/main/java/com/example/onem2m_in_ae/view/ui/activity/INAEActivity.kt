@@ -5,8 +5,10 @@ import android.os.Bundle
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
+import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.util.EventObserver
 import com.example.onem2m_in_ae.view.ui.adapter.ContainerImageRecyclerViewAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -25,10 +27,10 @@ class INAEActivity : BaseActivity() {
         binding.lifecycleOwner = this
         Logger.addLogAdapter(AndroidLogAdapter())
 
-        val containerImageList = listOf(
-            R.drawable.airconditioner,
-            R.drawable.airpurifier,
-            R.drawable.boiler
+        val containerImageList: List<ContainerInstance> = listOf(
+            ContainerInstance("에어컨", R.drawable.airconditioner),
+            ContainerInstance("제습기", R.drawable.airpurifier),
+            ContainerInstance("보일러", R.drawable.boiler)
         )
 
         inAEViewModel.apply {
@@ -63,8 +65,10 @@ class INAEActivity : BaseActivity() {
                 inAEViewModel, containerImageList
             )
 
+            TabLayoutMediator(tabLayoutINAEActivity, viewpager2INAEActivity){ tab, position -> }.attach()
+
             floatingButtonAddContainerINAEActivity.setOnClickListener {
-                val intent= Intent(this@INAEActivity, ContainerRegisterActivity::class.java)
+                val intent = Intent(this@INAEActivity, ContainerRegisterActivity::class.java)
                 startActivity(intent)
             }
         }

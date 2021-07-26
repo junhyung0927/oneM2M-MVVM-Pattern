@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onem2m_in_ae.databinding.ContainerListItemBinding
+import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.view.ui.activity.INAEViewModel
 
 class ContainerImageRecyclerViewAdapter(
     val inaeViewModel: INAEViewModel, val containerImage
-    : List<Int>
+    : List<ContainerInstance>
 ) :
     RecyclerView.Adapter<ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>() {
 
@@ -27,10 +28,11 @@ class ContainerImageRecyclerViewAdapter(
     inner class ContainerImageViewHolder(val binding: ContainerListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Int) {
-            binding.item = item
+        fun bind(item: ContainerInstance) {
+            binding.itemImage = item.containerImage
+            binding.itemName = item.containerInstanceName
             binding.containerItemImageViewAirConditionerActivity.setOnClickListener {
-                inaeViewModel.callOnContainerImageEvent(item)
+                inaeViewModel.callOnContainerImageEvent(item.containerImage)
             }
             binding.executePendingBindings()
         }

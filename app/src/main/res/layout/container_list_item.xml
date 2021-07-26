@@ -5,18 +5,30 @@
     xmlns:bind="http://schemas.android.com/tools">
     <data>
         <variable
-            name="item"
+            name="itemImage"
             type="Integer" />
+        <variable
+            name="itemName"
+            type="String" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{itemName}"
+            style="@style/Text.BodyStyle"
+            app:layout_constraintBottom_toTopOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/container_item_imageView_AirConditionerActivity"
-            bind:containerImageSelectedId="@{item}"
+            bind:containerImageSelectedId="@{itemImage}"
 
             android:scaleType="centerInside"
             app:layout_constraintTop_toTopOf="parent"
