@@ -9,8 +9,8 @@ import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.view.ui.activity.INAEViewModel
 
 class ContainerImageRecyclerViewAdapter(
-    val inaeViewModel: INAEViewModel, val containerInstance
-    : List<ContainerInstance>
+    val inaeViewModel: INAEViewModel, var containerInstance
+    : MutableList<ContainerInstance>
 ) :
     RecyclerView.Adapter<ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>() {
 
@@ -45,6 +45,9 @@ class ContainerImageRecyclerViewAdapter(
 
     fun update(newItemList: List<ContainerInstance>) {
         val diffResult = DiffUtil.calculateDiff(ContentDiffUtil(containerInstance, newItemList))
+        diffResult.dispatchUpdatesTo(this)
+        containerInstance.clear()
+        containerInstance.addAll(newItemList)
     }
 }
 
