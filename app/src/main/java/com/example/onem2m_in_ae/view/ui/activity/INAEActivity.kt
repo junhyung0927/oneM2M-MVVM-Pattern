@@ -28,9 +28,9 @@ class INAEActivity : BaseActivity() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
         val containerImageList: MutableList<ContainerInstance> = mutableListOf(
-            ContainerInstance("에어컨", R.drawable.airconditioner),
-            ContainerInstance("제습기", R.drawable.airpurifier),
-            ContainerInstance("보일러", R.drawable.boiler)
+            ContainerInstance(1,"에어컨", R.drawable.airconditioner),
+            ContainerInstance(2,"제습기", R.drawable.airpurifier),
+            ContainerInstance(3, "보일러", R.drawable.boiler)
         )
 
         inAEViewModel.apply {

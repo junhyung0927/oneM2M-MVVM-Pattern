@@ -6,9 +6,9 @@ import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
 import com.example.onem2m_in_ae.service.INAEDataService
 
-class INAERemoteDataSource(
+class AERemoteDataSource(
     val inAEDataService: INAEDataService
-) : INAEDataSource {
+) : RemoteDataSource {
     override suspend fun createAE(param: RequestAE): Unit {
         return inAEDataService.createAE(param)
     }

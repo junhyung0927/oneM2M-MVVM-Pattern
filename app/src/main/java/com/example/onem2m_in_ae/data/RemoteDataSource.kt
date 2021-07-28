@@ -5,7 +5,7 @@ import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
 
-interface INAEDataSource {
+interface RemoteDataSource {
     suspend fun createAE(param: RequestAE): Unit
     suspend fun getAEInfo(): ResponseAE
     suspend fun getContainerInfo(): ResponseCon
