@@ -10,9 +10,13 @@ import org.jetbrains.annotations.NotNull
 @Dao
 interface INAEDao {
     @Query("SELECT * FROM ContainerInstance")
-    fun getContainerInstanceInfoList(): List<ContainerInstance>
+    fun getContainerInstanceInfoList(): MutableList<ContainerInstance>
 
     @Insert
     suspend fun insertContainerInstanceList(vararg containerInstance: ContainerInstance)
+            : Unit
+
+    @Insert
+    fun createContainerInstance(containerInstance: MutableList<ContainerInstance>)
             : Unit
 }

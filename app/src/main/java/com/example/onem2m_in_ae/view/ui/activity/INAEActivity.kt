@@ -17,7 +17,7 @@ import java.io.Serializable
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel: INAEViewModel by viewModel()
-    private var containerImage: List<Int> = listOf()
+    private var containerImage: MutableList<Int> = mutableListOf()
     private var containerInstance: MutableList<ContainerInstance> = mutableListOf()
 
     companion object {
@@ -38,13 +38,17 @@ class INAEActivity : BaseActivity() {
         )
 
         inAEViewModel.apply {
+
+//            createContainerInstance()
+
             createAE.observe(this@INAEActivity) {
                 Logger.d("AE 생성: $it")
             }
 
             insertContainerInstanceList(containerInstance)
             getContainerDatabase.observe(this@INAEActivity) {
-                containerImage = listOf(
+                containerInstance = it
+                containerImage = mutableListOf(
                     it.get(0).containerImage,
                     it.get(1).containerImage,
                     it.get(2).containerImage,
@@ -77,7 +81,6 @@ class INAEActivity : BaseActivity() {
             viewpager2INAEActivity.adapter = ContainerImageRecyclerViewAdapter(
                 inAEViewModel, containerInstance
             )
-
             TabLayoutMediator(
                 tabLayoutINAEActivity,
                 viewpager2INAEActivity

@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.repository
 
+import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
 import com.example.onem2m_in_ae.model.ContainerInstance
@@ -25,9 +26,15 @@ class INAERepositoryImpl(
         return remoteDataSource.createAE(requestAE)
     }
 
-//    override suspend fun createContainerInstance() {
-//        TODO("Not yet implemented")
-//    }
+    override fun createContainerInstance(): Unit {
+        val containerInstance = mutableListOf(
+            ContainerInstance(1, "에어컨", R.drawable.airconditioner),
+            ContainerInstance(2, "제습기", R.drawable.airpurifier),
+            ContainerInstance(3, "보일러", R.drawable.boiler)
+        )
+        println("reposi" + containerInstance)
+        localDataSource.createContentInstance(containerInstance)
+    }
 
     override suspend fun getAEInfo(): ResponseAE {
         return remoteDataSource.getAEInfo()
@@ -37,7 +44,7 @@ class INAERepositoryImpl(
         return remoteDataSource.getContentInstanceInfo()
     }
 
-    override suspend fun getContentInstanceDatabase(): List<ContainerInstance> {
+    override suspend fun getContentInstanceDatabase(): MutableList<ContainerInstance> {
         return localDataSource.getContainerInstanceDataBase()
     }
 
