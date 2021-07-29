@@ -18,4 +18,5 @@
 <!--장치 추가 텍스트-->
     <string name="container_register_head_text">장치 등록</string>
     <string name="container_register_name_text">장치 이름</string>
+    <string name="container_register_finsh_text">장치 추가</string>
 </resources>

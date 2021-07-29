@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
     <data>
         <variable
             name="registerContainer"
             type="com.example.onem2m_in_ae.view.ui.activity.ContainerRegisterViewModel" />
+        <variable
+            name="containerImage"
+            type="Integer" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -56,5 +60,35 @@
                 android:layout_height="wrap_content"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_ContainerImageSelect_Register_Activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_ContainerName_Register_Activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_ContainerImage_Register_Activity"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            bind:containerImageSelectedId="@{containerImage}"
+
+            app:layout_constraintTop_toBottomOf="@id/spinner_ContainerImageSelect_Register_Activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_ContainerAdd_Register_Activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/container_register_finsh_text"
+            android:background="@drawable/control_button_shape"
+            app:layout_constraintTop_toBottomOf="@id/imageView_ContainerImage_Register_Activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

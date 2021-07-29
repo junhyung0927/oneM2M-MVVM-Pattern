@@ -12,13 +12,17 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.io.Serializable
 
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel: INAEViewModel by viewModel()
+    private var containerImage: List<Int> = listOf()
+    private var containerInstance: MutableList<ContainerInstance> = mutableListOf()
 
     companion object {
         const val KEY_CONTAINER_IMAGE_DATA: String = "container_src"
+        const val CONTAINER_IMAGE: String = "container image"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +31,9 @@ class INAEActivity : BaseActivity() {
         binding.lifecycleOwner = this
         Logger.addLogAdapter(AndroidLogAdapter())
 
-        val containerImageList: MutableList<ContainerInstance> = mutableListOf(
-            ContainerInstance(1,"에어컨", R.drawable.airconditioner),
-            ContainerInstance(2,"제습기", R.drawable.airpurifier),
+        containerInstance = mutableListOf(
+            ContainerInstance(1, "에어컨", R.drawable.airconditioner),
+            ContainerInstance(2, "제습기", R.drawable.airpurifier),
             ContainerInstance(3, "보일러", R.drawable.boiler)
         )
 
@@ -38,8 +42,17 @@ class INAEActivity : BaseActivity() {
                 Logger.d("AE 생성: $it")
             }
 
+            insertContainerInstanceList(containerInstance)
+            getContainerDatabase.observe(this@INAEActivity) {
+                containerImage = listOf(
+                    it.get(0).containerImage,
+                    it.get(1).containerImage,
+                    it.get(2).containerImage,
+                )
+            }
+
             getAEInfo.observe(this@INAEActivity) {
-//                Logger.d("AE 검색: $it")
+                Logger.d("AE 검색: $it")
             }
 
             getContainerInfo.observe(this@INAEActivity) {
@@ -62,13 +75,17 @@ class INAEActivity : BaseActivity() {
 
         binding.apply {
             viewpager2INAEActivity.adapter = ContainerImageRecyclerViewAdapter(
-                inAEViewModel, containerImageList
+                inAEViewModel, containerInstance
             )
 
-            TabLayoutMediator(tabLayoutINAEActivity, viewpager2INAEActivity){ tab, position -> }.attach()
+            TabLayoutMediator(
+                tabLayoutINAEActivity,
+                viewpager2INAEActivity
+            ) { tab, position -> }.attach()
 
             floatingButtonAddContainerINAEActivity.setOnClickListener {
                 val intent = Intent(this@INAEActivity, ContainerRegisterActivity::class.java)
+                intent.putExtra(CONTAINER_IMAGE, containerImage as Serializable)
                 startActivity(intent)
             }
         }

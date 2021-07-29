@@ -2,6 +2,7 @@ package com.example.onem2m_in_ae.repository
 
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
+import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.model.request.RequestAE
 import com.example.onem2m_in_ae.model.request.RequestM2mAE
 import com.example.onem2m_in_ae.model.response.ResponseAE
@@ -18,7 +19,8 @@ class INAERepositoryImpl(
                 "junhyung_4",
                 "0.2.481.2.0001.001.000111",
                 arrayListOf("key1", "key2"),
-                true)
+                true
+            )
         )
         return remoteDataSource.createAE(requestAE)
     }
@@ -35,7 +37,15 @@ class INAERepositoryImpl(
         return remoteDataSource.getContentInstanceInfo()
     }
 
+    override suspend fun getContentInstanceDatabase(): List<ContainerInstance> {
+        return localDataSource.getContainerInstanceDataBase()
+    }
+
     override suspend fun getContainerInfo(): ResponseCon {
         return remoteDataSource.getContainerInfo()
+    }
+
+    override suspend fun insertContainerInstanceList(containerImageList: MutableList<ContainerInstance>) {
+        return localDataSource.insertContentInstanceInfoList(containerImageList)
     }
 }
