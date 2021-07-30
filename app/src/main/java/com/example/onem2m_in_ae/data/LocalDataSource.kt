@@ -6,5 +6,5 @@ interface LocalDataSource {
     suspend fun insertContentInstanceInfoList(containerInstance: MutableList<ContainerInstance>)
     fun createContentInstance(containerInstance: MutableList<ContainerInstance>)
     suspend fun getContainerInstanceDataBase(): MutableList<ContainerInstance>
-
+    suspend fun registerContainerInstance(containerInstance: MutableList<ContainerInstance>)
 }

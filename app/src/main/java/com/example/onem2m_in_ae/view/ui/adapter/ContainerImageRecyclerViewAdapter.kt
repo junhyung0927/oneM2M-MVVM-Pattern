@@ -1,18 +1,41 @@
 package com.example.onem2m_in_ae.view.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onem2m_in_ae.databinding.ContainerListItemBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.view.ui.activity.INAEViewModel
 
 class ContainerImageRecyclerViewAdapter(
-    val inaeViewModel: INAEViewModel, var containerInstance
-    : MutableList<ContainerInstance>
+    val inaeViewModel: INAEViewModel
 ) :
-    RecyclerView.Adapter<ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>() {
+    ListAdapter<ContainerInstance, ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>(
+        DIFF_CALLBACK
+    ) {
+    private var instanceList = mutableListOf<ContainerInstance>()
+
+    companion object {
+        val DIFF_CALLBACK = object :
+            DiffUtil.ItemCallback<ContainerInstance>() {
+            override fun areItemsTheSame(
+                oldItem: ContainerInstance,
+                newItem: ContainerInstance
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: ContainerInstance,
+                newItem: ContainerInstance
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContainerImageViewHolder {
         return ContainerImageViewHolder(
@@ -23,7 +46,7 @@ class ContainerImageRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ContainerImageViewHolder, position: Int) {
-        holder.bind(containerInstance[position])
+        holder.bind(instanceList[position])
     }
 
     inner class ContainerImageViewHolder(val binding: ContainerListItemBinding) :
@@ -40,29 +63,41 @@ class ContainerImageRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return containerInstance.size
+        return instanceList.size
     }
 
-    fun update(newItemList: List<ContainerInstance>) {
-        val diffResult = DiffUtil.calculateDiff(ContentDiffUtil(containerInstance, newItemList))
-        diffResult.dispatchUpdatesTo(this)
-        containerInstance.clear()
-        containerInstance.addAll(newItemList)
-    }
-}
-
-class ContentDiffUtil(
-    private val oldList: List<ContainerInstance>, private val newList: List<ContainerInstance>
-) : DiffUtil.Callback() {
-    override fun getOldListSize(): Int = oldList.size
-
-    override fun getNewListSize(): Int = newList.size
-
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].containerInstanceName == newList[newItemPosition].containerInstanceName
+    @SuppressLint("NotifyDataSetChanged")
+    override fun submitList(list: MutableList<ContainerInstance>?) {
+        super.submitList(list)
+        instanceList = list as  MutableList<ContainerInstance>
+        notifyDataSetChanged()
     }
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+//    fun update(newItemList: List<ContainerInstance>) {
+//        val diffResult = DiffUtil.calculateDiff(ContentDiffUtil(instanceList, newItemList))
+//        diffResult.dispatchUpdatesTo(this)
+//        instanceList.clear()
+//        instanceList.addAll(newItemList)
+//    }
+
+    fun getContainerInstance(containerInstance: MutableList<ContainerInstance>)
+            : MutableList<ContainerInstance> {
+        return containerInstance
     }
 }
+
+//class ContentDiffUtil(
+//    private val oldList: List<ContainerInstance>, private val newList: List<ContainerInstance>
+//) : DiffUtil.Callback() {
+//    override fun getOldListSize(): Int = oldList.size
+//
+//    override fun getNewListSize(): Int = newList.size
+//
+//    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+//        return oldList[oldItemPosition].containerInstanceName == newList[newItemPosition].containerInstanceName
+//    }
+//
+//    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+//        return oldList[oldItemPosition] == newList[newItemPosition]
+//    }
+//}

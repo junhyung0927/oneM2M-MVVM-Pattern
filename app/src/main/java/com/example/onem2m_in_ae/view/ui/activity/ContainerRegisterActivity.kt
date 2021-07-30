@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.view.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.Editable
@@ -13,6 +14,8 @@ import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityContainerRegisterBinding
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.CONTAINER_IMAGE
+import kotlinx.coroutines.test.withTestContext
+import okhttp3.internal.notify
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ContainerRegisterActivity : BaseActivity() {
@@ -32,12 +35,13 @@ class ContainerRegisterActivity : BaseActivity() {
                     start: Int,
                     count: Int,
                     after: Int
-                ) {}
+                ) {
+                }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    if(textInputEditContainerNameRegisterActivity.text!!.isEmpty()) {
+                    if (textInputEditContainerNameRegisterActivity.text!!.isEmpty()) {
                         textInputEditContainerNameRegisterActivity.error = "다시 입력해주세요."
                     } else {
                         textInputEditContainerNameRegisterActivity.error = null
@@ -57,8 +61,13 @@ class ContainerRegisterActivity : BaseActivity() {
 
             spinnerContainerImageSelectRegisterActivity.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                        when(position) {
+                    override fun onItemSelected(
+                        p0: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        when (position) {
                             0 -> {
                                 containerImage = getContainerImage.get(0)
                             }
@@ -67,7 +76,7 @@ class ContainerRegisterActivity : BaseActivity() {
                                 containerImage = getContainerImage.get(1)
                             }
 
-                            2-> {
+                            2 -> {
                                 containerImage = getContainerImage.get(2)
                             }
                             else -> {
@@ -78,11 +87,15 @@ class ContainerRegisterActivity : BaseActivity() {
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
                 }
-
-            buttonContainerAddRegisterActivity.setOnClickListener {
-
+            binding.buttonContainerAddRegisterActivity.setOnClickListener {
+                containerRegisterViewModel.containerRegister(containerImage as Int)
+                    .observe(this@ContainerRegisterActivity)
+                    {
+                        val intent =
+                            Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
+                        startActivity(intent)
+                    }
             }
         }
-
     }
 }

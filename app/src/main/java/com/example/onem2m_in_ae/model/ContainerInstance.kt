@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "container")
 data class ContainerInstance(
-    @PrimaryKey(autoGenerate = true) var id: Long = 0,
-    val containerInstanceName: String,
-    val containerImage: Int
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
+    val containerInstanceName: String?,
+    val containerImage: Int = 0
 )
 
 

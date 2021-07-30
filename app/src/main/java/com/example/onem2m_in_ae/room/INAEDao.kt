@@ -1,9 +1,6 @@
 package com.example.onem2m_in_ae.room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.onem2m_in_ae.model.ContainerInstance
 import org.jetbrains.annotations.NotNull
 
@@ -17,4 +14,10 @@ interface INAEDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createContainerInstance(containerInstance: MutableList<ContainerInstance>)
+
+    @Insert
+    fun registerContainerInstance(containerInstance: MutableList<ContainerInstance>)
+
+    @Query("DELETE FROM container")
+    fun deleteAll()
 }

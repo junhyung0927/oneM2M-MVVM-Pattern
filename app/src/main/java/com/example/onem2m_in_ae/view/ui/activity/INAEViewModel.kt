@@ -54,7 +54,6 @@ class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel(
 
     fun callOnContainerImageEvent(containerImageId: Int) {
         _onContainerImageEvent.value = Event(containerImageId)
-
     }
 
     override fun onError(e: Exception) {

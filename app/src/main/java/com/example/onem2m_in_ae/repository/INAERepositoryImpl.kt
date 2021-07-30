@@ -9,6 +9,7 @@ import com.example.onem2m_in_ae.model.request.RequestM2mAE
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
+import java.util.*
 
 class INAERepositoryImpl(
     val remoteDataSource: RemoteDataSource,
@@ -28,9 +29,9 @@ class INAERepositoryImpl(
 
     override fun createContainerInstance(): Unit {
         val containerInstance = mutableListOf(
-            ContainerInstance(1, "에어컨", R.drawable.airconditioner),
-            ContainerInstance(2, "제습기", R.drawable.airpurifier),
-            ContainerInstance(3, "보일러", R.drawable.boiler)
+            ContainerInstance( containerInstanceName = "에어컨", containerImage = R.drawable.airconditioner),
+            ContainerInstance( containerInstanceName =  "제습기", containerImage = R.drawable.airpurifier),
+            ContainerInstance( containerInstanceName = "보일러",containerImage = R.drawable.boiler)
         )
 
         localDataSource.createContentInstance(containerInstance)
@@ -54,5 +55,14 @@ class INAERepositoryImpl(
 
     override suspend fun insertContainerInstanceList(containerImageList: MutableList<ContainerInstance>) {
         return localDataSource.insertContentInstanceInfoList(containerImageList)
+    }
+
+    override suspend fun registerContainerInstance(containerName: String?, containerImage: Int) {
+        val random = Random()
+        val containerInstance = mutableListOf(
+            ContainerInstance( containerInstanceName = containerName, containerImage = containerImage)
+        )
+
+        return localDataSource.registerContainerInstance(containerInstance)
     }
 }
