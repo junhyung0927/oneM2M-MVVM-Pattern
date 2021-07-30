@@ -31,28 +31,36 @@ class INAEActivity : BaseActivity() {
         binding.lifecycleOwner = this
         Logger.addLogAdapter(AndroidLogAdapter())
 
-        containerInstance = mutableListOf(
-            ContainerInstance(1, "에어컨", R.drawable.airconditioner),
-            ContainerInstance(2, "제습기", R.drawable.airpurifier),
-            ContainerInstance(3, "보일러", R.drawable.boiler)
-        )
+//        containerInstance = mutableListOf(
+//            ContainerInstance(1, "에어컨", R.drawable.airconditioner),
+//            ContainerInstance(2, "제습기", R.drawable.airpurifier),
+//            ContainerInstance(3, "보일러", R.drawable.boiler)
+//        )
 
         inAEViewModel.apply {
 
-//            createContainerInstance()
+            createContainerInstance()
 
             createAE.observe(this@INAEActivity) {
                 Logger.d("AE 생성: $it")
             }
 
-            insertContainerInstanceList(containerInstance)
+//            insertContainerInstanceList(containerInstance)
             getContainerDatabase.observe(this@INAEActivity) {
                 containerInstance = it
+                println("테스트: ${it}")
                 containerImage = mutableListOf(
                     it.get(0).containerImage,
                     it.get(1).containerImage,
                     it.get(2).containerImage,
                 )
+                binding.viewpager2INAEActivity.adapter = ContainerImageRecyclerViewAdapter(
+                    inAEViewModel, containerInstance
+                )
+                TabLayoutMediator(
+                    binding.tabLayoutINAEActivity,
+                    binding.viewpager2INAEActivity
+                ) { tab, position -> }.attach()
             }
 
             getAEInfo.observe(this@INAEActivity) {
@@ -78,14 +86,6 @@ class INAEActivity : BaseActivity() {
         }
 
         binding.apply {
-            viewpager2INAEActivity.adapter = ContainerImageRecyclerViewAdapter(
-                inAEViewModel, containerInstance
-            )
-            TabLayoutMediator(
-                tabLayoutINAEActivity,
-                viewpager2INAEActivity
-            ) { tab, position -> }.attach()
-
             floatingButtonAddContainerINAEActivity.setOnClickListener {
                 val intent = Intent(this@INAEActivity, ContainerRegisterActivity::class.java)
                 intent.putExtra(CONTAINER_IMAGE, containerImage as Serializable)

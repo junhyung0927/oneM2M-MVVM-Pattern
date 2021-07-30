@@ -6,7 +6,7 @@ import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
 
 interface INAERepository {
-    fun createContainerInstance() : Unit
+    fun createContainerInstance()
     suspend fun createAE() : Unit
     suspend fun getAEInfo() : ResponseAE
     suspend fun getContainerInfo() : ResponseCon

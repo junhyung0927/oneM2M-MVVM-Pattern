@@ -32,7 +32,7 @@ class INAERepositoryImpl(
             ContainerInstance(2, "제습기", R.drawable.airpurifier),
             ContainerInstance(3, "보일러", R.drawable.boiler)
         )
-        println("reposi" + containerInstance)
+
         localDataSource.createContentInstance(containerInstance)
     }
 
