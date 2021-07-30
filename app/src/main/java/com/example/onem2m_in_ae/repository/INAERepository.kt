@@ -12,7 +12,7 @@ interface INAERepository {
     suspend fun getAEInfo() : ResponseAE
     suspend fun getContainerInfo() : ResponseCon
     suspend fun getContentInstanceInfo() : ResponseCnt
-    suspend fun getContentInstanceDatabase() : MutableList<ContainerInstance>
-    suspend fun insertContainerInstanceList(containerImageList: MutableList<ContainerInstance>)
+    suspend fun getContentInstanceDatabase() : List<ContainerInstance>
+    suspend fun insertContainerInstanceList(containerImageList: List<ContainerInstance>)
     suspend fun registerContainerInstance(containerName: String? , containerImage: Int)
 }

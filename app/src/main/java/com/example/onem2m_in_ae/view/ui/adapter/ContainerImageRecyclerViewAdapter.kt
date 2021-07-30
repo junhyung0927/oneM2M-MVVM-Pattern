@@ -16,7 +16,7 @@ class ContainerImageRecyclerViewAdapter(
     ListAdapter<ContainerInstance, ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>(
         DIFF_CALLBACK
     ) {
-    private var instanceList = mutableListOf<ContainerInstance>()
+    private var instanceList = listOf<ContainerInstance>()
 
     companion object {
         val DIFF_CALLBACK = object :
@@ -25,14 +25,14 @@ class ContainerImageRecyclerViewAdapter(
                 oldItem: ContainerInstance,
                 newItem: ContainerInstance
             ): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
                 oldItem: ContainerInstance,
                 newItem: ContainerInstance
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem == newItem
             }
         }
     }
@@ -46,7 +46,9 @@ class ContainerImageRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ContainerImageViewHolder, position: Int) {
-        holder.bind(instanceList[position])
+        holder.bind(
+            instanceList[position]
+        )
     }
 
     inner class ContainerImageViewHolder(val binding: ContainerListItemBinding) :
@@ -66,22 +68,14 @@ class ContainerImageRecyclerViewAdapter(
         return instanceList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun submitList(list: MutableList<ContainerInstance>?) {
+    override fun submitList(list: List<ContainerInstance>?) {
         super.submitList(list)
-        instanceList = list as  MutableList<ContainerInstance>
+        instanceList = list as List<ContainerInstance>
         notifyDataSetChanged()
     }
 
-//    fun update(newItemList: List<ContainerInstance>) {
-//        val diffResult = DiffUtil.calculateDiff(ContentDiffUtil(instanceList, newItemList))
-//        diffResult.dispatchUpdatesTo(this)
-//        instanceList.clear()
-//        instanceList.addAll(newItemList)
-//    }
-
-    fun getContainerInstance(containerInstance: MutableList<ContainerInstance>)
-            : MutableList<ContainerInstance> {
+    fun getContainerInstance(containerInstance: List<ContainerInstance>)
+            : List<ContainerInstance> {
         return containerInstance
     }
 }

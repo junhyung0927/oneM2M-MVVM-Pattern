@@ -10,7 +10,7 @@ class ContainerRegisterViewModel(private val inAERepository: INAERepository): Ba
     val containerNameText = MutableLiveData<String>()
 
     init {
-        containerNameText.value = ""
+        containerNameText.value
     }
 
     fun containerRegister(containerImage: Int) = liveData {

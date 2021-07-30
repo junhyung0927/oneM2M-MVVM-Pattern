@@ -15,6 +15,7 @@ class INAERepositoryImpl(
     val remoteDataSource: RemoteDataSource,
     val localDataSource: LocalDataSource
 ) : INAERepository {
+
     override suspend fun createAE(): Unit {
         val requestAE = RequestAE(
             RequestM2mAE(
@@ -29,9 +30,9 @@ class INAERepositoryImpl(
 
     override fun createContainerInstance(): Unit {
         val containerInstance = mutableListOf(
-            ContainerInstance( containerInstanceName = "에어컨", containerImage = R.drawable.airconditioner),
-            ContainerInstance( containerInstanceName =  "제습기", containerImage = R.drawable.airpurifier),
-            ContainerInstance( containerInstanceName = "보일러",containerImage = R.drawable.boiler)
+            ContainerInstance(1, containerInstanceName = "에어컨", containerImage = R.drawable.airconditioner),
+            ContainerInstance( 2,containerInstanceName =  "제습기", containerImage = R.drawable.airpurifier),
+            ContainerInstance( 3, containerInstanceName = "보일러",containerImage = R.drawable.boiler)
         )
 
         localDataSource.createContentInstance(containerInstance)
@@ -45,7 +46,7 @@ class INAERepositoryImpl(
         return remoteDataSource.getContentInstanceInfo()
     }
 
-    override suspend fun getContentInstanceDatabase(): MutableList<ContainerInstance> {
+    override suspend fun getContentInstanceDatabase(): List<ContainerInstance> {
         return localDataSource.getContainerInstanceDataBase()
     }
 
@@ -53,14 +54,13 @@ class INAERepositoryImpl(
         return remoteDataSource.getContainerInfo()
     }
 
-    override suspend fun insertContainerInstanceList(containerImageList: MutableList<ContainerInstance>) {
+    override suspend fun insertContainerInstanceList(containerImageList: List<ContainerInstance>) {
         return localDataSource.insertContentInstanceInfoList(containerImageList)
     }
 
     override suspend fun registerContainerInstance(containerName: String?, containerImage: Int) {
-        val random = Random()
         val containerInstance = mutableListOf(
-            ContainerInstance( containerInstanceName = containerName, containerImage = containerImage)
+            ContainerInstance(containerInstanceName = containerName, containerImage = containerImage)
         )
 
         return localDataSource.registerContainerInstance(containerInstance)

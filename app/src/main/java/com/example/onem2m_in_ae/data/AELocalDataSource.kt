@@ -7,22 +7,22 @@ class AELocalDataSource(
     private val inAEDao: INAEDao
 ) : LocalDataSource
 {
-    override fun createContentInstance(containerInstance: MutableList<ContainerInstance>)
+    override fun createContentInstance(containerInstance: List<ContainerInstance>)
     {
         inAEDao.createContainerInstance(containerInstance)
     }
 
-    override suspend fun insertContentInstanceInfoList(containerInstance: MutableList<ContainerInstance>)
+    override suspend fun insertContentInstanceInfoList(containerInstance: List<ContainerInstance>)
     {
         return inAEDao.insertContainerInstanceList(*containerInstance.toTypedArray())
     }
 
-    override suspend fun getContainerInstanceDataBase(): MutableList<ContainerInstance>
+    override suspend fun getContainerInstanceDataBase(): List<ContainerInstance>
     {
         return inAEDao.getContainerInstanceInfoList()
     }
 
-    override suspend fun registerContainerInstance(containerInstance: MutableList<ContainerInstance>) {
+    override suspend fun registerContainerInstance(containerInstance: List<ContainerInstance>) {
         return inAEDao.registerContainerInstance(containerInstance)
 //        return inAEDao.deleteAll()
     }

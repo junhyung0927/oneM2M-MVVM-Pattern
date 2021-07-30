@@ -91,8 +91,7 @@ class ContainerRegisterActivity : BaseActivity() {
                 containerRegisterViewModel.containerRegister(containerImage as Int)
                     .observe(this@ContainerRegisterActivity)
                     {
-                        val intent =
-                            Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
+                        val intent = Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
                         startActivity(intent)
                     }
             }

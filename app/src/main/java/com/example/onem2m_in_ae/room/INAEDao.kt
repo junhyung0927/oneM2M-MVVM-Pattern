@@ -7,16 +7,16 @@ import org.jetbrains.annotations.NotNull
 @Dao
 interface INAEDao {
     @Query("SELECT * FROM container")
-    fun getContainerInstanceInfoList(): MutableList<ContainerInstance>
+    fun getContainerInstanceInfoList(): List<ContainerInstance>
 
     @Insert
     suspend fun insertContainerInstanceList(vararg containerInstance: ContainerInstance)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun createContainerInstance(containerInstance: MutableList<ContainerInstance>)
+    fun createContainerInstance(containerInstance: List<ContainerInstance>)
 
     @Insert
-    fun registerContainerInstance(containerInstance: MutableList<ContainerInstance>)
+    fun registerContainerInstance(containerInstance: List<ContainerInstance>)
 
     @Query("DELETE FROM container")
     fun deleteAll()

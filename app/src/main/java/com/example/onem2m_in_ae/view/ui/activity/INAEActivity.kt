@@ -18,8 +18,8 @@ import java.io.Serializable
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel: INAEViewModel by viewModel()
-    private var containerImage: List<Int> = mutableListOf()
-    private var containerInstance: List<ContainerInstance> = mutableListOf()
+    private var containerImage: List<Int> = listOf()
+    private var containerInstance: List<ContainerInstance> = listOf()
     private val adapter by lazy {
         ContainerImageRecyclerViewAdapter(inAEViewModel)
     }
@@ -43,8 +43,8 @@ class INAEActivity : BaseActivity() {
 
             getContainerDatabase.observe(this@INAEActivity) {
                 containerInstance = it
-//                adapter.update(it)
                 adapter.submitList(it)
+
                 containerImage = mutableListOf(
                     it.get(0).containerImage,
                     it.get(1).containerImage,
