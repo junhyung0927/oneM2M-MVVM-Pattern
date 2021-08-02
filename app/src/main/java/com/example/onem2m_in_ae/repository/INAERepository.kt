@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.repository
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.model.response.ResponseAE
@@ -14,5 +15,5 @@ interface INAERepository {
     suspend fun getContentInstanceInfo() : ResponseCnt
     suspend fun getContentInstanceDatabase() : List<ContainerInstance>
     suspend fun insertContainerInstanceList(containerImageList: List<ContainerInstance>)
-    suspend fun registerContainerInstance(containerName: String? , containerImage: Int)
+    suspend fun registerContainerInstance(containerName: String, containerImage: Int)
 }

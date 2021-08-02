@@ -88,10 +88,11 @@ class ContainerRegisterActivity : BaseActivity() {
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
                 }
             binding.buttonContainerAddRegisterActivity.setOnClickListener {
-                containerRegisterViewModel.containerRegister(containerImage as Int)
-                    .observe(this@ContainerRegisterActivity)
-                    {
-                        val intent = Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
+                val text: String = textInputEditContainerNameRegisterActivity.text.toString()
+                containerRegisterViewModel.containerRegister(containerImage as Int, text)
+                    .observe(this@ContainerRegisterActivity) {
+                        val intent =
+                            Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
                         startActivity(intent)
                     }
             }

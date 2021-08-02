@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.repository
 
+import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
@@ -9,7 +10,6 @@ import com.example.onem2m_in_ae.model.request.RequestM2mAE
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
-import java.util.*
 
 class INAERepositoryImpl(
     val remoteDataSource: RemoteDataSource,
@@ -29,11 +29,21 @@ class INAERepositoryImpl(
     }
 
     override fun createContainerInstance(): Unit {
+
         val containerInstance = mutableListOf(
-            ContainerInstance(1, containerInstanceName = "에어컨", containerImage = R.drawable.airconditioner),
-            ContainerInstance( 2,containerInstanceName =  "제습기", containerImage = R.drawable.airpurifier),
-            ContainerInstance( 3, containerInstanceName = "보일러",containerImage = R.drawable.boiler)
+            ContainerInstance(
+                1,
+                containerInstanceName = "에어컨",
+                containerImage = R.drawable.airconditioner
+            ),
+            ContainerInstance(
+                2,
+                containerInstanceName = "제습기",
+                containerImage = R.drawable.airpurifier
+            ),
+            ContainerInstance(3, containerInstanceName = "보일러", containerImage = R.drawable.boiler)
         )
+
 
         localDataSource.createContentInstance(containerInstance)
     }
@@ -58,8 +68,12 @@ class INAERepositoryImpl(
         return localDataSource.insertContentInstanceInfoList(containerImageList)
     }
 
-    override suspend fun registerContainerInstance(containerName: String?, containerImage: Int) {
-        val containerInstance = mutableListOf(
+    override suspend fun registerContainerInstance(
+        containerName: String,
+        containerImage: Int
+    ) {
+
+        val containerInstance = listOf(
             ContainerInstance(containerInstanceName = containerName, containerImage = containerImage)
         )
 
