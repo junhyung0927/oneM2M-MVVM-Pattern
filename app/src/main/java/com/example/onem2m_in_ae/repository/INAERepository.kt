@@ -17,5 +17,5 @@ interface INAERepository {
     suspend fun getContentInstanceDatabase() : List<ContainerInstance>
     suspend fun insertContainerInstanceList(containerImageList: List<ContainerInstance>)
     suspend fun registerContainerInstance(containerName: String, containerImage: Int)
-    suspend fun deviceControl(content: String)
+    suspend fun deviceControl(content: String, resourceName: String)
 }

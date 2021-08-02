@@ -28,12 +28,13 @@ interface INAEDataService {
     @Headers(
         "Content-Type: application/json;ty=4",
     )
-    @POST("/Mobius/junhyung_4/aircon")
+    @POST("/Mobius/junhyung_4/{resource_name}")
     suspend fun deviceControl(
+        @Path("resource_name", encoded = true) resourceName: String,
         @Body param: RequestCnt
     )
 
-    @GET("/Mobius/junhyung_4")
+    @GET("/Mobius/junhyung_4?fu=1&rcn=1")
     suspend fun getAEInfo(): ResponseAE
 
     @GET("/Mobius/IYAHN_DEMO/co2/la")
@@ -51,6 +52,6 @@ interface INAEDataService {
     @GET("/Mobius/IYAHN_DEMO/co2")
     suspend fun getContentInstanceResourceInfo(): ResponseCnt
 
-    @GET("/Mobius?fu=1&rcn=1")
+    @GET("/Mobius/junhyung_4?fu=2&rcn=1")
     suspend fun getContainerInfo(): ResponseCon
 }

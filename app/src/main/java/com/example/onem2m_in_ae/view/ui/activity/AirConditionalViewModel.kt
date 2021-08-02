@@ -16,8 +16,8 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         }
     }
 
-    fun deviceControl(content: String) = liveData {
-        handle { inAERepository.deviceControl(content) }?.let {
+    fun deviceControl(content: String, resourceName: String) = liveData {
+        handle { inAERepository.deviceControl(content, resourceName) }?.let {
             emit(it)
         }
     }

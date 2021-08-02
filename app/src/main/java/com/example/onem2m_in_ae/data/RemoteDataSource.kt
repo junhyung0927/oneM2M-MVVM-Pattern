@@ -13,5 +13,5 @@ interface RemoteDataSource {
     suspend fun getAEInfo(): ResponseAE
     suspend fun getContainerInfo(): ResponseCon
     suspend fun getContentInstanceInfo(): ResponseCnt
-    suspend fun deviceControl(contentInstance: RequestCnt)
+    suspend fun deviceControl(contentInstance: RequestCnt, resourceName: String)
 }

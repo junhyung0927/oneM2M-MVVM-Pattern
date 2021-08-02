@@ -31,7 +31,7 @@ class AERemoteDataSource(
         return inAEDataService.getContainerInfo()
     }
 
-    override suspend fun deviceControl(contentInstance: RequestCnt) {
-        return inAEDataService.deviceControl(contentInstance)
+    override suspend fun deviceControl(contentInstance: RequestCnt, resourceName: String) {
+        return inAEDataService.deviceControl(resourceName, contentInstance)
     }
 }

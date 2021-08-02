@@ -89,12 +89,12 @@ class INAERepositoryImpl(
         return localDataSource.registerContainerInstance(containerInstance)
     }
 
-    override suspend fun deviceControl(content: String) {
+    override suspend fun deviceControl(content: String, resourceName: String) {
         val contentInstance = RequestCnt(
             RequestM2MCnt(
                 content
             )
         )
-        return remoteDataSource.deviceControl(contentInstance)
+        return remoteDataSource.deviceControl(contentInstance, resourceName)
     }
 }

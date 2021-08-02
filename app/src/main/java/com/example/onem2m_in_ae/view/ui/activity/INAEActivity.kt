@@ -26,6 +26,7 @@ class INAEActivity : BaseActivity() {
     companion object {
         const val KEY_CONTAINER_IMAGE_DATA: String = "container_src"
         const val CONTAINER_IMAGE: String = "container image"
+        const val CONTAINER_NAME: String = "container name"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +42,10 @@ class INAEActivity : BaseActivity() {
                 Logger.d("AE 생성: $it")
             }
 
+            getAEInfo.observe(this@INAEActivity) {
+                Logger.d("조회 : $it")
+            }
+
             getContainerDatabase.observe(this@INAEActivity) {
                 containerInstance = it
                 adapter.submitList(it)
@@ -50,7 +55,6 @@ class INAEActivity : BaseActivity() {
                     it.get(1).containerImage,
                     it.get(2).containerImage,
                 )
-                println("테스트" + it)
             }
 
             onContainerImageEvent.observe(this@INAEActivity, EventObserver

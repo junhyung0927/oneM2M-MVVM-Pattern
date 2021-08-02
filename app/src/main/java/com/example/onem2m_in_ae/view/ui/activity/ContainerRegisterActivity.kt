@@ -21,9 +21,9 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ContainerRegisterActivity : BaseActivity() {
     private val binding by binding<ActivityContainerRegisterBinding>(R.layout.activity_container_register)
     private val containerRegisterViewModel: ContainerRegisterViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding.apply {
             lifecycleOwner = this@ContainerRegisterActivity
             val intent = intent
@@ -58,7 +58,6 @@ class ContainerRegisterActivity : BaseActivity() {
                 spinnerContainerImageSelectRegisterActivity.adapter = adapter
             }
 
-
             spinnerContainerImageSelectRegisterActivity.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -92,8 +91,6 @@ class ContainerRegisterActivity : BaseActivity() {
                 containerRegisterViewModel.apply {
                     createContainer(textInputEditContainerNameRegisterActivity.text.toString())
                         .observe(this@ContainerRegisterActivity) {
-                            println("장치 추가 성공: ${it}")
-
                             containerRegister(
                                 containerImage as Int,
                                 textInputEditContainerNameRegisterActivity.text.toString()
