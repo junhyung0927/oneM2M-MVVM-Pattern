@@ -23,9 +23,26 @@ class AirConditionalActivity: BaseActivity() {
             val containerImageSrc = intent.getIntExtra(KEY_CONTAINER_IMAGE_DATA, 0)
             item = containerImageSrc
 
+            airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
+                Logger.d("CON 검색: $it")
+            }
+
             airconditionerSearchDataModeAppCompactButton.setOnClickListener {
                 airConditionalViewModel.getContentInstanceInfo().observe(this@AirConditionalActivity) {
                     Logger.d("CNT 조회: $it")
+                }
+            }
+
+            airconditionerControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    airConditionalViewModel.deviceControl("on").observe(this@AirConditionalActivity)
+                    {
+                        println(it)
+                    }
+                } else {
+                    airConditionalViewModel.deviceControl("off").observe(this@AirConditionalActivity) {
+                        println(it)
+                    }
                 }
             }
         }

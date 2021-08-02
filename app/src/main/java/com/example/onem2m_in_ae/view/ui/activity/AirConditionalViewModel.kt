@@ -2,6 +2,7 @@ package com.example.onem2m_in_ae.view.ui.activity
 
 import androidx.lifecycle.liveData
 import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCon
 import com.example.onem2m_in_ae.repository.INAERepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
@@ -11,6 +12,18 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
     fun getContentInstanceInfo() = liveData<ResponseCnt> {
         val getContentInstanceInfo = handle {
             inAERepository.getContentInstanceInfo() }?.let {
+            emit(it)
+        }
+    }
+
+    fun deviceControl(content: String) = liveData {
+        handle { inAERepository.deviceControl(content) }?.let {
+            emit(it)
+        }
+    }
+
+    val getContainerInfo = liveData<ResponseCon> {
+        handle { inAERepository.getContainerInfo() }?.let {
             emit(it)
         }
     }

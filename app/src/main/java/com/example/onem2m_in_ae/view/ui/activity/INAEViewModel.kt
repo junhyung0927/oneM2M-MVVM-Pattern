@@ -42,12 +42,6 @@ class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel(
         }
     }
 
-    val getContainerInfo = liveData<ResponseCon> {
-        handle { inAERepository.getContainerInfo() }?.let {
-            emit(it)
-        }
-    }
-
     private val _onContainerImageEvent = MutableLiveData<Event<Int>>()
     val onContainerImageEvent: LiveData<Event<Int>>
         get() = _onContainerImageEvent

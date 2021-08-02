@@ -1,6 +1,7 @@
 package com.example.onem2m_in_ae.service
 
 import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestCnt
 import com.example.onem2m_in_ae.model.request.RequestCon
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
@@ -22,6 +23,14 @@ interface INAEDataService {
     @POST("/Mobius/junhyung_4")
     suspend fun createContainer(
         @Body param: RequestCon
+    )
+
+    @Headers(
+        "Content-Type: application/json;ty=4",
+    )
+    @POST("/Mobius/junhyung_4/aircon")
+    suspend fun deviceControl(
+        @Body param: RequestCnt
     )
 
     @GET("/Mobius/junhyung_4")

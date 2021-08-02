@@ -43,7 +43,7 @@
                 android:orientation="vertical"
                 >
                 <androidx.appcompat.widget.AppCompatToggleButton
-                    android:id="@+id/airconditioner_control_mode_AppCompactButton"
+                    android:id="@+id/airconditioner_control_mode_AppCompactToggleButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FAFAFA"
@@ -55,7 +55,6 @@
                     android:textColorHighlight="#FFBB00"
                     android:textStyle="bold"
                     android:layout_margin="15dp"
-
                     />
 
                 <androidx.appcompat.widget.AppCompatButton

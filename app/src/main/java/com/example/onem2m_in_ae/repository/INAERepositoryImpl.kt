@@ -1,15 +1,10 @@
 package com.example.onem2m_in_ae.repository
 
-import android.app.DownloadManager
-import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
 import com.example.onem2m_in_ae.model.ContainerInstance
-import com.example.onem2m_in_ae.model.request.RequestAE
-import com.example.onem2m_in_ae.model.request.RequestCon
-import com.example.onem2m_in_ae.model.request.RequestM2MCon
-import com.example.onem2m_in_ae.model.request.RequestM2mAE
+import com.example.onem2m_in_ae.model.request.*
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
@@ -92,5 +87,14 @@ class INAERepositoryImpl(
         )
 
         return localDataSource.registerContainerInstance(containerInstance)
+    }
+
+    override suspend fun deviceControl(content: String) {
+        val contentInstance = RequestCnt(
+            RequestM2MCnt(
+                content
+            )
+        )
+        return remoteDataSource.deviceControl(contentInstance)
     }
 }

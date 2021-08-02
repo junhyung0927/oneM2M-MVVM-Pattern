@@ -53,14 +53,6 @@ class INAEActivity : BaseActivity() {
                 println("테스트" + it)
             }
 
-            getAEInfo.observe(this@INAEActivity) {
-                Logger.d("AE 검색: $it")
-            }
-
-            getContainerInfo.observe(this@INAEActivity) {
-                Logger.d("CON 검색: $it")
-            }
-
             onContainerImageEvent.observe(this@INAEActivity, EventObserver
             {
                 val destinationActivity = when (it) {

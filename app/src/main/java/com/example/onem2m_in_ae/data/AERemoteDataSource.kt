@@ -1,6 +1,7 @@
 package com.example.onem2m_in_ae.data
 
 import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestCnt
 import com.example.onem2m_in_ae.model.request.RequestCon
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
@@ -28,5 +29,9 @@ class AERemoteDataSource(
 
     override suspend fun getContainerInfo(): ResponseCon {
         return inAEDataService.getContainerInfo()
+    }
+
+    override suspend fun deviceControl(contentInstance: RequestCnt) {
+        return inAEDataService.deviceControl(contentInstance)
     }
 }
