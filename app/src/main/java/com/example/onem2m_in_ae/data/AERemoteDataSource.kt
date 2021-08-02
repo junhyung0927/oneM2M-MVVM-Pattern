@@ -1,6 +1,7 @@
 package com.example.onem2m_in_ae.data
 
 import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestCon
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
@@ -11,6 +12,10 @@ class AERemoteDataSource(
 ) : RemoteDataSource {
     override suspend fun createAE(param: RequestAE): Unit {
         return inAEDataService.createAE(param)
+    }
+
+    override suspend fun createContainer(param: RequestCon) {
+        return inAEDataService.createContainer(param)
     }
 
     override suspend fun getAEInfo(): ResponseAE {

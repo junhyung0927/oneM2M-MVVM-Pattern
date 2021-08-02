@@ -87,14 +87,27 @@ class ContainerRegisterActivity : BaseActivity() {
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
                 }
+
             binding.buttonContainerAddRegisterActivity.setOnClickListener {
-                val text: String = textInputEditContainerNameRegisterActivity.text.toString()
-                containerRegisterViewModel.containerRegister(containerImage as Int, text)
-                    .observe(this@ContainerRegisterActivity) {
-                        val intent =
-                            Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
-                        startActivity(intent)
-                    }
+                containerRegisterViewModel.apply {
+                    createContainer(textInputEditContainerNameRegisterActivity.text.toString())
+                        .observe(this@ContainerRegisterActivity) {
+                            println("장치 추가 성공: ${it}")
+
+                            containerRegister(
+                                containerImage as Int,
+                                textInputEditContainerNameRegisterActivity.text.toString()
+                            )
+                                .observe(this@ContainerRegisterActivity) {
+                                    val intent =
+                                        Intent(
+                                            this@ContainerRegisterActivity,
+                                            INAEActivity::class.java
+                                        )
+                                    startActivity(intent)
+                                }
+                        }
+                }
             }
         }
     }

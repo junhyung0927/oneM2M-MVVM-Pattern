@@ -13,7 +13,12 @@ class ContainerRegisterViewModel(private val inAERepository: INAERepository): Ba
             inAERepository.registerContainerInstance(name, image)
         }?.let {
             emit(it)
-            println("테스트: ${it}")
+        }
+    }
+
+    fun createContainer(name: String) = liveData {
+        handle { inAERepository.createContainer(name) }?.let {
+            emit(it)
         }
     }
 }

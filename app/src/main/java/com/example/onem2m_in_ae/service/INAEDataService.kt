@@ -1,6 +1,7 @@
 package com.example.onem2m_in_ae.service
 
 import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestCon
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
@@ -8,15 +9,20 @@ import retrofit2.http.*
 
 interface INAEDataService {
     @Headers(
-        "Accept: application/json",
-        "X-M2M-RI: 123aaghjhk45",
-        "X-M2M-Origin: S",
         "Content-Type: application/json;ty=2",
     )
     @POST("/Mobius")
     suspend fun createAE(
         @Body param: RequestAE
-    ): Unit
+    )
+
+    @Headers(
+        "Content-Type: application/json;ty=3",
+    )
+    @POST("/Mobius/junhyung_4")
+    suspend fun createContainer(
+        @Body param: RequestCon
+    )
 
     @GET("/Mobius/junhyung_4")
     suspend fun getAEInfo(): ResponseAE

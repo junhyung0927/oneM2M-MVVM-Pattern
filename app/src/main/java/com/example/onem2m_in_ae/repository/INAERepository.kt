@@ -9,7 +9,8 @@ import com.example.onem2m_in_ae.model.response.ResponseCon
 
 interface INAERepository {
     fun createContainerInstance()
-    suspend fun createAE() : Unit
+    suspend fun createAE()
+    suspend fun createContainer(name: String)
     suspend fun getAEInfo() : ResponseAE
     suspend fun getContainerInfo() : ResponseCon
     suspend fun getContentInstanceInfo() : ResponseCnt

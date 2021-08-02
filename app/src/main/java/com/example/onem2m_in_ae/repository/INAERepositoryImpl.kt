@@ -1,11 +1,14 @@
 package com.example.onem2m_in_ae.repository
 
+import android.app.DownloadManager
 import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestCon
+import com.example.onem2m_in_ae.model.request.RequestM2MCon
 import com.example.onem2m_in_ae.model.request.RequestM2mAE
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
@@ -16,10 +19,10 @@ class INAERepositoryImpl(
     val localDataSource: LocalDataSource
 ) : INAERepository {
 
-    override suspend fun createAE(): Unit {
+    override suspend fun createAE() {
         val requestAE = RequestAE(
             RequestM2mAE(
-                "junhyung_4",
+                "junhyung",
                 "0.2.481.2.0001.001.000111",
                 arrayListOf("key1", "key2"),
                 true
@@ -28,7 +31,18 @@ class INAERepositoryImpl(
         return remoteDataSource.createAE(requestAE)
     }
 
-    override fun createContainerInstance(): Unit {
+    override suspend fun createContainer(name: String) {
+        val requestCon = RequestCon(
+            RequestM2MCon(
+                name,
+                arrayListOf(name),
+                3153600000
+            )
+        )
+        return remoteDataSource.createContainer(requestCon)
+    }
+
+    override fun createContainerInstance() {
 
         val containerInstance = mutableListOf(
             ContainerInstance(
