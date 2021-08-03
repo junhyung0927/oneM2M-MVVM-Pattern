@@ -22,6 +22,18 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         }
     }
 
+    fun deleteAirConContainer(resourceName: String) = liveData {
+        handle { inAERepository.deleteContainer(resourceName) }?.let {
+            emit(it)
+        }
+    }
+
+    fun deleteDataBaseContainer(resourceName: String) = liveData {
+        handle { inAERepository.deleteDatabaseContainer(resourceName) }.let {
+            emit(it)
+        }
+    }
+
     val getContainerInfo = liveData<ResponseCon> {
         handle { inAERepository.getContainerInfo() }?.let {
             emit(it)

@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.service
 
+import androidx.room.Delete
 import com.example.onem2m_in_ae.model.request.RequestAE
 import com.example.onem2m_in_ae.model.request.RequestCnt
 import com.example.onem2m_in_ae.model.request.RequestCon
@@ -54,4 +55,9 @@ interface INAEDataService {
 
     @GET("/Mobius/junhyung?fu=2&rcn=1")
     suspend fun getContainerInfo(): ResponseCon
+
+    @DELETE("/Mobius/junhyung/{resource_name}")
+    suspend fun deleteContainer(
+        @Path("resource_name", encoded = true) resourceName: String
+    )
 }

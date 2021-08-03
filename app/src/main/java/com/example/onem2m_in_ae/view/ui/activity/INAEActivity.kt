@@ -50,6 +50,7 @@ class INAEActivity : BaseActivity() {
             }
 
             getContainerDatabase.observe(this@INAEActivity) {
+                println("databaseData: ${it}")
                 if (it.isNotEmpty()) {
                     binding.explainTextViewINAEActivity.visibility = View.GONE
                     binding.viewpager2INAEActivity.visibility = View.VISIBLE

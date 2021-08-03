@@ -34,4 +34,8 @@ class AERemoteDataSource(
     override suspend fun deviceControl(contentInstance: RequestCnt, resourceName: String) {
         return inAEDataService.deviceControl(resourceName, contentInstance)
     }
+
+    override suspend fun deleteContainer(resourceName: String) {
+        return inAEDataService.deleteContainer(resourceName)
+    }
 }

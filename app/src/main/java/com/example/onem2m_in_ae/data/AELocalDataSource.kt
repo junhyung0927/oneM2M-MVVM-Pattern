@@ -26,4 +26,8 @@ class AELocalDataSource(
         return inAEDao.registerContainerInstance(containerInstance)
 //        return inAEDao.deleteAll()
     }
+
+    override suspend fun deleteDatabaseContainer(resoureName: String) {
+        return inAEDao.deleteContainer(resoureName)
+    }
 }

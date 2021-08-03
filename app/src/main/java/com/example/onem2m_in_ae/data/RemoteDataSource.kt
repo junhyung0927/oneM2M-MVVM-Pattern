@@ -14,4 +14,5 @@ interface RemoteDataSource {
     suspend fun getContainerInfo(): ResponseCon
     suspend fun getContentInstanceInfo(): ResponseCnt
     suspend fun deviceControl(contentInstance: RequestCnt, resourceName: String)
+    suspend fun deleteContainer(resourceName: String)
 }

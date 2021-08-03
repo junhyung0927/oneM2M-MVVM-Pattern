@@ -20,4 +20,7 @@ interface INAEDao {
 
     @Query("DELETE FROM container")
     fun deleteAll()
+
+    @Query("DELETE FROM container WHERE containerInstanceName = :resourceName ")
+    fun deleteContainer(resourceName: String)
 }

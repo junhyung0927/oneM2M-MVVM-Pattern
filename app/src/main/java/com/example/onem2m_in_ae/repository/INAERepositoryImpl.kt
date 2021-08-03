@@ -92,4 +92,12 @@ class INAERepositoryImpl(
         )
         return remoteDataSource.deviceControl(contentInstance, resourceName)
     }
+
+    override suspend fun deleteContainer(resourceName: String) {
+        return remoteDataSource.deleteContainer(resourceName)
+    }
+
+    override suspend fun deleteDatabaseContainer(resourceName: String) {
+        return localDataSource.deleteDatabaseContainer(resourceName)
+    }
 }

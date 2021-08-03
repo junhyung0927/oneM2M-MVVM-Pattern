@@ -7,4 +7,5 @@ interface LocalDataSource {
     fun createContentInstance(containerInstance: List<ContainerInstance>)
     suspend fun getContainerInstanceDataBase(): List<ContainerInstance>
     suspend fun registerContainerInstance(containerInstance: List<ContainerInstance>)
+    suspend fun deleteDatabaseContainer(resoureName: String)
 }

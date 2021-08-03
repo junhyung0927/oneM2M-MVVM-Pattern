@@ -1,5 +1,6 @@
 package com.example.onem2m_in_ae.view.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
@@ -50,6 +51,20 @@ class AirConditionalActivity : BaseActivity() {
                     .observe(this@AirConditionalActivity) {
                         Logger.d("CNT 조회: $it")
                     }
+            }
+
+            airconditionerDeleteAppCompactToggleButton.setOnClickListener {
+                airConditionalViewModel.apply {
+                    deleteAirConContainer(RESOURCE_NAME).observe(this@AirConditionalActivity) {
+                        println("장치 제거 성공")
+                    }
+
+                    deleteDataBaseContainer(RESOURCE_NAME).observe(this@AirConditionalActivity) {
+                        println("장치 데이터 베이스 제거 성공")
+                        val intent = Intent(this@AirConditionalActivity, INAEActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
             }
         }
     }
