@@ -25,24 +25,21 @@ class AirConditionalActivity : BaseActivity() {
 
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
-//            val containerImageSrc = intent.getIntExtra(KEY_CONTAINER_DATA, 0)
             item = containerItem.containerImage
 
+            RESOURCE_NAME = containerItem.containerInstanceName
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
-                RESOURCE_NAME = "aircon"
+                println(it)
                 if (RESOURCE_NAME.isNotEmpty()) {
                     airconditionerControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->
                         if (isChecked) {
                             airConditionalViewModel.deviceControl("on", RESOURCE_NAME)
                                 .observe(this@AirConditionalActivity)
-                                {
-                                    println(it)
-                                }
+                                { println(it) }
                         } else {
                             airConditionalViewModel.deviceControl("off", RESOURCE_NAME)
-                                .observe(this@AirConditionalActivity) {
-                                    println(it)
-                                }
+                                .observe(this@AirConditionalActivity)
+                                { println(it) }
                         }
                     }
                 }
