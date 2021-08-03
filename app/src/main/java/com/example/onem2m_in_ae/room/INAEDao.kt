@@ -15,7 +15,7 @@ interface INAEDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createContainerInstance(containerInstance: List<ContainerInstance>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun registerContainerInstance(containerInstance: List<ContainerInstance>)
 
     @Query("DELETE FROM container")

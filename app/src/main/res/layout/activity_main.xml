@@ -17,18 +17,30 @@
             android:text="@string/main_head_text"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/viewpager2_INAEActivity"
+            />
+
+        <TextView
+            android:id="@+id/explain_textView_INAEActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/body_explain_text"
+            style="@style/Text.HeadStyle"
+            android:gravity="center"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/head_textView_INAEActivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/photoView_search_ImageView_INAEActivity"
             />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager2_INAEActivity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
+            android:visibility="gone"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/head_textView_INAEActivity"
             app:layout_constraintStart_toStartOf="parent"

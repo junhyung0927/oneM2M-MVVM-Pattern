@@ -41,19 +41,15 @@ class INAERepositoryImpl(
 
         val containerInstance = mutableListOf(
             ContainerInstance(
-                1,
                 containerInstanceName = "에어컨",
                 containerImage = R.drawable.airconditioner
             ),
             ContainerInstance(
-                2,
                 containerInstanceName = "제습기",
                 containerImage = R.drawable.airpurifier
             ),
-            ContainerInstance(3, containerInstanceName = "보일러", containerImage = R.drawable.boiler)
+            ContainerInstance( containerInstanceName = "보일러", containerImage = R.drawable.boiler)
         )
-
-
         localDataSource.createContentInstance(containerInstance)
     }
 
@@ -81,7 +77,6 @@ class INAERepositoryImpl(
         containerName: String,
         containerImage: Int
     ) {
-
         val containerInstance = listOf(
             ContainerInstance(containerInstanceName = containerName, containerImage = containerImage)
         )
