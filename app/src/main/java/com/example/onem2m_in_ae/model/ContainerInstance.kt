@@ -9,7 +9,8 @@ import java.io.Serializable
 data class ContainerInstance(
     @PrimaryKey(autoGenerate = true) var id: Long? = null,
     val containerInstanceName: String,
-    val containerImage: Int = 0
+    val containerImage: Int = 0,
+    val type: ContainerType
 ) : Serializable
 
 

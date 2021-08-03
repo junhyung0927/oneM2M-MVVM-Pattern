@@ -12,8 +12,8 @@ import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityContainerRegisterBinding
+import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.view.base.BaseActivity
-import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.CONTAINER_IMAGE
 import kotlinx.coroutines.test.withTestContext
 import okhttp3.internal.notify
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -22,12 +22,19 @@ class ContainerRegisterActivity : BaseActivity() {
     private val binding by binding<ActivityContainerRegisterBinding>(R.layout.activity_container_register)
     private val containerRegisterViewModel: ContainerRegisterViewModel by viewModel()
 
+    companion object {
+        private var pos: Int = -1
+        private val containerType = listOf(
+            ContainerType.AIRCONDITIONAL,
+            ContainerType.AIRPURIFIER,
+            ContainerType.BOILER,
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.apply {
             lifecycleOwner = this@ContainerRegisterActivity
-            val intent = intent
-            val getContainerImage = intent.getSerializableExtra(CONTAINER_IMAGE) as List<Int>
 
             textInputEditContainerNameRegisterActivity.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
@@ -39,7 +46,6 @@ class ContainerRegisterActivity : BaseActivity() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
                 override fun afterTextChanged(s: Editable?) {
                     if (textInputEditContainerNameRegisterActivity.text!!.isEmpty()) {
                         textInputEditContainerNameRegisterActivity.error = "다시 입력해주세요."
@@ -66,22 +72,8 @@ class ContainerRegisterActivity : BaseActivity() {
                         position: Int,
                         id: Long
                     ) {
-                        when (position) {
-                            0 -> {
-                                containerImage = getContainerImage.get(0)
-                            }
-
-                            1 -> {
-                                containerImage = getContainerImage.get(1)
-                            }
-
-                            2 -> {
-                                containerImage = getContainerImage.get(2)
-                            }
-                            else -> {
-                                println("장치를 올바르게 선택해주세요.")
-                            }
-                        }
+                        containerImage = containerType.get(position).resId
+                        pos = position
                     }
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
@@ -91,9 +83,16 @@ class ContainerRegisterActivity : BaseActivity() {
                 containerRegisterViewModel.apply {
                     createContainer(textInputEditContainerNameRegisterActivity.text.toString())
                         .observe(this@ContainerRegisterActivity) {
-                            containerRegister(containerImage as Int, textInputEditContainerNameRegisterActivity.text.toString())
+                            containerRegister(
+                                containerImage as Int,
+                                textInputEditContainerNameRegisterActivity.text.toString(),
+                                containerType.get(pos)
+                            )
                                 .observe(this@ContainerRegisterActivity) {
-                                    val intent = Intent(this@ContainerRegisterActivity, INAEActivity::class.java)
+                                    val intent = Intent(
+                                        this@ContainerRegisterActivity,
+                                        INAEActivity::class.java
+                                    )
                                     startActivity(intent)
                                 }
                         }

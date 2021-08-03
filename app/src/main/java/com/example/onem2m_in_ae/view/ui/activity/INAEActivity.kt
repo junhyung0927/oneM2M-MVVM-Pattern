@@ -7,6 +7,7 @@ import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
+import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.util.EventObserver
 import com.example.onem2m_in_ae.view.ui.adapter.ContainerImageRecyclerViewAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,20 +19,9 @@ import java.io.Serializable
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel: INAEViewModel by viewModel()
-    private var containerInstance: List<ContainerInstance> = listOf()
-    private val adapter by lazy {
-        ContainerImageRecyclerViewAdapter(inAEViewModel)
-    }
+    private val adapter by lazy { ContainerImageRecyclerViewAdapter(inAEViewModel) }
     companion object {
         const val KEY_CONTAINER_DATA: String = "containerItem"
-        const val CONTAINER_IMAGE: String = "container image"
-        const val CONTAINER_NAME: String = "container name"
-
-        private val containerImage = listOf(
-            R.drawable.airconditioner,
-            R.drawable.airpurifier,
-            R.drawable.boiler
-        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,15 +45,14 @@ class INAEActivity : BaseActivity() {
                     binding.explainTextViewINAEActivity.visibility = View.GONE
                     binding.viewpager2INAEActivity.visibility = View.VISIBLE
                 }
-                containerInstance = it
                 adapter.submitList(it)
             }
 
             onContainerItemEvent.observe(this@INAEActivity, EventObserver
             {
-                val destinationActivity = when (it.containerImage) {
-                    R.drawable.airconditioner -> AirConditionalActivity::class.java
-                    R.drawable.airpurifier -> AirPurifierActivity::class.java
+                val destinationActivity = when (it.type) {
+                    ContainerType.AIRCONDITIONAL -> AirConditionalActivity::class.java
+                    ContainerType.AIRPURIFIER -> AirPurifierActivity::class.java
                     else -> BoilerActivity::class.java
                 }
 
@@ -83,7 +72,6 @@ class INAEActivity : BaseActivity() {
 
             floatingButtonAddContainerINAEActivity.setOnClickListener {
                 val intent = Intent(this@INAEActivity, ContainerRegisterActivity::class.java)
-                intent.putExtra(CONTAINER_IMAGE, containerImage as Serializable)
                 startActivity(intent)
             }
         }

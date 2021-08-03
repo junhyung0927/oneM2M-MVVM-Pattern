@@ -4,6 +4,7 @@ import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
 import com.example.onem2m_in_ae.model.ContainerInstance
+import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.model.request.*
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
@@ -37,22 +38,6 @@ class INAERepositoryImpl(
         return remoteDataSource.createContainer(requestCon)
     }
 
-    override fun createContainerInstance() {
-
-        val containerInstance = mutableListOf(
-            ContainerInstance(
-                containerInstanceName = "에어컨",
-                containerImage = R.drawable.airconditioner
-            ),
-            ContainerInstance(
-                containerInstanceName = "제습기",
-                containerImage = R.drawable.airpurifier
-            ),
-            ContainerInstance( containerInstanceName = "보일러", containerImage = R.drawable.boiler)
-        )
-        localDataSource.createContentInstance(containerInstance)
-    }
-
     override suspend fun getAEInfo(): ResponseAE {
         return remoteDataSource.getAEInfo()
     }
@@ -69,16 +54,17 @@ class INAERepositoryImpl(
         return remoteDataSource.getContainerInfo()
     }
 
-    override suspend fun insertContainerInstanceList(containerImageList: List<ContainerInstance>) {
-        return localDataSource.insertContentInstanceInfoList(containerImageList)
-    }
-
     override suspend fun registerContainerInstance(
         containerName: String,
-        containerImage: Int
+        containerImage: Int,
+        containerType: ContainerType
     ) {
         val containerInstance = listOf(
-            ContainerInstance(containerInstanceName = containerName, containerImage = containerImage)
+            ContainerInstance(
+                containerInstanceName = containerName,
+                containerImage = containerImage,
+                type = containerType
+            )
         )
 
         return localDataSource.registerContainerInstance(containerInstance)

@@ -1,9 +1,11 @@
 package com.example.onem2m_in_ae.model
 
+import androidx.annotation.DrawableRes
 import com.example.onem2m_in_ae.R
 
-enum class ContainerType {
-    AIRCONDITIONAL,
-    AIRPURIFIER,
-    BOILER
+enum class ContainerType(@DrawableRes val resId: Int) {
+    AIRCONDITIONAL(resId = R.drawable.airconditioner),
+    AIRPURIFIER(resId = R.drawable.airpurifier),
+    BOILER(resId = R.drawable.boiler)
 }
+

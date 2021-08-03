@@ -18,17 +18,6 @@ class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel(
         }
     }
 
-    fun createContainerInstance() {
-        inAERepository.createContainerInstance()
-    }
-
-    fun insertContainerInstanceList(containerInstance: List<ContainerInstance>) =
-        liveData {
-            handle { inAERepository.insertContainerInstanceList(containerInstance) }?.let {
-                emit(it)
-            }
-        }
-
     val getContainerDatabase = liveData<List<ContainerInstance>> {
         handle { inAERepository.getContentInstanceDatabase() }?.let {
             emit(it)

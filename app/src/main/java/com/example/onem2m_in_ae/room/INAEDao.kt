@@ -9,9 +9,6 @@ interface INAEDao {
     @Query("SELECT * FROM container")
     fun getContainerInstanceInfoList(): List<ContainerInstance>
 
-    @Insert
-    suspend fun insertContainerInstanceList(vararg containerInstance: ContainerInstance)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createContainerInstance(containerInstance: List<ContainerInstance>)
 

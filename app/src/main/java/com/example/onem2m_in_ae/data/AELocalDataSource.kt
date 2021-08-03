@@ -12,11 +12,6 @@ class AELocalDataSource(
         inAEDao.createContainerInstance(containerInstance)
     }
 
-    override suspend fun insertContentInstanceInfoList(containerInstance: List<ContainerInstance>)
-    {
-        return inAEDao.insertContainerInstanceList(*containerInstance.toTypedArray())
-    }
-
     override suspend fun getContainerInstanceDataBase(): List<ContainerInstance>
     {
         return inAEDao.getContainerInstanceInfoList()
