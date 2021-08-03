@@ -58,7 +58,7 @@ class ContainerImageRecyclerViewAdapter(
             binding.itemImage = item.containerImage
             binding.itemName = item.containerInstanceName
             binding.containerItemImageViewAirConditionerActivity.setOnClickListener {
-                inaeViewModel.callOnContainerImageEvent(item.containerImage)
+                inaeViewModel.callOnContainerImageEvent(item)
             }
             binding.executePendingBindings()
         }

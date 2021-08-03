@@ -3,7 +3,6 @@ package com.example.onem2m_in_ae.view.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.DiffUtil
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
@@ -24,7 +23,7 @@ class INAEActivity : BaseActivity() {
         ContainerImageRecyclerViewAdapter(inAEViewModel)
     }
     companion object {
-        const val KEY_CONTAINER_IMAGE_DATA: String = "container_src"
+        const val KEY_CONTAINER_DATA: String = "containerItem"
         const val CONTAINER_IMAGE: String = "container image"
         const val CONTAINER_NAME: String = "container name"
 
@@ -42,8 +41,6 @@ class INAEActivity : BaseActivity() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
         inAEViewModel.apply {
-//            createContainerInstance()
-
             createAE.observe(this@INAEActivity) {
 //                Logger.d("AE 생성: $it")
             }
@@ -53,7 +50,6 @@ class INAEActivity : BaseActivity() {
             }
 
             getContainerDatabase.observe(this@INAEActivity) {
-                println("데이터베이스 데이터: $it")
                 if (it.isNotEmpty()) {
                     binding.explainTextViewINAEActivity.visibility = View.GONE
                     binding.viewpager2INAEActivity.visibility = View.VISIBLE
@@ -62,16 +58,16 @@ class INAEActivity : BaseActivity() {
                 adapter.submitList(it)
             }
 
-            onContainerImageEvent.observe(this@INAEActivity, EventObserver
+            onContainerItemEvent.observe(this@INAEActivity, EventObserver
             {
-                val destinationActivity = when (it) {
+                val destinationActivity = when (it.containerImage) {
                     R.drawable.airconditioner -> AirConditionalActivity::class.java
                     R.drawable.airpurifier -> AirPurifierActivity::class.java
                     else -> BoilerActivity::class.java
                 }
 
                 val intent = Intent(this@INAEActivity, destinationActivity)
-                intent.putExtra(KEY_CONTAINER_IMAGE_DATA, it)
+                intent.putExtra(KEY_CONTAINER_DATA, it)
                 startActivity(intent)
             })
         }
