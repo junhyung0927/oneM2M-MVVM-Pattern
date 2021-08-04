@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
+import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.KEY_CONTAINER_DATA
 import com.orhanobut.logger.Logger
@@ -29,9 +30,10 @@ class AirConditionalActivity : BaseActivity() {
             item = containerItem.containerImage
 
             RESOURCE_NAME = containerItem.containerInstanceName
-            airConditionalViewModel.createSubscription(RESOURCE_NAME).observe(this@AirConditionalActivity) {
+            airConditionalViewModel.createSubscription(RESOURCE_NAME).observe(this@AirConditionalActivity) {}
 
-            }
+            MqttManager().connect(applicationContext)
+
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
                 println(it)
                 if (RESOURCE_NAME.isNotEmpty()) {
