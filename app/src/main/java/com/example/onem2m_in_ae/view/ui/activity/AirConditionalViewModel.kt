@@ -40,6 +40,12 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         }
     }
 
+    fun createSubscription(resourceName: String) = liveData {
+        handle { inAERepository.createSubscription(resourceName) }?.let {
+            emit(it)
+        }
+    }
+
     override fun onError(e: Exception) {
         super.onError(e)
         when (e) {

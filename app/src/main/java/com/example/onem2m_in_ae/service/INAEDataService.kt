@@ -4,6 +4,7 @@ import androidx.room.Delete
 import com.example.onem2m_in_ae.model.request.RequestAE
 import com.example.onem2m_in_ae.model.request.RequestCnt
 import com.example.onem2m_in_ae.model.request.RequestCon
+import com.example.onem2m_in_ae.model.request.RequestSub
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
@@ -33,6 +34,15 @@ interface INAEDataService {
     suspend fun deviceControl(
         @Path("resource_name", encoded = true) resourceName: String,
         @Body param: RequestCnt
+    )
+
+    @Headers(
+        "Content-Type: application/json;ty=23",
+    )
+    @POST("/Mobius/junhyung/{resource_name}")
+    suspend fun createSubscription(
+        @Path("resource_name", encoded = true) resourceName: String,
+        @Body param: RequestSub
     )
 
     @GET("/Mobius/junhyung?fu=1&rcn=1")

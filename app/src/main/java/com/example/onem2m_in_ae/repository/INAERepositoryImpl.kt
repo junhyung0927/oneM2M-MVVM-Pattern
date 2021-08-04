@@ -70,6 +70,20 @@ class INAERepositoryImpl(
         return localDataSource.registerContainerInstance(containerInstance)
     }
 
+    override suspend fun createSubscription(resourceName: String) {
+        val requestSub = RequestSub(
+            RequestM2MSub(
+                resourceName,
+                RequestEncNet(
+                    arrayListOf(3)
+                ),
+                arrayListOf("Mobius/junhyung")
+            )
+        )
+
+        return remoteDataSource.createSubscription(requestSub, resourceName)
+    }
+
     override suspend fun deviceControl(content: String, resourceName: String) {
         val contentInstance = RequestCnt(
             RequestM2MCnt(

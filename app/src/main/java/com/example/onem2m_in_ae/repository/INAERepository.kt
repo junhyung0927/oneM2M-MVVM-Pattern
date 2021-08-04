@@ -13,6 +13,7 @@ interface INAERepository {
     suspend fun createAE()
     suspend fun createContainer(name: String)
     suspend fun registerContainerInstance(containerName: String, containerImage: Int, containerType: ContainerType)
+    suspend fun createSubscription(resourceName: String)
 
     //조회
     suspend fun getAEInfo() : ResponseAE
