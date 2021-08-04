@@ -29,6 +29,7 @@ class AirConditionalActivity : BaseActivity() {
             item = containerItem.containerImage
 
             RESOURCE_NAME = containerItem.containerInstanceName
+
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
                 println(it)
                 if (RESOURCE_NAME.isNotEmpty()) {

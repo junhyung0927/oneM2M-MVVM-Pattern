@@ -7,6 +7,9 @@
         <variable
             name="item"
             type="Integer" />
+        <variable
+            name="data"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,14 +20,26 @@
             android:id="@+id/container_item_imageView_AirConditionerActivity"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginTop="20dp"
+
             android:scaleType="centerInside"
             app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             bind:containerImageSelectedId="@{item}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sensingData_textView_AirConditionerActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
+            />
+
 
         <ScrollView
             android:id="@+id/scrollView_AirConditionerActivity"
@@ -34,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@id/airconditioner_delete_AppCompactToggleButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintTop_toBottomOf="@id/sensingData_textView_AirConditionerActivity"
             >
 
             <LinearLayout
