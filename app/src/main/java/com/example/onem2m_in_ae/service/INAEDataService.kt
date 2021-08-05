@@ -45,7 +45,15 @@ interface INAEDataService {
         @Body param: RequestSub
     )
 
-    @GET("/Mobius/junhyung?fu=1&rcn=1")
+    @Headers(
+        "Content-Type: application/json;ty=23",
+    )
+    @POST("/Mobius/IYAHN_DEMO/co2")
+    suspend fun createSubscription111(
+        @Body param: RequestSub
+    )
+
+    @GET("/Mobius/junhyung?fu=2&rcn=1")
     suspend fun getAEInfo(): ResponseAE
 
     @GET("/Mobius/IYAHN_DEMO/co2/la")

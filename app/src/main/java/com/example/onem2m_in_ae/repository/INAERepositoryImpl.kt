@@ -77,7 +77,7 @@ class INAERepositoryImpl(
                 RequestEncNet(
                     arrayListOf(3)
                 ),
-                arrayListOf("Mobius/junhyung")
+                arrayListOf("Mobius/IYAHN_DEMO/co2")
             )
         )
 

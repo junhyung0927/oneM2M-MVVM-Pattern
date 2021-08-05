@@ -14,7 +14,9 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class AirConditionalActivity : BaseActivity() {
     private val binding by binding<ActivityAirconditionerBinding>(R.layout.activity_airconditioner)
     private val airConditionalViewModel: AirConditionalViewModel by viewModel()
-
+    private val mqttManager: MqttManager by lazy {
+        MqttManager(applicationContext)
+    }
     companion object {
         private var RESOURCE_NAME: String = ""
     }
@@ -29,10 +31,10 @@ class AirConditionalActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
-            RESOURCE_NAME = containerItem.containerInstanceName
-            airConditionalViewModel.createSubscription(RESOURCE_NAME).observe(this@AirConditionalActivity) {}
+            mqttManager.connect(INAEActivity.APP_ID)
 
-            MqttManager().connect(applicationContext)
+            RESOURCE_NAME = containerItem.containerInstanceName
+            airConditionalViewModel.createSubscription("sub1").observe(this@AirConditionalActivity) {}
 
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
                 println(it)
@@ -72,5 +74,11 @@ class AirConditionalActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    @Override
+    override fun onBackPressed() {
+        super.onBackPressed()
+        mqttManager.unsubscribeToTopic("/oneM2M/req/Mobius2/SHaAr5KjQz9_sub/json")
     }
 }

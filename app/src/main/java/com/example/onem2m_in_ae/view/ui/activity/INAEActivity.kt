@@ -8,6 +8,7 @@ import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.model.ContainerType
+import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.util.EventObserver
 import com.example.onem2m_in_ae.view.ui.adapter.ContainerImageRecyclerViewAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,6 +23,7 @@ class INAEActivity : BaseActivity() {
     private val adapter by lazy { ContainerImageRecyclerViewAdapter(inAEViewModel) }
     companion object {
         const val KEY_CONTAINER_DATA: String = "containerItem"
+        var APP_ID: String=""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +34,12 @@ class INAEActivity : BaseActivity() {
 
         inAEViewModel.apply {
             createAE.observe(this@INAEActivity) {
-//                Logger.d("AE 생성: $it")
+            //Logger.d("AE 생성: $it")
             }
 
             getAEInfo.observe(this@INAEActivity) {
-//                Logger.d("조회 : $it")
+                //Logger.d("조회 : $it")
+                APP_ID = it.m2m_ae.aei
             }
 
             getContainerDatabase.observe(this@INAEActivity) {
