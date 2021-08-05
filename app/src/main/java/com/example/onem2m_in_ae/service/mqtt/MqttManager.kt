@@ -27,7 +27,8 @@ class MqttManager(context: Context) {
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {}
 
                 override fun connectComplete(reconnect: Boolean, serverURI: String?) {
-                    val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
+//                    val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
+                    val topic = "/oneM2M/req/Mobius2/${appId}/json"
                     println("serverURI: ${serverURI}")
                     subscribeToTopic(topic)
                     println("MQTT 연결 성공")
@@ -56,7 +57,8 @@ class MqttManager(context: Context) {
         }
     }
 
-    fun unsubscribeToTopic(topic: String) {
+    fun unsubscribeToTopic(appId: String) {
+        val topic = "/oneM2M/req/Mobius2/${appId}/json"
         if (mqttClient.isConnected)
             try {
                 println("구독 해제")

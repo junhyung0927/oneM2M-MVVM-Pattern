@@ -7,6 +7,7 @@ import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.view.base.BaseActivity
+import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.KEY_CONTAINER_DATA
 import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -16,9 +17,6 @@ class AirConditionalActivity : BaseActivity() {
     private val airConditionalViewModel: AirConditionalViewModel by viewModel()
     private val mqttManager: MqttManager by lazy {
         MqttManager(applicationContext)
-    }
-    companion object {
-        private var RESOURCE_NAME: String = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +29,10 @@ class AirConditionalActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
-            mqttManager.connect(INAEActivity.APP_ID)
+            mqttManager.connect(APP_ID)
 
-            RESOURCE_NAME = containerItem.containerInstanceName
-            airConditionalViewModel.createSubscription("sub1").observe(this@AirConditionalActivity) {}
+            val RESOURCE_NAME = containerItem.containerInstanceName
+            airConditionalViewModel.createSubscription(RESOURCE_NAME).observe(this@AirConditionalActivity) {}
 
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
                 println(it)
@@ -79,6 +77,6 @@ class AirConditionalActivity : BaseActivity() {
     @Override
     override fun onBackPressed() {
         super.onBackPressed()
-        mqttManager.unsubscribeToTopic("/oneM2M/req/Mobius2/SHaAr5KjQz9_sub/json")
+        mqttManager.unsubscribeToTopic(APP_ID)
     }
 }

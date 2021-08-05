@@ -71,13 +71,14 @@ class INAERepositoryImpl(
     }
 
     override suspend fun createSubscription(resourceName: String) {
+        var count = 0
         val requestSub = RequestSub(
             RequestM2MSub(
-                resourceName,
+                "sub${++count}",
                 RequestEncNet(
                     arrayListOf(3)
                 ),
-                arrayListOf("Mobius/IYAHN_DEMO/co2")
+                arrayListOf("Mobius/junhyung/aircon")
             )
         )
 
