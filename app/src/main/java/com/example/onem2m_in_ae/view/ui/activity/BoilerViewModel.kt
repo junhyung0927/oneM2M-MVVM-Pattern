@@ -8,7 +8,7 @@ import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
 import java.lang.Exception
 
-class AirPurifierViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
+class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
     fun createSubscription(resourceName: String) = liveData {
         handle { inAERepository.createSubscription(resourceName) }?.let {
             emit(it)
@@ -34,7 +34,7 @@ class AirPurifierViewModel(private val inAERepository: INAERepository) : BaseVie
         }
     }
 
-    fun deleteAirPurifierContainer(resourceName: String) = liveData {
+    fun deleteBoilerContainer(resourceName: String) = liveData {
         handle { inAERepository.deleteContainer(resourceName) }?.let {
             emit(it)
         }
