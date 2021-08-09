@@ -22,7 +22,7 @@ interface INAEDataService {
     @Headers(
         "Content-Type: application/json;ty=3",
     )
-    @POST("/Mobius/junhyung")
+    @POST("/Mobius/IYAHN_DEMO")
     suspend fun createContainer(
         @Body param: RequestCon
     )
@@ -30,7 +30,7 @@ interface INAEDataService {
     @Headers(
         "Content-Type: application/json;ty=4",
     )
-    @POST("/Mobius/junhyung/{resource_name}")
+    @POST("/Mobius/IYAHN_DEMO/{resource_name}")
     suspend fun deviceControl(
         @Path("resource_name", encoded = true) resourceName: String,
         @Body param: RequestCnt
@@ -39,7 +39,7 @@ interface INAEDataService {
     @Headers(
         "Content-Type: application/json;ty=23",
     )
-    @POST("/Mobius/junhyung/{resource_name}")
+    @POST("/Mobius/IYAHN_DEMO/{resource_name}")
     suspend fun createSubscription(
         @Path("resource_name", encoded = true) resourceName: String,
         @Body param: RequestSub
@@ -53,7 +53,7 @@ interface INAEDataService {
         @Body param: RequestSub
     )
 
-    @GET("/Mobius/junhyung?fu=2&rcn=1")
+    @GET("/Mobius/IYAHN_DEMO?fu=2&rcn=1")
     suspend fun getAEInfo(): ResponseAE
 
     @GET("/Mobius/IYAHN_DEMO/co2/la")
@@ -71,10 +71,10 @@ interface INAEDataService {
     @GET("/Mobius/IYAHN_DEMO/co2")
     suspend fun getContentInstanceResourceInfo(): ResponseCnt
 
-    @GET("/Mobius/junhyung?fu=2&rcn=1")
+    @GET("/Mobius/IYAHN_DEMO?fu=2&rcn=1")
     suspend fun getContainerInfo(): ResponseCon
 
-    @DELETE("/Mobius/junhyung/{resource_name}")
+    @DELETE("/Mobius/IYAHN_DEMO/{resource_name}")
     suspend fun deleteContainer(
         @Path("resource_name", encoded = true) resourceName: String
     )

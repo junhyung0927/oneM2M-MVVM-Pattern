@@ -18,7 +18,7 @@ class INAERepositoryImpl(
     override suspend fun createAE() {
         val requestAE = RequestAE(
             RequestM2mAE(
-                "junhyung",
+                "IYAHN_DEMO",
                 "0.2.481.2.0001.001.000111",
                 arrayListOf("key1", "key2"),
                 true
@@ -76,9 +76,12 @@ class INAERepositoryImpl(
             RequestM2MSub(
                 "sub${++count}",
                 RequestEncNet(
-                    arrayListOf(3)
+                    arrayListOf(3,4)
                 ),
-                arrayListOf("Mobius/junhyung/aircon")
+                arrayListOf("Mobius/junhyung/aircon"),
+                1,
+                2,
+                "Sa13_NW9NVN"
             )
         )
 

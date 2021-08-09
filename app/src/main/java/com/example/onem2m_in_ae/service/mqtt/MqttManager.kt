@@ -27,12 +27,13 @@ class MqttManager(context: Context) {
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {}
 
                 override fun connectComplete(reconnect: Boolean, serverURI: String?) {
-//                    val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
-                    val topic = "/oneM2M/req/Mobius2/${appId}/json"
+                    val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
+//                    val topic = "/oneM2M/req/Mobius2/${appId}/json"
                     println("serverURI: ${serverURI}")
                     subscribeToTopic(topic)
                     println("MQTT 연결 성공")
                     println("connect : ${mqttClient}")
+
                 }
             })
         } catch (e: MqttException) {
@@ -58,7 +59,7 @@ class MqttManager(context: Context) {
     }
 
     fun unsubscribeToTopic(appId: String) {
-        val topic = "/oneM2M/req/Mobius2/${appId}/json"
+        val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
         if (mqttClient.isConnected)
             try {
                 println("구독 해제")
@@ -66,6 +67,5 @@ class MqttManager(context: Context) {
             } catch (e: MqttException) {
                 e.printStackTrace()
             }
-
     }
 }
