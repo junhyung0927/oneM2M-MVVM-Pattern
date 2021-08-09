@@ -18,7 +18,7 @@ interface INAERepository {
     //조회
     suspend fun getAEInfo() : ResponseAE
     suspend fun getContainerInfo() : ResponseCon
-    suspend fun getContentInstanceInfo() : ResponseCnt
+    suspend fun getContentInstanceInfo(resourceName: String) : ResponseCnt
     suspend fun getContentInstanceDatabase() : List<ContainerInstance>
 
     //수정

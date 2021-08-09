@@ -18,7 +18,7 @@ class INAERepositoryImpl(
     override suspend fun createAE() {
         val requestAE = RequestAE(
             RequestM2mAE(
-                "IYAHN_DEMO",
+                "junhyung",
                 "0.2.481.2.0001.001.000111",
                 arrayListOf("key1", "key2"),
                 true
@@ -42,8 +42,8 @@ class INAERepositoryImpl(
         return remoteDataSource.getAEInfo()
     }
 
-    override suspend fun getContentInstanceInfo(): ResponseCnt {
-        return remoteDataSource.getContentInstanceInfo()
+    override suspend fun getContentInstanceInfo(resourceName: String): ResponseCnt {
+        return remoteDataSource.getContentInstanceInfo(resourceName)
     }
 
     override suspend fun getContentInstanceDatabase(): List<ContainerInstance> {

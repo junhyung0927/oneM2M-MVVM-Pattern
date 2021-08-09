@@ -8,40 +8,40 @@ import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
 import java.lang.Exception
 
-class AirConditionalViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
-    fun getContentInstanceInfo(resourceName: String) = liveData<ResponseCnt> {
-        val getContentInstanceInfo = handle {
-            inAERepository.getContentInstanceInfo(resourceName) }?.let {
+class AirPurifierViewModel(private val inaeRepository: INAERepository) : BaseViewModel() {
+    fun createSubscription(resourceName: String) = liveData {
+        handle { inaeRepository.createSubscription(resourceName) }?.let {
             emit(it)
         }
     }
 
-    fun deviceControl(content: String, resourceName: String) = liveData {
-        handle { inAERepository.deviceControl(content, resourceName) }?.let {
-            emit(it)
-        }
-    }
-
-    fun deleteAirConContainer(resourceName: String) = liveData {
-        handle { inAERepository.deleteContainer(resourceName) }?.let {
-            emit(it)
-        }
-    }
-
-    fun deleteDataBaseContainer(resourceName: String) = liveData {
-        handle { inAERepository.deleteDatabaseContainer(resourceName) }.let {
+    fun getContentInstanceInfo(RESOURCE_NAME: String) = liveData<ResponseCnt>
+    {
+        val getContentInstanceInfo = handle { inaeRepository.getContentInstanceInfo(RESOURCE_NAME) }?.let {
             emit(it)
         }
     }
 
     val getContainerInfo = liveData<ResponseCon> {
-        handle { inAERepository.getContainerInfo() }?.let {
+        handle { inaeRepository.getContainerInfo() }?.let {
             emit(it)
         }
     }
 
-    fun createSubscription(resourceName: String) = liveData {
-        handle { inAERepository.createSubscription(resourceName) }?.let {
+    fun deviceControl(content: String, resourceName: String) = liveData {
+        handle { inaeRepository.deviceControl(content, resourceName) }?.let {
+            emit(it)
+        }
+    }
+
+    fun deleteAirPurifierContainer(resourceName: String) = liveData {
+        handle { inaeRepository.deleteContainer(resourceName) }?.let {
+            emit(it)
+        }
+    }
+
+    fun deleteDataBaseContainer(resourceName: String) = liveData {
+        handle { inaeRepository.deleteDatabaseContainer(resourceName) }.let {
             emit(it)
         }
     }
@@ -61,4 +61,5 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
             else -> e.printStackTrace()
         }
     }
+
 }

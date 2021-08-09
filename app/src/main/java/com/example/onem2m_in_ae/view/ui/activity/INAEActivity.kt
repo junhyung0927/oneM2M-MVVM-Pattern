@@ -40,7 +40,6 @@ class INAEActivity : BaseActivity() {
             getAEInfo.observe(this@INAEActivity) {
                 //Logger.d("조회 : $it")
                 APP_ID = it.m2m_ae.aei
-                println("해당 앱 아이디" + APP_ID)
             }
 
             getContainerDatabase.observe(this@INAEActivity) {

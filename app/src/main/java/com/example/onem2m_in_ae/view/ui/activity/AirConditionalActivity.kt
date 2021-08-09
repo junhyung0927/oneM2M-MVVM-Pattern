@@ -52,7 +52,7 @@ class AirConditionalActivity : BaseActivity() {
             }
 
             airconditionerSearchDataModeAppCompactButton.setOnClickListener {
-                airConditionalViewModel.getContentInstanceInfo()
+                airConditionalViewModel.getContentInstanceInfo(RESOURCE_NAME)
                     .observe(this@AirConditionalActivity) {
                         Logger.d("CNT 조회: $it")
                     }

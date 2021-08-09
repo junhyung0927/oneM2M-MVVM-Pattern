@@ -29,8 +29,8 @@ class AERemoteDataSource(
         return inAEDataService.getAEInfo()
     }
 
-    override suspend fun getContentInstanceInfo(): ResponseCnt {
-        return inAEDataService.getDetailedChildResourceContentInstanceInfo()
+    override suspend fun getContentInstanceInfo(resourceName: String): ResponseCnt {
+        return inAEDataService.getDetailedChildResourceContentInstanceInfo(resourceName)
     }
 
     override suspend fun getContainerInfo(): ResponseCon {
