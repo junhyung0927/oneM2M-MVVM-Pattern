@@ -57,6 +57,10 @@ class ContainerRegisterActivity : BaseActivity() {
 
             containerRegisterViewModel.getChildResourceInfo.observe(this@ContainerRegisterActivity) {
                 println("컨테이너 ${it.m2mUril}")
+                val containerName = it.m2mUril
+                    .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
+                    .map { it.split("/").last() }
+                println(containerName)
             }
 
             ArrayAdapter.createFromResource(
