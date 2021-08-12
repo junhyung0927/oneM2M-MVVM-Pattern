@@ -8,7 +8,7 @@ class HeaderInterceptor: Interceptor {
         val newRequest = request().newBuilder()
             .addHeader("Accept", "application/json")
             .addHeader("X-M2M-RI", "12345")
-            .addHeader("X-M2M-Origin", "Swisoft")
+            .addHeader("X-M2M-Origin", "S")
             .build()
 
         proceed(newRequest)

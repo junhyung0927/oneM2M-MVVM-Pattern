@@ -3,6 +3,8 @@
     package="com.example.onem2m_in_ae">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".INAEApp"
@@ -14,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreenTheme"
         >
-        <activity android:name="com.example.onem2m_in_ae.view.ui.activity.INAEActivity">
+        <activity android:name="com.example.onem2m_in_ae.view.ui.activity.INAEActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,5 +32,10 @@
 
         <activity android:name=".view.ui.activity.BoilerActivity">
         </activity>
+
+        <activity android:name=".view.ui.activity.ContainerRegisterActivity">
+        </activity>
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 </manifest>

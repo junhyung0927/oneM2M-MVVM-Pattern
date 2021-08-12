@@ -1,13 +1,26 @@
 <resources>
+    <!--앱 공통 텍스트-->
     <string name="app_name">onem2m-IN-AE</string>
     <string name="main_head_text">oneM2M2 IoT Platform</string>
+    <string name="body_explain_text">장치를 추가해주세요</string>
+
+    <!--장치 제어 텍스트-->
     <string name="led_button_off_text">LED 끄기</string>
     <string name="led_button_on_text">LED 켜기</string>
-    <string name="get_container_control_text">Container 조회</string>
     <string name="timer_mode_control_text">타이머 모드</string>
     <string name="dehumidification_mode_control_text">제습 모드</string>
     <string name="power_mode_control_text">파워 모드</string>
     <string name="airCon_control_off_control_text">전원 끄기</string>
     <string name="airCon_control_on_control_text">전원 켜기</string>
     <string name="nonDecide_mode_control_text">미구현 모드</string>
+
+    <string name="get_container_control_text">Container 조회</string>
+
+    <!--장치 추가 텍스트-->
+    <string name="container_register_head_text">장치 등록</string>
+    <string name="container_register_name_text">장치 이름</string>
+    <string name="container_register_finsh_text">장치 추가</string>
+
+    <!--장치 추가 텍스트-->
+    <string name="container_delete_text">장치 제거</string>
 </resources>

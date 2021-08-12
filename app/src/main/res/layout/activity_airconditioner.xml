@@ -4,10 +4,12 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="item"
             type="Integer" />
+        <variable
+            name="data"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,24 +20,36 @@
             android:id="@+id/container_item_imageView_AirConditionerActivity"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginTop="20dp"
+
             android:scaleType="centerInside"
             app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             bind:containerImageSelectedId="@{item}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sensingData_textView_AirConditionerActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
+            />
+
 
         <ScrollView
             android:id="@+id/scrollView_AirConditionerActivity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/airconditioner_delete_AppCompactToggleButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintTop_toBottomOf="@id/sensingData_textView_AirConditionerActivity"
             >
 
             <LinearLayout
@@ -44,7 +58,7 @@
                 android:orientation="vertical"
                 >
                 <androidx.appcompat.widget.AppCompatToggleButton
-                    android:id="@+id/airconditioner_control_mode_AppCompactButton"
+                    android:id="@+id/airconditioner_control_mode_AppCompactToggleButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FAFAFA"
@@ -56,7 +70,6 @@
                     android:textColorHighlight="#FFBB00"
                     android:textStyle="bold"
                     android:layout_margin="15dp"
-
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -147,7 +160,28 @@
                     android:layout_margin="15dp"
                     android:textStyle="bold"
                     />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/test8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
+                    android:outlineSpotShadowColor="#FFFFFF"
+                    android:text="@string/nonDecide_mode_control_text"
+                    android:textColor="@drawable/select_toggle_color"
+                    android:textColorHighlight="#FFBB00"
+                    android:layout_margin="15dp"
+                    android:textStyle="bold"
+                    />
             </LinearLayout>
         </ScrollView>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/airconditioner_delete_AppCompactToggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/container_delete_text"
+            android:background="@drawable/control_button_shape"
+            app:layout_constraintTop_toBottomOf="@id/scrollView_AirConditionerActivity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
