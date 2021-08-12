@@ -1,14 +1,13 @@
 package com.example.onem2m_in_ae.repository
 
-import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.model.request.*
 import com.example.onem2m_in_ae.model.response.ResponseAE
+import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
-import com.example.onem2m_in_ae.model.response.ResponseCon
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
 
 class INAERepositoryImpl(
@@ -33,8 +32,8 @@ class INAERepositoryImpl(
 
     override suspend fun createContainer(name: String) {
         //cr -> aei가 되어야 됨.
-        val requestCon = RequestCon(
-            RequestM2MCon(
+        val requestCon = RequestCnt(
+            RequestM2MCnt(
                 name,
                 arrayListOf(name),
                 APP_ID
@@ -47,7 +46,7 @@ class INAERepositoryImpl(
         return remoteDataSource.getAEInfo()
     }
 
-    override suspend fun getContentInstanceInfo(resourceName: String): ResponseCnt {
+    override suspend fun getContentInstanceInfo(resourceName: String): ResponseCin {
         return remoteDataSource.getContentInstanceInfo(resourceName)
     }
 
@@ -55,7 +54,7 @@ class INAERepositoryImpl(
         return localDataSource.getContainerInstanceDataBase()
     }
 
-    override suspend fun getContainerInfo(): ResponseCon {
+    override suspend fun getContainerInfo(): ResponseCnt {
         return remoteDataSource.getContainerInfo()
     }
 
@@ -95,8 +94,8 @@ class INAERepositoryImpl(
     }
 
     override suspend fun deviceControl(content: String, resourceName: String) {
-        val contentInstance = RequestCnt(
-            RequestM2MCnt(
+        val contentInstance = RequestCin(
+            RequestM2MCin(
                 content
             )
         )

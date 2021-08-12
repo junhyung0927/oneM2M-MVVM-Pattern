@@ -1,8 +1,8 @@
 package com.example.onem2m_in_ae.view.ui.activity
 
 import androidx.lifecycle.liveData
+import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
-import com.example.onem2m_in_ae.model.response.ResponseCon
 import com.example.onem2m_in_ae.repository.INAERepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
@@ -15,14 +15,14 @@ class AirPurifierViewModel(private val inAERepository: INAERepository) : BaseVie
         }
     }
 
-    fun getContentInstanceInfo(RESOURCE_NAME: String) = liveData<ResponseCnt>
+    fun getContentInstanceInfo(RESOURCE_NAME: String) = liveData<ResponseCin>
     {
         val getContentInstanceInfo = handle { inAERepository.getContentInstanceInfo(RESOURCE_NAME) }?.let {
             emit(it)
         }
     }
 
-    val getContainerInfo = liveData<ResponseCon> {
+    val getContainerInfo = liveData<ResponseCnt> {
         handle { inAERepository.getContainerInfo() }?.let {
             emit(it)
         }

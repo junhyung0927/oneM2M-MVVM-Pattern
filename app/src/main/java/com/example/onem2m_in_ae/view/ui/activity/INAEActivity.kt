@@ -24,6 +24,7 @@ class INAEActivity : BaseActivity() {
     companion object {
         const val KEY_CONTAINER_DATA: String = "containerItem"
         var APP_ID: String= ""
+        var CONTAINER_NAME: List<String> = listOf()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +34,10 @@ class INAEActivity : BaseActivity() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
         inAEViewModel.apply {
-            createAE.observe(this@INAEActivity) {
-            //Logger.d("AE 생성: $it")
-            }
+            createAE.observe(this@INAEActivity) { }
 
             getAEInfo.observe(this@INAEActivity) {
-                //Logger.d("조회 : $it")
                 APP_ID = it.m2m_ae.aei
-
             }
 
             getContainerDatabase.observe(this@INAEActivity) {

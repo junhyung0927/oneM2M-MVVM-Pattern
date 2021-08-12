@@ -55,6 +55,8 @@ class ContainerRegisterActivity : BaseActivity() {
                 }
             })
 
+
+
             ArrayAdapter.createFromResource(
                 this@ContainerRegisterActivity,
                 R.array.container_list,
@@ -75,7 +77,6 @@ class ContainerRegisterActivity : BaseActivity() {
                         containerImage = containerType.get(position).resId
                         pos = position
                     }
-
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
                 }
 

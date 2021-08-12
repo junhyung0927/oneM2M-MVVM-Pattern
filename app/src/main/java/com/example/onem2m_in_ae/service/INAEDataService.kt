@@ -1,13 +1,12 @@
 package com.example.onem2m_in_ae.service
 
-import androidx.room.Delete
 import com.example.onem2m_in_ae.model.request.RequestAE
+import com.example.onem2m_in_ae.model.request.RequestCin
 import com.example.onem2m_in_ae.model.request.RequestCnt
-import com.example.onem2m_in_ae.model.request.RequestCon
 import com.example.onem2m_in_ae.model.request.RequestSub
 import com.example.onem2m_in_ae.model.response.ResponseAE
+import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
-import com.example.onem2m_in_ae.model.response.ResponseCon
 import retrofit2.http.*
 
 interface INAEDataService {
@@ -24,7 +23,7 @@ interface INAEDataService {
     )
     @POST("/Mobius/junhyung")
     suspend fun createContainer(
-        @Body param: RequestCon
+        @Body param: RequestCnt
     )
 
     @Headers(
@@ -33,7 +32,7 @@ interface INAEDataService {
     @POST("/Mobius/junhyung/{resource_name}")
     suspend fun deviceControl(
         @Path("resource_name", encoded = true) resourceName: String,
-        @Body param: RequestCnt
+        @Body param: RequestCin
     )
 
     @Headers(
@@ -57,24 +56,24 @@ interface INAEDataService {
     suspend fun getAEInfo(): ResponseAE
 
     @GET("/Mobius/junhyung/co2/la")
-    suspend fun getContentInstanceLastResource(): ResponseCnt
+    suspend fun getContentInstanceLastResource(): ResponseCin
 
     @GET("/Mobius/junhyung/co2?fu=1&rcn=1")
-    suspend fun getChildResourceContentInstanceInfo(): ResponseCnt
+    suspend fun getChildResourceContentInstanceInfo(): ResponseCin
 
     @GET("/Mobius/junhyung/{resource_name}?fu=2&rcn=4")
     suspend fun getDetailedChildResourceContentInstanceInfo(
         @Path("resource_name", encoded = true) resourceName: String
-    ): ResponseCnt
+    ): ResponseCin
 
     @GET("/Mobius/junhyung/co2?fu=2&rcn=1")
-    suspend fun getOwnResourceContentInstanceInfo(): ResponseCnt
+    suspend fun getOwnResourceContentInstanceInfo(): ResponseCin
 
     @GET("/Mobius/junhyung/co2")
-    suspend fun getContentInstanceResourceInfo(): ResponseCnt
+    suspend fun getContentInstanceResourceInfo(): ResponseCin
 
     @GET("/Mobius/junhyung?fu=2&rcn=1")
-    suspend fun getContainerInfo(): ResponseCon
+    suspend fun getContainerInfo(): ResponseCnt
 
     @DELETE("/Mobius/junhyung/{resource_name}")
     suspend fun deleteContainer(

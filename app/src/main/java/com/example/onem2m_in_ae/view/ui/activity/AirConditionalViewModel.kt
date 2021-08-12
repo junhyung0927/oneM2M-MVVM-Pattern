@@ -1,15 +1,15 @@
 package com.example.onem2m_in_ae.view.ui.activity
 
 import androidx.lifecycle.liveData
+import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
-import com.example.onem2m_in_ae.model.response.ResponseCon
 import com.example.onem2m_in_ae.repository.INAERepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
 import java.lang.Exception
 
 class AirConditionalViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
-    fun getContentInstanceInfo(resourceName: String) = liveData<ResponseCnt> {
+    fun getContentInstanceInfo(resourceName: String) = liveData<ResponseCin> {
         val getContentInstanceInfo = handle {
             inAERepository.getContentInstanceInfo(resourceName) }?.let {
             emit(it)
@@ -34,7 +34,7 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         }
     }
 
-    val getContainerInfo = liveData<ResponseCon> {
+    val getContainerInfo = liveData<ResponseCnt> {
         handle { inAERepository.getContainerInfo() }?.let {
             emit(it)
         }

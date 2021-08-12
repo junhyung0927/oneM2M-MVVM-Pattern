@@ -1,6 +1,6 @@
 package com.example.onem2m_in_ae.model.response
 
-import android.provider.CalendarContract
+import android.view.inspector.IntFlagMapping
 
 data class ResponseM2MCnt(
     val parentId: String,
@@ -11,7 +11,11 @@ data class ResponseM2MCnt(
     val resourceName: String,
     val lastModifiedTime: String,
     val expirationTime: String,
-    val cs: Int,
+    val labels: List<String>,
     val cr: String,
-    val contentInstances: String
+    val mni: Int,
+    val mbs: Int,
+    val mia: Int,
+    val cni: Int,
+    val cbs: Int
 )

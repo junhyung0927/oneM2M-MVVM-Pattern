@@ -1,12 +1,10 @@
 package com.example.onem2m_in_ae.repository
 
-import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.model.response.ResponseAE
+import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
-import com.example.onem2m_in_ae.model.response.ResponseCon
 
 interface INAERepository {
     //등록 및 생성
@@ -17,8 +15,8 @@ interface INAERepository {
 
     //조회
     suspend fun getAEInfo() : ResponseAE
-    suspend fun getContainerInfo() : ResponseCon
-    suspend fun getContentInstanceInfo(resourceName: String) : ResponseCnt
+    suspend fun getContainerInfo() : ResponseCnt
+    suspend fun getContentInstanceInfo(resourceName: String) : ResponseCin
     suspend fun getContentInstanceDatabase() : List<ContainerInstance>
 
     //수정
