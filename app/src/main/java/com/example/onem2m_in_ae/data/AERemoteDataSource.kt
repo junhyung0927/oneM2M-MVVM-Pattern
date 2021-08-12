@@ -7,6 +7,7 @@ import com.example.onem2m_in_ae.model.request.RequestSub
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import com.example.onem2m_in_ae.service.INAEDataService
 
 class AERemoteDataSource(
@@ -22,7 +23,6 @@ class AERemoteDataSource(
 
     override suspend fun createSubscription(requestSub: RequestSub, resourceName: String) {
         return inAEDataService.createSubscription(resourceName, requestSub)
-//        return inAEDataService.createSubscription111(requestSub)
     }
 
     override suspend fun getAEInfo(): ResponseAE {
@@ -31,6 +31,10 @@ class AERemoteDataSource(
 
     override suspend fun getContentInstanceInfo(resourceName: String): ResponseCin {
         return inAEDataService.getDetailedChildResourceContentInstanceInfo(resourceName)
+    }
+
+    override suspend fun getChildResourceInfo(): ResponseCntUril {
+        return inAEDataService.getChildResourceInfo()
     }
 
     override suspend fun getContainerInfo(): ResponseCnt {

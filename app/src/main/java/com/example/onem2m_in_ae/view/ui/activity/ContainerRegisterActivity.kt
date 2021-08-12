@@ -55,7 +55,9 @@ class ContainerRegisterActivity : BaseActivity() {
                 }
             })
 
-
+            containerRegisterViewModel.getChildResourceInfo.observe(this@ContainerRegisterActivity) {
+                println("컨테이너 리소스: ${it}")
+            }
 
             ArrayAdapter.createFromResource(
                 this@ContainerRegisterActivity,
@@ -77,26 +79,25 @@ class ContainerRegisterActivity : BaseActivity() {
                         containerImage = containerType.get(position).resId
                         pos = position
                     }
+
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
                 }
 
             binding.buttonContainerAddRegisterActivity.setOnClickListener {
                 containerRegisterViewModel.apply {
-                    createContainer(textInputEditContainerNameRegisterActivity.text.toString())
+                    containerRegister(
+                        containerImage as Int,
+                        textInputEditContainerNameRegisterActivity.text.toString(),
+                        containerType.get(pos)
+                    )
                         .observe(this@ContainerRegisterActivity) {
-                            containerRegister(
-                                containerImage as Int,
-                                textInputEditContainerNameRegisterActivity.text.toString(),
-                                containerType.get(pos)
+                            val intent = Intent(
+                                this@ContainerRegisterActivity,
+                                INAEActivity::class.java
                             )
-                                .observe(this@ContainerRegisterActivity) {
-                                    val intent = Intent(
-                                        this@ContainerRegisterActivity,
-                                        INAEActivity::class.java
-                                    )
-                                    startActivity(intent)
-                                }
+                            startActivity(intent)
                         }
+
                 }
             }
         }

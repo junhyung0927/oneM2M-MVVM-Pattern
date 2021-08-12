@@ -8,6 +8,7 @@ import com.example.onem2m_in_ae.model.request.*
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
 
 class INAERepositoryImpl(
@@ -52,6 +53,10 @@ class INAERepositoryImpl(
 
     override suspend fun getContentInstanceDatabase(): List<ContainerInstance> {
         return localDataSource.getContainerInstanceDataBase()
+    }
+
+    override suspend fun getChildResourceInfo(): ResponseCntUril {
+        return remoteDataSource.getChildResourceInfo()
     }
 
     override suspend fun getContainerInfo(): ResponseCnt {

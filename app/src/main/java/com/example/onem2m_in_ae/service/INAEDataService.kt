@@ -7,6 +7,7 @@ import com.example.onem2m_in_ae.model.request.RequestSub
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import retrofit2.http.*
 
 interface INAEDataService {
@@ -58,8 +59,8 @@ interface INAEDataService {
     @GET("/Mobius/junhyung/co2/la")
     suspend fun getContentInstanceLastResource(): ResponseCin
 
-    @GET("/Mobius/junhyung/co2?fu=1&rcn=1")
-    suspend fun getChildResourceContentInstanceInfo(): ResponseCin
+    @GET("/Mobius?fu=1&rcn=1")
+    suspend fun getChildResourceInfo(): ResponseCntUril
 
     @GET("/Mobius/junhyung/{resource_name}?fu=2&rcn=4")
     suspend fun getDetailedChildResourceContentInstanceInfo(
@@ -68,9 +69,6 @@ interface INAEDataService {
 
     @GET("/Mobius/junhyung/co2?fu=2&rcn=1")
     suspend fun getOwnResourceContentInstanceInfo(): ResponseCin
-
-    @GET("/Mobius/junhyung/co2")
-    suspend fun getContentInstanceResourceInfo(): ResponseCin
 
     @GET("/Mobius/junhyung?fu=2&rcn=1")
     suspend fun getContainerInfo(): ResponseCnt
