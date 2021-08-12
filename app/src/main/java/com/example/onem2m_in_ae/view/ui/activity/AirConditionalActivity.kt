@@ -32,6 +32,7 @@ class AirConditionalActivity : BaseActivity() {
             mqttManager.connect(APP_ID)
 
             val RESOURCE_NAME = containerItem.containerInstanceName
+
             airConditionalViewModel.createSubscription(RESOURCE_NAME).observe(this@AirConditionalActivity) {}
 
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {

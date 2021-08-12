@@ -23,7 +23,7 @@ class INAEActivity : BaseActivity() {
     private val adapter by lazy { ContainerImageRecyclerViewAdapter(inAEViewModel) }
     companion object {
         const val KEY_CONTAINER_DATA: String = "containerItem"
-        var APP_ID: String= " "
+        var APP_ID: String= ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +40,7 @@ class INAEActivity : BaseActivity() {
             getAEInfo.observe(this@INAEActivity) {
                 //Logger.d("조회 : $it")
                 APP_ID = it.m2m_ae.aei
+
             }
 
             getContainerDatabase.observe(this@INAEActivity) {

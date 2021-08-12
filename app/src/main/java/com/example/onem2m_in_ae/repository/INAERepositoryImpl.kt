@@ -9,16 +9,20 @@ import com.example.onem2m_in_ae.model.request.*
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCon
+import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
 
 class INAERepositoryImpl(
     val remoteDataSource: RemoteDataSource,
     val localDataSource: LocalDataSource
 ) : INAERepository {
-
+    companion object {
+        var count = 0
+        val aeResourceName = "junhyung"
+    }
     override suspend fun createAE() {
         val requestAE = RequestAE(
             RequestM2mAE(
-                "junhyung",
+                aeResourceName,
                 "0.2.481.2.0001.001.000111",
                 arrayListOf("key1", "key2"),
                 true
@@ -28,11 +32,12 @@ class INAERepositoryImpl(
     }
 
     override suspend fun createContainer(name: String) {
+        //cr -> aei가 되어야 됨.
         val requestCon = RequestCon(
             RequestM2MCon(
                 name,
                 arrayListOf(name),
-                3153600000
+                APP_ID
             )
         )
         return remoteDataSource.createContainer(requestCon)
@@ -71,17 +76,18 @@ class INAERepositoryImpl(
     }
 
     override suspend fun createSubscription(resourceName: String) {
-        var count = 0
+        //cr -> x-m2m-origin 헤더값
+        val subName = APP_ID
         val requestSub = RequestSub(
             RequestM2MSub(
-                "sub${++count}",
+                "${subName}_rn",
                 RequestEncNet(
-                    arrayListOf(3,4)
+                    arrayListOf("3", "4")
                 ),
-                arrayListOf("Mobius/junhyung/aircon"),
+                arrayListOf("mqtt://192.168.10.62/${subName}_sub"),
                 1,
                 2,
-                "Sa13_NW9NVN"
+                subName
             )
         )
 
