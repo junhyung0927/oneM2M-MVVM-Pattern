@@ -56,7 +56,7 @@ class ContainerRegisterActivity : BaseActivity() {
             })
 
             containerRegisterViewModel.getChildResourceInfo.observe(this@ContainerRegisterActivity) {
-                println("컨테이너 리소스: ${it}")
+                println("컨테이너 ${it.m2mUril}")
             }
 
             ArrayAdapter.createFromResource(

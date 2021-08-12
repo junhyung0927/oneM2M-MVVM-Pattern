@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class ResponseCntUril (
     @SerializedName("m2m:uril")
-    val containerList: String
+    val m2mUril: List<String>
 )
