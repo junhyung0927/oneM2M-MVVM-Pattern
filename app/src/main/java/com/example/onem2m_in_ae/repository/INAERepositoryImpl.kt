@@ -31,18 +31,6 @@ class INAERepositoryImpl(
         return remoteDataSource.createAE(requestAE)
     }
 
-    override suspend fun createContainer(name: String) {
-        //cr -> aei가 되어야 됨.
-        val requestCon = RequestCnt(
-            RequestM2MCnt(
-                name,
-                arrayListOf(name),
-                APP_ID
-            )
-        )
-        return remoteDataSource.createContainer(requestCon)
-    }
-
     override suspend fun getAEInfo(): ResponseAE {
         return remoteDataSource.getAEInfo()
     }
@@ -105,10 +93,6 @@ class INAERepositoryImpl(
             )
         )
         return remoteDataSource.deviceControl(contentInstance, resourceName)
-    }
-
-    override suspend fun deleteContainer(resourceName: String) {
-        return remoteDataSource.deleteContainer(resourceName)
     }
 
     override suspend fun deleteDatabaseContainer(resourceName: String) {

@@ -48,9 +48,6 @@ class BoilerActivity : BaseActivity() {
 
             boilerDeleteAppCompactToggleButton.setOnClickListener {
                 boilerViewModel.apply {
-                    deleteBoilerContainer(RESOURCE_NAME).observe(this@BoilerActivity)
-                    { println("장치 제거 성공") }
-
                     deleteDataBaseContainer(RESOURCE_NAME).observe(this@BoilerActivity) {
                         println("해당 장치 데이터베이스 제거 성공")
                         val intent = Intent(this@BoilerActivity, INAEActivity::class.java)

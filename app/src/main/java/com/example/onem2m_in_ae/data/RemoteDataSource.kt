@@ -11,7 +11,6 @@ import com.example.onem2m_in_ae.model.response.ResponseCntUril
 
 interface RemoteDataSource {
     suspend fun createAE(param: RequestAE)
-    suspend fun createContainer(param: RequestCnt)
     suspend fun createSubscription(requestSub: RequestSub, resourceName: String)
 
     suspend fun getAEInfo(): ResponseAE
@@ -20,5 +19,4 @@ interface RemoteDataSource {
     suspend fun getChildResourceInfo() : ResponseCntUril
 
     suspend fun deviceControl(contentInstance: RequestCin, resourceName: String)
-    suspend fun deleteContainer(resourceName: String)
 }

@@ -34,12 +34,6 @@ class AirPurifierViewModel(private val inAERepository: INAERepository) : BaseVie
         }
     }
 
-    fun deleteAirPurifierContainer(resourceName: String) = liveData {
-        handle { inAERepository.deleteContainer(resourceName) }?.let {
-            emit(it)
-        }
-    }
-
     fun deleteDataBaseContainer(resourceName: String) = liveData {
         handle { inAERepository.deleteDatabaseContainer(resourceName) }.let {
             emit(it)

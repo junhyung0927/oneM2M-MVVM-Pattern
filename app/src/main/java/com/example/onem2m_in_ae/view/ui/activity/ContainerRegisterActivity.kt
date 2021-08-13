@@ -2,23 +2,16 @@ package com.example.onem2m_in_ae.view.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.widget.addTextChangedListener
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityContainerRegisterBinding
 import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.view.base.BaseActivity
-import kotlinx.coroutines.test.withTestContext
-import okhttp3.internal.notify
 import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.qualifier.qualifier
 
 class ContainerRegisterActivity : BaseActivity() {
     private val binding by binding<ActivityContainerRegisterBinding>(R.layout.activity_container_register)
@@ -85,19 +78,19 @@ class ContainerRegisterActivity : BaseActivity() {
 
             binding.buttonContainerAddRegisterActivity.setOnClickListener {
                 containerRegisterViewModel.apply {
-                    containerRegister(
+                    registerContainerInstance(
                         containerImage as Int,
                         textInputEditContainerNameRegisterActivity.text.toString(),
                         containerType.get(pos)
                     )
-                        .observe(this@ContainerRegisterActivity) {
-                            val intent = Intent(
-                                this@ContainerRegisterActivity,
-                                INAEActivity::class.java
-                            )
-                            startActivity(intent)
-                        }
                 }
+            }
+            containerRegisterViewModel.containerRegister.observe(this@ContainerRegisterActivity) {
+                val intent = Intent(
+                    this@ContainerRegisterActivity,
+                    INAEActivity::class.java
+                )
+                startActivity(intent)
             }
         }
     }

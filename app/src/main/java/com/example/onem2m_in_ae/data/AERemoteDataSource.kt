@@ -17,10 +17,6 @@ class AERemoteDataSource(
         return inAEDataService.createAE(param)
     }
 
-    override suspend fun createContainer(param: RequestCnt) {
-        return inAEDataService.createContainer(param)
-    }
-
     override suspend fun createSubscription(requestSub: RequestSub, resourceName: String) {
         return inAEDataService.createSubscription(resourceName, requestSub)
     }
@@ -43,9 +39,5 @@ class AERemoteDataSource(
 
     override suspend fun deviceControl(contentInstance: RequestCin, resourceName: String) {
         return inAEDataService.deviceControl(resourceName, contentInstance)
-    }
-
-    override suspend fun deleteContainer(resourceName: String) {
-        return inAEDataService.deleteContainer(resourceName)
     }
 }

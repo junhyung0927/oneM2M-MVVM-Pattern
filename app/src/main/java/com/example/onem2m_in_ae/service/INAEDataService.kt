@@ -20,14 +20,6 @@ interface INAEDataService {
     )
 
     @Headers(
-        "Content-Type: application/json;ty=3",
-    )
-    @POST("/Mobius/junhyung")
-    suspend fun createContainer(
-        @Body param: RequestCnt
-    )
-
-    @Headers(
         "Content-Type: application/json;ty=4",
     )
     @POST("/Mobius/junhyung/{resource_name}")
@@ -67,14 +59,6 @@ interface INAEDataService {
         @Path("resource_name", encoded = true) resourceName: String
     ): ResponseCin
 
-    @GET("/Mobius/junhyung/co2?fu=2&rcn=1")
-    suspend fun getOwnResourceContentInstanceInfo(): ResponseCin
-
     @GET("/Mobius/junhyung?fu=2&rcn=1")
     suspend fun getContainerInfo(): ResponseCnt
-
-    @DELETE("/Mobius/junhyung/{resource_name}")
-    suspend fun deleteContainer(
-        @Path("resource_name", encoded = true) resourceName: String
-    )
 }

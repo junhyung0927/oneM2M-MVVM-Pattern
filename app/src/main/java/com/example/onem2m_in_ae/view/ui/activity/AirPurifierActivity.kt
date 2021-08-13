@@ -49,9 +49,6 @@ class AirPurifierActivity : BaseActivity() {
 
             airPurifierDeleteAppCompactToggleButton.setOnClickListener {
                 airPurifierViewModel.apply {
-                    deleteAirPurifierContainer(RESOURCE_NAME).observe(this@AirPurifierActivity)
-                    { println("장치 제거 성공") }
-
                     deleteDataBaseContainer(RESOURCE_NAME).observe(this@AirPurifierActivity) {
                         println("해당 장치 데이터베이스 제거 성공")
                         val intent = Intent(this@AirPurifierActivity, INAEActivity::class.java)

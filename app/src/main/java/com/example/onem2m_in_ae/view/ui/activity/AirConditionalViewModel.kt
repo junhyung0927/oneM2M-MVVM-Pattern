@@ -16,7 +16,6 @@ import java.lang.Exception
 class AirConditionalViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
     private val _contentInstanceInfo: MutableLiveData<ResponseCin> = MutableLiveData()
     val contentInstanceInfo: LiveData<ResponseCin> = _contentInstanceInfo
-
     fun getContentInstanceInfo(resourceName: String) {
         viewModelScope.launch {
             handle { inAERepository.getContentInstanceInfo(resourceName) }?.let {
@@ -25,21 +24,23 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         }
     }
 
-    fun deviceControl(content: String, resourceName: String) = liveData {
-        handle { inAERepository.deviceControl(content, resourceName) }?.let {
-            emit(it)
+    private val _contentInstanceControl: MutableLiveData<Unit> = MutableLiveData()
+    val contentInstanceControl: LiveData<Unit> = _contentInstanceControl
+    fun deviceControl(content: String, resourceName: String) {
+        viewModelScope.launch {
+            handle { inAERepository.deviceControl(content, resourceName) }?.let {
+                _contentInstanceControl.value = it
+            }
         }
     }
 
-    fun deleteAirConContainer(resourceName: String) = liveData {
-        handle { inAERepository.deleteContainer(resourceName) }?.let {
-            emit(it)
-        }
-    }
-
-    fun deleteDataBaseContainer(resourceName: String) = liveData {
-        handle { inAERepository.deleteDatabaseContainer(resourceName) }.let {
-            emit(it)
+    private val _deleteContainer: MutableLiveData<Unit> = MutableLiveData()
+    val deleteContainer: LiveData<Unit> = _deleteContainer
+    fun deleteDataBaseContainer(resourceName: String) {
+        viewModelScope.launch {
+            handle { inAERepository.deleteDatabaseContainer(resourceName) }?.let {
+                _deleteContainer.value = it
+            }
         }
     }
 
@@ -49,9 +50,13 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         }
     }
 
-    fun createSubscription(resourceName: String) = liveData {
-        handle { inAERepository.createSubscription(resourceName) }?.let {
-            emit(it)
+    private val _createSub: MutableLiveData<Unit> = MutableLiveData()
+    val createSub: LiveData<Unit> = _createSub
+    fun createSubscription(resourceName: String) {
+        viewModelScope.launch {
+            handle { inAERepository.createSubscription(resourceName) }?.let {
+                _createSub.value = it
+            }
         }
     }
 

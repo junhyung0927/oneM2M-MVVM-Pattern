@@ -34,12 +34,6 @@ class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewMode
         }
     }
 
-    fun deleteBoilerContainer(resourceName: String) = liveData {
-        handle { inAERepository.deleteContainer(resourceName) }?.let {
-            emit(it)
-        }
-    }
-
     fun deleteDataBaseContainer(resourceName: String) = liveData {
         handle { inAERepository.deleteDatabaseContainer(resourceName) }.let {
             emit(it)
