@@ -20,10 +20,4 @@ class ContainerRegisterViewModel(private val inAERepository: INAERepository): Ba
         handle { inAERepository.createContainer(name)
         }?.let { emit(it) }
     }
-
-    val getChildResourceInfo = liveData<ResponseCntUril> {
-        handle { inAERepository.getChildResourceInfo()
-        }?.let { emit(it) }
-    }
-
 }

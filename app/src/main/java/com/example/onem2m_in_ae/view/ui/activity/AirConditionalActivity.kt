@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
+import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
@@ -29,11 +30,22 @@ class AirConditionalActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
+            airConditionalViewModel.getChildResourceInfo.observe(this@AirConditionalActivity) {
+                val containerName = it.m2mUril
+                    .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
+                    .map { it.split("/").last() }
+                    .map { it.split(",") }
+                if(containerItem.type.equals(ContainerType.AIRCONDITIONAL)) {
+                    val containerResourceName = containerName.find { it.firstOrNull()!!.startsWith("tvoc") }
+                }
+            }
+
             mqttManager.connect(APP_ID)
 
             val RESOURCE_NAME = containerItem.containerInstanceName
 
-            airConditionalViewModel.createSubscription(RESOURCE_NAME).observe(this@AirConditionalActivity) {}
+            airConditionalViewModel.createSubscription(RESOURCE_NAME)
+                .observe(this@AirConditionalActivity) {}
 
             airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
                 println(it)

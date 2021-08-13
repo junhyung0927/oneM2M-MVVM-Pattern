@@ -3,6 +3,7 @@ package com.example.onem2m_in_ae.view.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
@@ -21,10 +22,10 @@ class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     private val inAEViewModel: INAEViewModel by viewModel()
     private val adapter by lazy { ContainerImageRecyclerViewAdapter(inAEViewModel) }
+
     companion object {
         const val KEY_CONTAINER_DATA: String = "containerItem"
         var APP_ID: String= ""
-        var CONTAINER_NAME: List<String> = listOf()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class INAEActivity : BaseActivity() {
 
         binding.lifecycleOwner = this
         Logger.addLogAdapter(AndroidLogAdapter())
+
 
         inAEViewModel.apply {
             createAE.observe(this@INAEActivity) { }

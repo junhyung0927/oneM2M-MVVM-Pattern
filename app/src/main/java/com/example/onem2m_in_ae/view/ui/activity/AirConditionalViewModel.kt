@@ -3,6 +3,7 @@ package com.example.onem2m_in_ae.view.ui.activity
 import androidx.lifecycle.liveData
 import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
+import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import com.example.onem2m_in_ae.repository.INAERepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import retrofit2.HttpException
@@ -44,6 +45,11 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
         handle { inAERepository.createSubscription(resourceName) }?.let {
             emit(it)
         }
+    }
+
+    val getChildResourceInfo = liveData<ResponseCntUril> {
+        handle { inAERepository.getChildResourceInfo()
+        }?.let { emit(it) }
     }
 
     override fun onError(e: Exception) {

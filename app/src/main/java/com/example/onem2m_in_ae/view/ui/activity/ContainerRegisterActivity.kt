@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -17,6 +18,7 @@ import com.example.onem2m_in_ae.view.base.BaseActivity
 import kotlinx.coroutines.test.withTestContext
 import okhttp3.internal.notify
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.qualifier
 
 class ContainerRegisterActivity : BaseActivity() {
     private val binding by binding<ActivityContainerRegisterBinding>(R.layout.activity_container_register)
@@ -31,8 +33,10 @@ class ContainerRegisterActivity : BaseActivity() {
         )
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding.apply {
             lifecycleOwner = this@ContainerRegisterActivity
 
@@ -54,14 +58,6 @@ class ContainerRegisterActivity : BaseActivity() {
                     }
                 }
             })
-
-            containerRegisterViewModel.getChildResourceInfo.observe(this@ContainerRegisterActivity) {
-                println("컨테이너 ${it.m2mUril}")
-                val containerName = it.m2mUril
-                    .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
-                    .map { it.split("/").last() }
-                println(containerName)
-            }
 
             ArrayAdapter.createFromResource(
                 this@ContainerRegisterActivity,
@@ -101,7 +97,6 @@ class ContainerRegisterActivity : BaseActivity() {
                             )
                             startActivity(intent)
                         }
-
                 }
             }
         }
