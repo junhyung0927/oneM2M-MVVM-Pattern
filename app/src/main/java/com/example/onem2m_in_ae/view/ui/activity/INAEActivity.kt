@@ -34,7 +34,6 @@ class INAEActivity : BaseActivity() {
         binding.lifecycleOwner = this
         Logger.addLogAdapter(AndroidLogAdapter())
 
-
         inAEViewModel.apply {
             createAE.observe(this@INAEActivity) { }
 

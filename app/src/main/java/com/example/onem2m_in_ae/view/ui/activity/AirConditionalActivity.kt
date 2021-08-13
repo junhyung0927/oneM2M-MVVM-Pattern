@@ -5,12 +5,10 @@ import android.os.Bundle
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
-import com.example.onem2m_in_ae.model.ContainerType
 import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.KEY_CONTAINER_DATA
-import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AirConditionalActivity : BaseActivity() {
@@ -30,59 +28,46 @@ class AirConditionalActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
-            airConditionalViewModel.getChildResourceInfo.observe(this@AirConditionalActivity) {
-                val containerName = it.m2mUril
-                    .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
-                    .map { it.split("/").last() }
-                    .map { it.split(",") }
-                if (containerItem.type.equals(ContainerType.AIRCONDITIONAL)) {
-                    val containerResourceName: List<String> =
-                        containerName
-                            .find { it.first().startsWith("tvoc") }!!
+            airConditionalViewModel.apply {
+                contentInstanceInfo.observe(this@AirConditionalActivity) { }
 
-                    val RESOURCE_NAME = containerResourceName.joinToString()
-
-                    airConditionalViewModel.createSubscription(RESOURCE_NAME)
+                getChildResourceInfo.observe(this@AirConditionalActivity) {
+                    val containerResourceName = getResourceName(it)
+                    println("컨테이너 리소스 이름: ${containerResourceName}")
+                    createSubscription(containerResourceName)
                         .observe(this@AirConditionalActivity) {
                             mqttManager.connect(APP_ID)
                         }
 
-                    airConditionalViewModel.getContainerInfo.observe(this@AirConditionalActivity) {
-                        println(it)
-                        if (RESOURCE_NAME.isNotEmpty()) {
+                    getContainerInfo.observe(this@AirConditionalActivity) {
+                        if (containerResourceName.isNotEmpty()) {
                             airconditionerControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->
-                                if (isChecked) {
-                                    airConditionalViewModel.deviceControl("on", RESOURCE_NAME)
-                                        .observe(this@AirConditionalActivity)
-                                        { println(it) }
+                                val content = if (isChecked) {
+                                    "on"
                                 } else {
-                                    airConditionalViewModel.deviceControl("off", RESOURCE_NAME)
-                                        .observe(this@AirConditionalActivity)
-                                        { println(it) }
+                                    "off"
                                 }
+                                deviceControl(content, containerResourceName)
+                                    .observe(this@AirConditionalActivity)
+                                    { println(it) }
                             }
                         }
                     }
 
                     airconditionerSearchDataModeAppCompactButton.setOnClickListener {
-                        airConditionalViewModel.getContentInstanceInfo(RESOURCE_NAME)
-                            .observe(this@AirConditionalActivity) {
-                                Logger.d("CNT 조회: $it")
-                            }
+                        getContentInstanceInfo(containerResourceName)
                     }
 
                     airconditionerDeleteAppCompactToggleButton.setOnClickListener {
-                        airConditionalViewModel.apply {
-                            deleteAirConContainer(RESOURCE_NAME).observe(this@AirConditionalActivity) {
-                                println("장치 제거 성공")
-                            }
+                        deleteAirConContainer(containerResourceName).observe(this@AirConditionalActivity) {
+                            println("장치 제거 성공")
+                        }
 
-                            deleteDataBaseContainer(RESOURCE_NAME).observe(this@AirConditionalActivity) {
-                                println("장치 데이터 베이스 제거 성공")
-                                val intent =
-                                    Intent(this@AirConditionalActivity, INAEActivity::class.java)
-                                startActivity(intent)
-                            }
+                        deleteDataBaseContainer(containerResourceName).observe(this@AirConditionalActivity) {
+                            println("장치 데이터 베이스 제거 성공")
+                            val intent =
+                                Intent(this@AirConditionalActivity, INAEActivity::class.java)
+                            startActivity(intent)
                         }
                     }
                 }
@@ -90,9 +75,9 @@ class AirConditionalActivity : BaseActivity() {
         }
     }
 
-    @Override
-    override fun onBackPressed() {
-        super.onBackPressed()
+    override fun onPause() {
         mqttManager.unsubscribeToTopic(APP_ID)
+        super.onPause()
     }
 }
+

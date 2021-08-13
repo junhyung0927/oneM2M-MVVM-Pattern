@@ -1,19 +1,27 @@
 package com.example.onem2m_in_ae.view.ui.activity
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import com.example.onem2m_in_ae.repository.INAERepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.lang.Exception
 
 class AirConditionalViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
-    fun getContentInstanceInfo(resourceName: String) = liveData<ResponseCin> {
-        val getContentInstanceInfo = handle {
-            inAERepository.getContentInstanceInfo(resourceName) }?.let {
-            emit(it)
+    private val _contentInstanceInfo: MutableLiveData<ResponseCin> = MutableLiveData()
+    val contentInstanceInfo: LiveData<ResponseCin> = _contentInstanceInfo
+
+    fun getContentInstanceInfo(resourceName: String) {
+        viewModelScope.launch {
+            handle { inAERepository.getContentInstanceInfo(resourceName) }?.let {
+                _contentInstanceInfo.value = it
+            }
         }
     }
 
@@ -50,6 +58,13 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
     val getChildResourceInfo = liveData<ResponseCntUril> {
         handle { inAERepository.getChildResourceInfo()
         }?.let { emit(it) }
+    }
+
+    fun getResourceName(responseCntUril: ResponseCntUril): String {
+        return responseCntUril.m2mUril
+            .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
+            .find { it.contains("tvoc") }!!
+            .split("/").last()
     }
 
     override fun onError(e: Exception) {
