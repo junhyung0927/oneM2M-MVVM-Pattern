@@ -37,22 +37,6 @@ class INAEViewModel(private val inAERepository: INAERepository) : BaseViewModel(
     fun callOnContainerImageEvent(containerItem: ContainerInstance) {
         _onContainerItemEvent.value = Event(containerItem)
     }
-
-    override fun onError(e: Exception) {
-        super.onError(e)
-        when (e) {
-            is HttpException -> {
-                when (e.code()) {
-                    400 -> println("400: 잘못된 요청입니다.")
-                    403 -> println("403: 접근 허용 거부입니다.")
-                    404 -> println("404: 해당 url은 존재하지 않습니다.")
-                    409 -> println("409: 이미 생성된 리소스가 있습니다.")
-                    500 -> println("500: 서버 에러입니다.")
-                }
-            }
-            else -> e.printStackTrace()
-        }
-    }
 }
 
 

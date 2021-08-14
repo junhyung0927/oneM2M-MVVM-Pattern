@@ -1,7 +1,7 @@
 package com.example.onem2m_in_ae.model.request
 
-import com.google.gson.annotations.SerializedName
-
-data class RequestM2MCnt (
-    val con: String
+data class RequestM2MCnt(
+    val rn: String,
+    val lbl: ArrayList<String>,
+    val cr: String
 )
