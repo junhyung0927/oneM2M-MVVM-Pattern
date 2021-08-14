@@ -2,15 +2,18 @@ package com.example.onem2m_in_ae.service.mqtt
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.example.onem2m_in_ae.model.ContentInstanceMqttData
 import com.example.onem2m_in_ae.util.ApplicationGetContext
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
+import org.json.JSONObject
 import java.lang.Exception
 
 class MqttManager(context: Context) {
-
     private val serverURI = "tcp://192.168.10.62:1883"
     private val mqttClient: MqttAndroidClient = MqttAndroidClient(context, serverURI, MqttClient.generateClientId())
+    val contentInstanceData: MutableLiveData<ContentInstanceMqttData> = MutableLiveData()
 
     fun connect(appId: String) {
         mqttClient.connect()
@@ -22,18 +25,15 @@ class MqttManager(context: Context) {
 
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
                     println("message arrived: ${message.toString()}")
+                    contentInstanceData.value = MqttRepository().parseMessage(message)
                 }
 
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {}
 
                 override fun connectComplete(reconnect: Boolean, serverURI: String?) {
                     val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
-//                    val topic = "/oneM2M/req/Mobius2/${appId}/json"
-                    println("serverURI: ${serverURI}")
                     subscribeToTopic(topic)
                     println("MQTT 연결 성공")
-                    println("connect : ${mqttClient}")
-
                 }
             })
         } catch (e: MqttException) {

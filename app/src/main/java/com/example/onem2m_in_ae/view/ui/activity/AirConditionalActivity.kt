@@ -28,6 +28,10 @@ class AirConditionalActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
+            mqttManager.contentInstanceData.observe(this@AirConditionalActivity) {
+                sensingDataTextViewAirConditionerActivity.text = it.con
+            }
+
             airConditionalViewModel.apply {
                 contentInstanceInfo.observe(this@AirConditionalActivity) { }
                 contentInstanceControl.observe(this@AirConditionalActivity) {
