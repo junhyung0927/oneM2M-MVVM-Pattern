@@ -2,6 +2,7 @@ package com.example.onem2m_in_ae.service.mqtt
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.model.ContentInstanceMqttData
 import com.example.onem2m_in_ae.util.ApplicationGetContext
@@ -13,7 +14,8 @@ import java.lang.Exception
 class MqttManager(context: Context) {
     private val serverURI = "tcp://192.168.10.62:1883"
     private val mqttClient: MqttAndroidClient = MqttAndroidClient(context, serverURI, MqttClient.generateClientId())
-    val contentInstanceData: MutableLiveData<ContentInstanceMqttData> = MutableLiveData()
+    private val _contentInstanceData: MutableLiveData<ContentInstanceMqttData> = MutableLiveData()
+    val contentInstanceData: LiveData<ContentInstanceMqttData> = _contentInstanceData
 
     fun connect(appId: String) {
         mqttClient.connect()
@@ -25,7 +27,7 @@ class MqttManager(context: Context) {
 
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
                     println("message arrived: ${message.toString()}")
-                    contentInstanceData.value = MqttRepository().parseMessage(message)
+                    _contentInstanceData.value = MqttRepository().parseMessage(message)
                 }
 
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {}
