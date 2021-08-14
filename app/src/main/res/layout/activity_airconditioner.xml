@@ -16,11 +16,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/containerName_textView_AirConditionerActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text.HeadStyle"
+
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/container_item_imageView_AirConditionerActivity"
             android:layout_width="300dp"
             android:layout_height="300dp"
-
+            android:visibility="gone"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,12 +41,27 @@
             app:layout_constraintTop_toTopOf="parent"
             bind:containerImageSelectedId="@{item}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/sensingData_textView_AirConditionerActivity"
-            android:layout_width="wrap_content"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/sensingData_loading_animation_AirConditionerActivity"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            app:lottie_rawRes="@raw/data_loading"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
 
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
+            android:id="@+id/sensingData_textView_AirConditionerActivity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="30sp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
@@ -42,6 +70,7 @@
 
 
         <ScrollView
+            android:visibility="gone"
             android:id="@+id/scrollView_AirConditionerActivity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -175,6 +204,7 @@
             </LinearLayout>
         </ScrollView>
         <androidx.appcompat.widget.AppCompatButton
+            android:visibility="gone"
             android:id="@+id/airconditioner_delete_AppCompactToggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

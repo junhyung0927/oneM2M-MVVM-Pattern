@@ -79,19 +79,3 @@ class ContainerImageRecyclerViewAdapter(
         return containerInstance
     }
 }
-
-//class ContentDiffUtil(
-//    private val oldList: List<ContainerInstance>, private val newList: List<ContainerInstance>
-//) : DiffUtil.Callback() {
-//    override fun getOldListSize(): Int = oldList.size
-//
-//    override fun getNewListSize(): Int = newList.size
-//
-//    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-//        return oldList[oldItemPosition].containerInstanceName == newList[newItemPosition].containerInstanceName
-//    }
-//
-//    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-//        return oldList[oldItemPosition] == newList[newItemPosition]
-//    }
-//}

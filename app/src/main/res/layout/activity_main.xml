@@ -8,7 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".view.ui.activity.INAEActivity">
 
-
         <TextView
             android:id="@+id/head_textView_INAEActivity"
             style="@style/Text.HeadStyle"
@@ -16,7 +15,7 @@
             android:layout_height="wrap_content"
             android:text="@string/main_head_text"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +38,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager2_INAEActivity"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="250dp"
             android:visibility="gone"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/head_textView_INAEActivity"

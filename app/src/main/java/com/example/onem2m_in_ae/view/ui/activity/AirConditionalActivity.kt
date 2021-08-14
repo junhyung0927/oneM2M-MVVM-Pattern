@@ -2,6 +2,7 @@ package com.example.onem2m_in_ae.view.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
@@ -27,8 +28,14 @@ class AirConditionalActivity : BaseActivity() {
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
-
+            containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
             mqttManager.contentInstanceData.observe(this@AirConditionalActivity) {
+                sensingDataLoadingAnimationAirConditionerActivity.visibility = View.GONE
+                sensingDataTextViewAirConditionerActivity.visibility = View.VISIBLE
+                containerItemImageViewAirConditionerActivity.visibility = View.VISIBLE
+                scrollViewAirConditionerActivity.visibility = View.VISIBLE
+                airconditionerDeleteAppCompactToggleButton.visibility = View.VISIBLE
+
                 sensingDataTextViewAirConditionerActivity.text = it.con
             }
 
@@ -38,6 +45,7 @@ class AirConditionalActivity : BaseActivity() {
                     println("장치 제어 성공")
                 }
                 deleteContainer.observe(this@AirConditionalActivity) {
+                    println("장치 제거 성공")
                     startActivity(Intent(this@AirConditionalActivity, INAEActivity::class.java))
                 }
                 createSub.observe(this@AirConditionalActivity) {
@@ -67,7 +75,7 @@ class AirConditionalActivity : BaseActivity() {
                     }
 
                     airconditionerDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerResourceName)
+                        deleteDataBaseContainer(containerItem.containerInstanceName)
                     }
                 }
             }
