@@ -1,4 +1,8 @@
 <resources>
+    <!--스플래쉬 액티비티 텍스트-->
+    <string name="splash_main_text">oneM2M IOT Service</string>
+    <string name="splash_sub_text">wisoft</string>
+
     <!--앱 공통 텍스트-->
     <string name="app_name">onem2m-IN-AE</string>
     <string name="main_head_text">oneM2M2 IoT Platform</string>

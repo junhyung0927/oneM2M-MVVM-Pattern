@@ -16,6 +16,24 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="Text.SplashHeadStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_size_38</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/hanna_otf</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.SplashSubStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/roehoe_chan</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <dimen name="text_size_40">40sp</dimen>
+    <dimen name="text_size_38">38sp</dimen>
     <dimen name="text_size_35">35sp</dimen>
     <dimen name="text_size_30">30sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
