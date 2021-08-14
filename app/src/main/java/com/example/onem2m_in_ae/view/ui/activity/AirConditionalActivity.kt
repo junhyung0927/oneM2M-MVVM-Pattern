@@ -35,7 +35,7 @@ class AirConditionalActivity : BaseActivity() {
                 containerItemImageViewAirConditionerActivity.visibility = View.VISIBLE
                 scrollViewAirConditionerActivity.visibility = View.VISIBLE
                 airconditionerDeleteAppCompactToggleButton.visibility = View.VISIBLE
-
+                sensingDataHintTextViewAirConditionerActivity.visibility = View.VISIBLE
                 sensingDataTextViewAirConditionerActivity.text = it.con
             }
 

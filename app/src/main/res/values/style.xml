@@ -32,9 +32,27 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="Text.DataStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_size_35</item>
+        <item name="android:textColor">@color/light_blue</item>
+        <item name="android:fontFamily">@font/esamanru_otf_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.ScrollText" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textColor">@drawable/select_toggle_color</item>
+        <item name="android:textColorHighlight">#FFBB00</item>
+        <item name="android:fontFamily">@font/esamanru_otf_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <dimen name="text_size_40">40sp</dimen>
     <dimen name="text_size_38">38sp</dimen>
     <dimen name="text_size_35">35sp</dimen>
     <dimen name="text_size_30">30sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
 </resources>
