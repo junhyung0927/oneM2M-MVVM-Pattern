@@ -11,6 +11,57 @@ import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import retrofit2.http.*
 
 interface INAEDataService {
+    //    @Headers(
+//        "Content-Type: application/json;ty=2",
+//    )
+//    @POST("/Mobius")
+//    suspend fun createAE(
+//        @Body param: RequestAE
+//    )
+//
+//    @Headers(
+//        "Content-Type: application/json;ty=4",
+//    )
+//    @POST("/Mobius/junhyung/{resource_name}")
+//    suspend fun deviceControl(
+//        @Path("resource_name", encoded = true) resourceName: String,
+//        @Body param: RequestCin
+//    )
+//
+//    @Headers(
+//        "Content-Type: application/json;ty=23",
+//    )
+//    @POST("/Mobius/junhyung/{resource_name}")
+//    suspend fun createSubscription(
+//        @Path("resource_name", encoded = true) resourceName: String,
+//        @Body param: RequestSub
+//    )
+//
+//    @Headers(
+//        "Content-Type: application/json;ty=23",
+//    )
+//    @POST("/Mobius/junhyung/co2")
+//    suspend fun createSubscription111(
+//        @Body param: RequestSub
+//    )
+//
+//    @GET("/Mobius/junhyung?fu=2&rcn=1")
+//    suspend fun getAEInfo(): ResponseAE
+//
+//    @GET("/Mobius/junhyung/co2/la")
+//    suspend fun getContentInstanceLastResource(): ResponseCin
+//
+//    @GET("/Mobius?fu=1&rcn=1")
+//    suspend fun getChildResourceInfo(): ResponseCntUril
+//
+//    @GET("/Mobius/junhyung/{resource_name}?fu=2&rcn=4")
+//    suspend fun getDetailedChildResourceContentInstanceInfo(
+//        @Path("resource_name", encoded = true) resourceName: String
+//    ): ResponseCin
+//
+//    @GET("/Mobius/junhyung?fu=2&rcn=1")
+//    suspend fun getContainerInfo(): ResponseCnt
+
     @Headers(
         "Content-Type: application/json;ty=2",
     )
@@ -22,7 +73,7 @@ interface INAEDataService {
     @Headers(
         "Content-Type: application/json;ty=4",
     )
-    @POST("/Mobius/junhyung/{resource_name}")
+    @POST("/Mobius/IYAHN_DEMO/{resource_name}")
     suspend fun deviceControl(
         @Path("resource_name", encoded = true) resourceName: String,
         @Body param: RequestCin
@@ -31,34 +82,26 @@ interface INAEDataService {
     @Headers(
         "Content-Type: application/json;ty=23",
     )
-    @POST("/Mobius/junhyung/{resource_name}")
+    @POST("/Mobius/IYAHN_DEMO/{resource_name}")
     suspend fun createSubscription(
         @Path("resource_name", encoded = true) resourceName: String,
         @Body param: RequestSub
     )
 
-    @Headers(
-        "Content-Type: application/json;ty=23",
-    )
-    @POST("/Mobius/junhyung/co2")
-    suspend fun createSubscription111(
-        @Body param: RequestSub
-    )
-
-    @GET("/Mobius/junhyung?fu=2&rcn=1")
+    @GET("/Mobius/IYAHN_DEMO?fu=2&rcn=1")
     suspend fun getAEInfo(): ResponseAE
 
-    @GET("/Mobius/junhyung/co2/la")
+    @GET("/Mobius/IYAHN_DEMO/co2/la")
     suspend fun getContentInstanceLastResource(): ResponseCin
 
     @GET("/Mobius?fu=1&rcn=1")
     suspend fun getChildResourceInfo(): ResponseCntUril
 
-    @GET("/Mobius/junhyung/{resource_name}?fu=2&rcn=4")
+    @GET("/Mobius/IYAHN_DEMO/{resource_name}?fu=2&rcn=4")
     suspend fun getDetailedChildResourceContentInstanceInfo(
         @Path("resource_name", encoded = true) resourceName: String
     ): ResponseCin
 
-    @GET("/Mobius/junhyung?fu=2&rcn=1")
+    @GET("/Mobius/IYAHN_DEMO?fu=2&rcn=1")
     suspend fun getContainerInfo(): ResponseCnt
 }

@@ -21,7 +21,7 @@ class MqttManager(context: Context) {
                 }
 
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
-                    println("message arrived")
+                    println("message arrived: ${message.toString()}")
                 }
 
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {}

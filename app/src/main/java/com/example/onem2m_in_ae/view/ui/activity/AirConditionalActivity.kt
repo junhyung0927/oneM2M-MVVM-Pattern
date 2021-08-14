@@ -34,11 +34,10 @@ class AirConditionalActivity : BaseActivity() {
                     println("장치 제어 성공")
                 }
                 deleteContainer.observe(this@AirConditionalActivity) {
-                    val intent =
-                        Intent(this@AirConditionalActivity, INAEActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this@AirConditionalActivity, INAEActivity::class.java))
                 }
                 createSub.observe(this@AirConditionalActivity) {
+                    println("createSub 성공")
                     mqttManager.connect(APP_ID)
                 }
 
@@ -69,6 +68,11 @@ class AirConditionalActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mqttManager.connect(APP_ID)
     }
 
     override fun onPause() {

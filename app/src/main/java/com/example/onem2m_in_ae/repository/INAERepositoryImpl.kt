@@ -70,6 +70,7 @@ class INAERepositoryImpl(
     override suspend fun createSubscription(resourceName: String) {
         //cr -> x-m2m-origin 헤더값
         val subName = APP_ID
+        println("subName: ${subName}")
         val requestSub = RequestSub(
             RequestM2MSub(
                 "${subName}_rn",
