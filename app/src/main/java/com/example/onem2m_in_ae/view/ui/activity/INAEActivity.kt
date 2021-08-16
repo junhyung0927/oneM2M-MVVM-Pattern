@@ -35,7 +35,9 @@ class INAEActivity : BaseActivity() {
         Logger.addLogAdapter(AndroidLogAdapter())
 
         inAEViewModel.apply {
-            createAE.observe(this@INAEActivity) { }
+            createAE.observe(this@INAEActivity) {
+                println("AE 생성 ${it}")
+            }
 
             getAEInfo.observe(this@INAEActivity) {
                 APP_ID = it.m2m_ae.aei

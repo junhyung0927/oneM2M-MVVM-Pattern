@@ -8,7 +8,6 @@ import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.KEY_CONTAINER_DATA
-import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AirPurifierActivity : BaseActivity() {
@@ -42,7 +41,7 @@ class AirPurifierActivity : BaseActivity() {
                 }
                 createSub.observe(this@AirPurifierActivity) {
                     println("createSub 성공")
-                    mqttManager.connect(INAEActivity.APP_ID)
+                    mqttManager.getMqttClient(INAEActivity.APP_ID)
                 }
 
                 getChildResourceInfo.observe(this@AirPurifierActivity) {

@@ -85,6 +85,8 @@
             android:id="@+id/button_ContainerAdd_Register_Activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/esamanru_otf_medium"
             android:text="@string/container_register_finsh_text"
             android:background="@drawable/control_button_shape"
             app:layout_constraintTop_toBottomOf="@id/imageView_ContainerImage_Register_Activity"

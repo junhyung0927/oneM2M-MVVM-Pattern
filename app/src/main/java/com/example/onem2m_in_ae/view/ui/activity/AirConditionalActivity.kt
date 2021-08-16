@@ -28,7 +28,9 @@ class AirConditionalActivity : BaseActivity() {
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
-            containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
+            mqttManager.getMqttClient(APP_ID)
+//            mqttManager.getMqttClient("Sjunhyung")
+
             mqttManager.contentInstanceData.observe(this@AirConditionalActivity) {
                 sensingDataLoadingAnimationAirConditionerActivity.visibility = View.GONE
                 sensingDataTextViewAirConditionerActivity.visibility = View.VISIBLE
@@ -36,6 +38,9 @@ class AirConditionalActivity : BaseActivity() {
                 scrollViewAirConditionerActivity.visibility = View.VISIBLE
                 airconditionerDeleteAppCompactToggleButton.visibility = View.VISIBLE
                 sensingDataHintTextViewAirConditionerActivity.visibility = View.VISIBLE
+                containerNameTextViewAirConditionerActivity.visibility = View.VISIBLE
+
+                containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
                 sensingDataTextViewAirConditionerActivity.text = it.con
             }
 
@@ -50,13 +55,13 @@ class AirConditionalActivity : BaseActivity() {
                 }
                 createSub.observe(this@AirConditionalActivity) {
                     println("createSub 성공")
-                    mqttManager.connect(APP_ID)
                 }
 
                 getChildResourceInfo.observe(this@AirConditionalActivity) {
                     val containerResourceName = getResourceName(it)
                     println("컨테이너 리소스 이름: ${containerResourceName}")
                     createSubscription(containerResourceName)
+
                     getContainerInfo.observe(this@AirConditionalActivity) {
                         if (containerResourceName.isNotEmpty()) {
                             airconditionerControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->
@@ -84,12 +89,15 @@ class AirConditionalActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        mqttManager.connect(APP_ID)
     }
 
     override fun onPause() {
-        mqttManager.unsubscribeToTopic(APP_ID)
         super.onPause()
+    }
+
+    override fun onStop() {
+        mqttManager.unsubscribeToTopic(APP_ID)
+        super.onStop()
     }
 }
 

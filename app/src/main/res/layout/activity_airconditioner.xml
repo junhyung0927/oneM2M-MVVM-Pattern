@@ -36,7 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Text.HeadStyle"
-
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +96,7 @@
             android:layout_height="0dp"
             android:scrollbars="none"
             tools:visibility="visible"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toTopOf="@id/airconditioner_delete_AppCompactToggleButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

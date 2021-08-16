@@ -68,14 +68,10 @@ class ContainerImageRecyclerViewAdapter(
         return instanceList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun submitList(list: List<ContainerInstance>?) {
         super.submitList(list)
         instanceList = list as List<ContainerInstance>
         notifyDataSetChanged()
-    }
-
-    fun getContainerInstance(containerInstance: List<ContainerInstance>)
-            : List<ContainerInstance> {
-        return containerInstance
     }
 }

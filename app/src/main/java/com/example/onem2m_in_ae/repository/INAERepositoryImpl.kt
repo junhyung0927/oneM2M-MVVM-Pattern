@@ -16,8 +16,7 @@ class INAERepositoryImpl(
     val localDataSource: LocalDataSource
 ) : INAERepository {
     companion object {
-        var count = 0
-        val aeResourceName = "junhyung"
+        val aeResourceName = "IYAHN_DEMO12"
     }
     override suspend fun createAE() {
         val requestAE = RequestAE(
@@ -70,6 +69,7 @@ class INAERepositoryImpl(
     override suspend fun createSubscription(resourceName: String) {
         //cr -> x-m2m-origin 헤더값
         val subName = APP_ID
+//        val subName = "Sjunhyung"
         println("subName: ${subName}")
         val requestSub = RequestSub(
             RequestM2MSub(
