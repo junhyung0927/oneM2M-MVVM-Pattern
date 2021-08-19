@@ -28,8 +28,8 @@ class AirConditionalActivity : BaseActivity() {
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
+
             mqttManager.getMqttClient(APP_ID)
-//            mqttManager.getMqttClient("Sjunhyung")
 
             mqttManager.contentInstanceData.observe(this@AirConditionalActivity) {
                 sensingDataLoadingAnimationAirConditionerActivity.visibility = View.GONE
@@ -45,14 +45,21 @@ class AirConditionalActivity : BaseActivity() {
             }
 
             airConditionalViewModel.apply {
-                contentInstanceInfo.observe(this@AirConditionalActivity) { }
+
+
+                contentInstanceInfo.observe(this@AirConditionalActivity) {
+                    println("장치 정보")
+                }
+
                 contentInstanceControl.observe(this@AirConditionalActivity) {
                     println("장치 제어 성공")
                 }
+
                 deleteContainer.observe(this@AirConditionalActivity) {
                     println("장치 제거 성공")
                     startActivity(Intent(this@AirConditionalActivity, INAEActivity::class.java))
                 }
+
                 createSub.observe(this@AirConditionalActivity) {
                     println("createSub 성공")
                 }

@@ -1,36 +1,31 @@
 package com.example.onem2m_in_ae.service.mqtt
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.onem2m_in_ae.model.ContentInstanceMqttData
-import com.example.onem2m_in_ae.util.ApplicationGetContext
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
-import org.json.JSONObject
 import java.lang.Exception
 
 class MqttManager(context: Context) {
     private val serverURI = "tcp://192.168.10.62:1883"
     private val mqttClient: MqttAndroidClient = MqttAndroidClient(context, serverURI, MqttClient.generateClientId())
     private val mqttConnectOptions = MqttConnectOptions()
-    private val disconnectedBufferOptions= DisconnectedBufferOptions()
     private val _contentInstanceData: MutableLiveData<ContentInstanceMqttData> = MutableLiveData()
     val contentInstanceData: LiveData<ContentInstanceMqttData> = _contentInstanceData
 
-    fun connect(appId: String) {
+    fun mqttConnect(appId: String) {
         try {
             mqttConnectOptions.apply {
                 isAutomaticReconnect = true
                 isCleanSession = true
-                keepAliveInterval = 0
             }
 
             mqttClient.connect(mqttConnectOptions, null, object: IMqttActionListener{
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
-                    val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
-                    subscribeToTopic(topic)
+                    val req_topic = "/oneM2M/req/Mobius2/${appId}_sub/#"
+                    subscribeToTopic(req_topic)
                 }
 
                 override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
@@ -38,13 +33,13 @@ class MqttManager(context: Context) {
                 }
 
             })
-        } catch (e: MqttException) {
+        } catch (e: Exception) {
             println("연결: ${e}")
         }
     }
 
     fun getMqttClient(appId: String) {
-        connect(appId)
+        mqttConnect(appId)
         try {
             mqttClient.setCallback(object : MqttCallbackExtended {
                 override fun connectionLost(cause: Throwable?) {
@@ -54,6 +49,17 @@ class MqttManager(context: Context) {
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
                     println("message arrived: ${message.toString()}")
                     _contentInstanceData.value = MqttRepository().parseMessage(message)
+
+                    val retrqi = MqttClientRequestParser().notificationJsonParse(message.toString())
+                    val responseMessage = MqttClientRequest().notificationResponse(retrqi)
+                    val res_message = MqttMessage(responseMessage.toByteArray())
+
+                    try {
+                        val resp_topic = "/oneM2M/resp/Mobius2/${appId}_sub/json"
+                        mqttClient.publish(resp_topic, res_message)
+                    } catch (e: MqttException) {
+                        e.printStackTrace()
+                    }
                 }
 
                 override fun deliveryComplete(token: IMqttDeliveryToken?) {
@@ -73,7 +79,7 @@ class MqttManager(context: Context) {
         }
     }
 
-    fun subscribeToTopic(topic: String, qos: Int = 1) {
+    fun subscribeToTopic(topic: String, qos: Int = 0) {
         try {
             mqttClient.subscribe(topic, qos, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {

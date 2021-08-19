@@ -16,7 +16,7 @@ class INAERepositoryImpl(
     val localDataSource: LocalDataSource
 ) : INAERepository {
     companion object {
-        val aeResourceName = "IYAHN_DEMO12"
+        val aeResourceName = "daewon_demo"
     }
     override suspend fun createAE() {
         val requestAE = RequestAE(
@@ -69,21 +69,31 @@ class INAERepositoryImpl(
     override suspend fun createSubscription(resourceName: String) {
         //cr -> x-m2m-origin 헤더값
         val subName = APP_ID
-//        val subName = "Sjunhyung"
-        println("subName: ${subName}")
         val requestSub = RequestSub(
             RequestM2MSub(
-                "${subName}_rn",
+                "sub_1",
                 RequestEncNet(
-                    arrayListOf("3", "4")
+                    arrayListOf(3, 4)
                 ),
-                arrayListOf("mqtt://192.168.10.62/${subName}_sub"),
+                arrayListOf("mqtt://192.168.10.62/${subName}_sub?ct=json"),
                 1,
                 2,
-                subName
+                subName,
+                100
             )
         )
-
+//        val requestSub = RequestSub(
+//            RequestM2MSub(
+//                "${subName}",
+//                RequestEncNet(
+//                    arrayListOf(3, 4)
+//                ),
+//                arrayListOf("mqtt://localhost/${subName}?ct=json"),
+//                2,
+//                subName,
+//                100
+//            )
+//        )
         return remoteDataSource.createSubscription(requestSub, resourceName)
     }
 
