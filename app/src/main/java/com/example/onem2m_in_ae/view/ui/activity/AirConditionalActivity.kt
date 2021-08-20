@@ -18,9 +18,11 @@ class AirConditionalActivity : BaseActivity() {
     private val mqttManager: MqttManager by lazy {
         MqttManager(applicationContext)
     }
+
     companion object {
         var containerResourceName = ""
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,8 +42,9 @@ class AirConditionalActivity : BaseActivity() {
                 sensingDataHintTextViewAirConditionerActivity.visibility = View.VISIBLE
                 containerNameTextViewAirConditionerActivity.visibility = View.VISIBLE
 
-                containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
-                if(!it.con.equals("on") && !it.con.equals("off")){
+                containerNameTextViewAirConditionerActivity.text =
+                    containerItem.containerInstanceName
+                if (!it.con.equals("on") && !it.con.equals("off")) {
                     sensingDataTextViewAirConditionerActivity.text = it.con
                 }
             }
@@ -67,8 +70,8 @@ class AirConditionalActivity : BaseActivity() {
                 getChildResourceInfo.observe(this@AirConditionalActivity) {
                     containerResourceName = getResourceName(it)
                     println("컨테이너 리소스 이름: ${containerResourceName}")
-                    mqttManager.getMqttClient(APP_ID, containerResourceName)
                     createSubscription(containerResourceName)
+                    mqttManager.getMqttClient(APP_ID, containerResourceName)
 
                     getContainerInfo.observe(this@AirConditionalActivity) {
                         if (containerResourceName.isNotEmpty()) {

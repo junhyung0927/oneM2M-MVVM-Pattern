@@ -45,7 +45,11 @@ class AirPurifierActivity : BaseActivity() {
                 containerNameTextViewAirPurifierActivity.visibility = View.VISIBLE
 
                 containerNameTextViewAirPurifierActivity.text = containerItem.containerInstanceName
-                sensingDataTextViewAirPurifierActivity.text = it.con
+
+                if (!it.con.equals("on") && !it.con.equals("off")) {
+
+                    sensingDataTextViewAirPurifierActivity.text = it.con
+                }
             }
 
             airPurifierViewModel.apply {

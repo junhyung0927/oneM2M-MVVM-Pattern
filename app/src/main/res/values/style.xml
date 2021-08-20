@@ -32,11 +32,19 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Text.DataStyle" parent="android:TextAppearance">
+    <style name="Text.DataHintStyle" parent="android:TextAppearance">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">@dimen/text_size_35</item>
         <item name="android:textColor">@color/light_blue</item>
-        <item name="android:fontFamily">@font/esamanru_otf_bold</item>
+        <item name="android:fontFamily">@font/esamanru_otf_light</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.DataStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_size_30</item>
+        <item name="android:textColor">@color/light_blue</item>
+        <item name="android:fontFamily">@font/esamanru_otf_light</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 

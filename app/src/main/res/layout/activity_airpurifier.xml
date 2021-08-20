@@ -65,27 +65,28 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="@string/container_data_purifier_text"
-            style="@style/Text.DataStyle"
+            style="@style/Text.DataHintStyle"
 
             android:gravity="center"
             tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirPurifierActivity"
             app:layout_constraintStart_toStartOf="@id/container_item_imageView_AirPurifierActivity"
             app:layout_constraintEnd_toStartOf="@id/sensingData_textView_AirPurifierActivity"
-            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirPurifierActivity"
+            app:layout_constraintBottom_toTopOf="@id/scrollView_AirPurifierActivity"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:visibility="gone"
             android:id="@+id/sensingData_textView_AirPurifierActivity"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             style="@style/Text.DataStyle"
 
-            android:gravity="center"
             tools:visibility="visible"
+            app:layout_constraintTop_toTopOf="@id/sensingData_hint_textView_AirPurifierActivity"
             app:layout_constraintEnd_toEndOf="@id/container_item_imageView_AirPurifierActivity"
             app:layout_constraintStart_toEndOf="@id/sensingData_hint_textView_AirPurifierActivity"
-            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirPurifierActivity"
+            app:layout_constraintBottom_toBottomOf="@id/sensingData_hint_textView_AirPurifierActivity"
             />
 
 

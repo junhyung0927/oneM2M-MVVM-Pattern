@@ -72,6 +72,7 @@
             app:layout_constraintStart_toStartOf="@id/container_item_imageView_AirConditionerActivity"
             app:layout_constraintEnd_toStartOf="@id/sensingData_textView_AirConditionerActivity"
             app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+
             />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -80,7 +81,6 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             style="@style/Text.DataStyle"
-
             android:gravity="center"
             tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="@id/container_item_imageView_AirConditionerActivity"

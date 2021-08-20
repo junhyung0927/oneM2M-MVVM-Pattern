@@ -102,7 +102,6 @@ class MqttManager(context: Context) {
 
     fun unsubscribeToTopic(appId: String, containerName: String) {
         val topic = "/oneM2M/req/Mobius2/${appId}_${containerName}/json"
-//        val topic = "/oneM2M/req/Mobius2/${appId}_${containerName}/#"
 
         if (mqttClient.isConnected)
             try {
