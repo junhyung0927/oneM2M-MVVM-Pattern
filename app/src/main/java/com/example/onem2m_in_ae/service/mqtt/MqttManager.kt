@@ -101,7 +101,7 @@ class MqttManager(context: Context) {
     }
 
     fun unsubscribeToTopic(appId: String) {
-        val topic = "/oneM2M/req/Mobius2/${appId}_sub/json"
+        val topic = "/oneM2M/req/Mobius2/${appId}_sub/#"
         if (mqttClient.isConnected)
             try {
                 println("구독 해제")

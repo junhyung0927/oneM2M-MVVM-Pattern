@@ -7,6 +7,7 @@ import com.example.onem2m_in_ae.databinding.ActivityAirpurifierBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.service.mqtt.MqttManager
 import com.example.onem2m_in_ae.view.base.BaseActivity
+import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.APP_ID
 import com.example.onem2m_in_ae.view.ui.activity.INAEActivity.Companion.KEY_CONTAINER_DATA
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -27,6 +28,8 @@ class AirPurifierActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
+            mqttManager.getMqttClient(INAEActivity.APP_ID)
+
             mqttManager.contentInstanceData.observe(this@AirPurifierActivity) {
                 sensingDataTextViewAirPurifierActivity.text = it.con
             }
@@ -41,7 +44,6 @@ class AirPurifierActivity : BaseActivity() {
                 }
                 createSub.observe(this@AirPurifierActivity) {
                     println("createSub 성공")
-                    mqttManager.getMqttClient(INAEActivity.APP_ID)
                 }
 
                 getChildResourceInfo.observe(this@AirPurifierActivity) {
@@ -71,5 +73,10 @@ class AirPurifierActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    override fun onStop() {
+        mqttManager.unsubscribeToTopic(APP_ID)
+        super.onStop()
     }
 }
