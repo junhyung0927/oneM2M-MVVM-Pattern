@@ -64,7 +64,7 @@
             android:id="@+id/sensingData_hint_textView_AirConditionerActivity"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="현재 온도: "
+            android:text="@string/container_data_temp_text"
             style="@style/Text.DataStyle"
 
             android:gravity="center"

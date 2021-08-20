@@ -27,4 +27,8 @@
 
     <!--장치 추가 텍스트-->
     <string name="container_delete_text">장치 제거</string>
+
+    <!--장치 데이터 텍스트-->
+    <string name="container_data_temp_text">현재 온도</string>
+    <string name="container_data_purifier_text">현재 습도</string>
 </resources>

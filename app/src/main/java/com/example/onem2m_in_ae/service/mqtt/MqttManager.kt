@@ -15,7 +15,7 @@ class MqttManager(context: Context) {
     private val _contentInstanceData: MutableLiveData<ContentInstanceMqttData> = MutableLiveData()
     val contentInstanceData: LiveData<ContentInstanceMqttData> = _contentInstanceData
 
-    fun mqttConnect(appId: String) {
+    fun mqttConnect(appId: String, containerName: String) {
         try {
             mqttConnectOptions.apply {
                 isAutomaticReconnect = true
@@ -24,7 +24,7 @@ class MqttManager(context: Context) {
 
             mqttClient.connect(mqttConnectOptions, null, object: IMqttActionListener{
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
-                    val req_topic = "/oneM2M/req/Mobius2/${appId}_sub/#"
+                    val req_topic = "/oneM2M/req/Mobius2/${appId}_${containerName}/json"
                     subscribeToTopic(req_topic)
                 }
 
@@ -38,8 +38,8 @@ class MqttManager(context: Context) {
         }
     }
 
-    fun getMqttClient(appId: String) {
-        mqttConnect(appId)
+    fun getMqttClient(appId: String, containerName: String) {
+        mqttConnect(appId, containerName)
         try {
             mqttClient.setCallback(object : MqttCallbackExtended {
                 override fun connectionLost(cause: Throwable?) {
@@ -55,7 +55,7 @@ class MqttManager(context: Context) {
                     val res_message = MqttMessage(responseMessage.toByteArray())
 
                     try {
-                        val resp_topic = "/oneM2M/resp/Mobius2/${appId}_sub/json"
+                        val resp_topic = "/oneM2M/resp/Mobius2/${appId}_${containerName}/json"
                         mqttClient.publish(resp_topic, res_message)
                     } catch (e: MqttException) {
                         e.printStackTrace()
@@ -100,8 +100,10 @@ class MqttManager(context: Context) {
         }
     }
 
-    fun unsubscribeToTopic(appId: String) {
-        val topic = "/oneM2M/req/Mobius2/${appId}_sub/#"
+    fun unsubscribeToTopic(appId: String, containerName: String) {
+        val topic = "/oneM2M/req/Mobius2/${appId}_${containerName}/json"
+//        val topic = "/oneM2M/req/Mobius2/${appId}_${containerName}/#"
+
         if (mqttClient.isConnected)
             try {
                 println("구독 해제")

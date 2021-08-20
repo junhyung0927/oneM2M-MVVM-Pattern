@@ -15,6 +15,8 @@ class MqttRepository {
             val rep = JSONObject(nev.toString()).getJSONObject("rep")
             val m2m_cin = JSONObject(rep.toString()).getJSONObject("m2m:cin")
 
+            val container_name = m2mSgn
+
             return ContentInstanceMqttData(
                 m2m_cin.getString("con")
             )

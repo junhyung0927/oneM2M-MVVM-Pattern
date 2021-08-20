@@ -41,13 +41,13 @@ class BoilerActivity : BaseActivity() {
                 }
                 createSub.observe(this@BoilerActivity) {
                     println("createSub 성공")
-                    mqttManager.getMqttClient(INAEActivity.APP_ID)
                 }
 
                 getChildResourceInfo.observe(this@BoilerActivity) {
                     val containerResourceName = getResourceName(it)
                     println("컨테이너 리소스 이름: ${containerResourceName}")
                     createSubscription(containerResourceName)
+                    mqttManager.getMqttClient(INAEActivity.APP_ID, containerResourceName)
                     getContainerInfo.observe(this@BoilerActivity) {
                         if (containerResourceName.isNotEmpty()) {
                             boilerControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->

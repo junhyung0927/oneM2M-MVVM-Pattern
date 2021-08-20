@@ -2,6 +2,7 @@ package com.example.onem2m_in_ae.view.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirpurifierBinding
 import com.example.onem2m_in_ae.model.ContainerInstance
@@ -18,6 +19,10 @@ class AirPurifierActivity : BaseActivity() {
         MqttManager(applicationContext)
     }
 
+    companion object {
+        var containerResourceName = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,18 +33,30 @@ class AirPurifierActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
 
-            mqttManager.getMqttClient(INAEActivity.APP_ID)
+
 
             mqttManager.contentInstanceData.observe(this@AirPurifierActivity) {
+                sensingDataLoadingAnimationAirPurifierActivity.visibility = View.GONE
+                sensingDataTextViewAirPurifierActivity.visibility = View.VISIBLE
+                containerItemImageViewAirPurifierActivity.visibility = View.VISIBLE
+                scrollViewAirPurifierActivity.visibility = View.VISIBLE
+                airpurifierDeleteAppCompactToggleButton.visibility = View.VISIBLE
+                sensingDataHintTextViewAirPurifierActivity.visibility = View.VISIBLE
+                containerNameTextViewAirPurifierActivity.visibility = View.VISIBLE
+
+                containerNameTextViewAirPurifierActivity.text = containerItem.containerInstanceName
                 sensingDataTextViewAirPurifierActivity.text = it.con
             }
 
             airPurifierViewModel.apply {
-                contentInstanceInfo.observe(this@AirPurifierActivity) { }
+                contentInstanceInfo.observe(this@AirPurifierActivity) {
+                    println("장치 정보 가져오기")
+                }
                 contentInstanceControl.observe(this@AirPurifierActivity) {
                     println("장치 제어 성공")
                 }
                 deleteContainer.observe(this@AirPurifierActivity) {
+                    println("장치 제거 성공")
                     startActivity(Intent(this@AirPurifierActivity, INAEActivity::class.java))
                 }
                 createSub.observe(this@AirPurifierActivity) {
@@ -47,12 +64,13 @@ class AirPurifierActivity : BaseActivity() {
                 }
 
                 getChildResourceInfo.observe(this@AirPurifierActivity) {
-                    val containerResourceName = getResourceName(it)
+                    containerResourceName = getResourceName(it)
+                    mqttManager.getMqttClient(APP_ID, containerResourceName)
                     println("컨테이너 리소스 이름: ${containerResourceName}")
                     createSubscription(containerResourceName)
                     getContainerInfo.observe(this@AirPurifierActivity) {
                         if (containerResourceName.isNotEmpty()) {
-                            airPurifierControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->
+                            airpurifierControlModeAppCompactToggleButton.setOnCheckedChangeListener { _, isChecked ->
                                 val content = if (isChecked) {
                                     "on"
                                 } else {
@@ -63,11 +81,11 @@ class AirPurifierActivity : BaseActivity() {
                         }
                     }
 
-                    airPurifierSearchDataModeAppCompactButton.setOnClickListener {
+                    airpurifierSearchDataModeAppCompactButton.setOnClickListener {
                         getContentInstanceInfo(containerResourceName)
                     }
 
-                    airPurifierDeleteAppCompactToggleButton.setOnClickListener {
+                    airpurifierDeleteAppCompactToggleButton.setOnClickListener {
                         deleteDataBaseContainer(containerItem.containerInstanceName)
                     }
                 }
@@ -76,7 +94,7 @@ class AirPurifierActivity : BaseActivity() {
     }
 
     override fun onStop() {
-        mqttManager.unsubscribeToTopic(APP_ID)
+        mqttManager.unsubscribeToTopic(APP_ID, containerResourceName)
         super.onStop()
     }
 }

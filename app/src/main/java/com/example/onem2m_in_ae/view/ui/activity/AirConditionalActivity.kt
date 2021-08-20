@@ -18,7 +18,9 @@ class AirConditionalActivity : BaseActivity() {
     private val mqttManager: MqttManager by lazy {
         MqttManager(applicationContext)
     }
-
+    companion object {
+        var containerResourceName = ""
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,8 +30,6 @@ class AirConditionalActivity : BaseActivity() {
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.containerImage
-
-            mqttManager.getMqttClient(APP_ID)
 
             mqttManager.contentInstanceData.observe(this@AirConditionalActivity) {
                 sensingDataLoadingAnimationAirConditionerActivity.visibility = View.GONE
@@ -41,14 +41,14 @@ class AirConditionalActivity : BaseActivity() {
                 containerNameTextViewAirConditionerActivity.visibility = View.VISIBLE
 
                 containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
-                sensingDataTextViewAirConditionerActivity.text = it.con
+                if(!it.con.equals("on") && !it.con.equals("off")){
+                    sensingDataTextViewAirConditionerActivity.text = it.con
+                }
             }
 
             airConditionalViewModel.apply {
-
-
                 contentInstanceInfo.observe(this@AirConditionalActivity) {
-                    println("장치 정보")
+                    println("장치 정보 가져오기")
                 }
 
                 contentInstanceControl.observe(this@AirConditionalActivity) {
@@ -65,8 +65,9 @@ class AirConditionalActivity : BaseActivity() {
                 }
 
                 getChildResourceInfo.observe(this@AirConditionalActivity) {
-                    val containerResourceName = getResourceName(it)
+                    containerResourceName = getResourceName(it)
                     println("컨테이너 리소스 이름: ${containerResourceName}")
+                    mqttManager.getMqttClient(APP_ID, containerResourceName)
                     createSubscription(containerResourceName)
 
                     getContainerInfo.observe(this@AirConditionalActivity) {
@@ -94,16 +95,8 @@ class AirConditionalActivity : BaseActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
     override fun onStop() {
-        mqttManager.unsubscribeToTopic(APP_ID)
+        mqttManager.unsubscribeToTopic(APP_ID, containerResourceName)
         super.onStop()
     }
 }

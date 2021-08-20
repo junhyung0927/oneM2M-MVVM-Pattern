@@ -52,7 +52,7 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
 
     private val _createSub: MutableLiveData<Unit> = MutableLiveData()
     val createSub: LiveData<Unit> = _createSub
-    fun createSubscription(resourceName: String) {
+    fun createSubscription(resourceName: String){
         viewModelScope.launch {
             handle {
                 inAERepository.createSubscription(resourceName) }?.let {
