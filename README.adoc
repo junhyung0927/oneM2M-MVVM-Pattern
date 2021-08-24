@@ -1,5 +1,5 @@
 :author: WiSoft oneM2M Team
-:email: <contact@wisoft.io>
+:email: <whwnsgud22@naver.com>
 :revision: 2021.22.0
 :icons: font
 :main-title: oneM2M
@@ -7,7 +7,7 @@
 :description: 
 :git_service: https://git.wisoft.io
 :project_root: oneM2M
-:project_group: IN-AE
+:project_group: junhyung0927
 :project_name: oneM2M-IN-AE
 :project_license: Private
 :experimental:
@@ -22,7 +22,7 @@ image:https://img.shields.io/badge/version-{revision}-blue.svg[link="./CHANGELOG
 == Introduction
 
 * 코틀린으로 구현한 IN-AE Andorid Application 입니다.
-
+* MVVM 패턴 사용
 
 == Status
 
