@@ -14,22 +14,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/container_hint_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="장치 이름: "
+            android:layout_marginBottom="10dp"
+            style="@style/Text.BodyStyle"
+            app:layout_constraintBottom_toTopOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintEnd_toStartOf="@id/container_item_name_textView"
+            app:layout_constraintStart_toStartOf="@id/container_item_imageView_AirConditionerActivity"
+            />
 
         <TextView
+            android:id="@+id/container_item_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{itemName}"
+
             style="@style/Text.BodyStyle"
-            app:layout_constraintBottom_toTopOf="@id/container_item_imageView_AirConditionerActivity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/container_hint_textview"
+            app:layout_constraintStart_toEndOf="@id/container_hint_textview"
+            app:layout_constraintEnd_toEndOf="@id/container_item_imageView_AirConditionerActivity"
             />
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:id="@+id/container_item_imageView_AirConditionerActivity"
             bind:containerImageSelectedId="@{itemImage}"
-
+            android:layout_marginTop="15dp"
             android:scaleType="centerInside"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

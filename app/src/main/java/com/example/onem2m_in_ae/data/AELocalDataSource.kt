@@ -23,6 +23,7 @@ class AELocalDataSource(
     }
 
     override suspend fun deleteDatabaseContainer(resoureName: String) {
+        println("테스트: ${resoureName}")
         return inAEDao.deleteContainer(resoureName)
     }
 }

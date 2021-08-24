@@ -1,4 +1,8 @@
 <resources>
+    <!--스플래쉬 액티비티 텍스트-->
+    <string name="splash_main_text">oneM2M IOT Service</string>
+    <string name="splash_sub_text">wisoft</string>
+
     <!--앱 공통 텍스트-->
     <string name="app_name">onem2m-IN-AE</string>
     <string name="main_head_text">oneM2M2 IoT Platform</string>
@@ -23,4 +27,8 @@
 
     <!--장치 추가 텍스트-->
     <string name="container_delete_text">장치 제거</string>
+
+    <!--장치 데이터 텍스트-->
+    <string name="container_data_temp_text">현재 온도: </string>
+    <string name="container_data_purifier_text">현재 습도: </string>
 </resources>

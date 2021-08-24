@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
@@ -16,36 +17,86 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/container_item_imageView_AirConditionerActivity"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/sensingData_loading_animation_AirConditionerActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/data_loading"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
 
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/containerName_textView_AirConditionerActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text.HeadStyle"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/container_item_imageView_AirConditionerActivity"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:visibility="gone"
+            android:scaleType="centerInside"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/sensingData_hint_textView_AirConditionerActivity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/containerName_textView_AirConditionerActivity"
             bind:containerImageSelectedId="@{item}" />
 
+
         <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
+            android:id="@+id/sensingData_hint_textView_AirConditionerActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/container_data_temp_text"
+            style="@style/Text.DataStyle"
+
+            android:gravity="center"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintEnd_toStartOf="@id/sensingData_textView_AirConditionerActivity"
+            app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:visibility="gone"
             android:id="@+id/sensingData_textView_AirConditionerActivity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="50dp"
+            style="@style/Text.DataStyle"
+            android:gravity="center"
+            tools:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@id/container_item_imageView_AirConditionerActivity"
+            app:layout_constraintStart_toEndOf="@id/sensingData_hint_textView_AirConditionerActivity"
             app:layout_constraintTop_toBottomOf="@id/container_item_imageView_AirConditionerActivity"
-            app:layout_constraintBottom_toTopOf="@id/scrollView_AirConditionerActivity"
             />
 
 
         <ScrollView
+            android:visibility="gone"
             android:id="@+id/scrollView_AirConditionerActivity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scrollbars="none"
+            tools:visibility="visible"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toTopOf="@id/airconditioner_delete_AppCompactToggleButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,9 +117,8 @@
                     android:textOff="@string/airCon_control_off_control_text"
                     android:textOn="@string/airCon_control_on_control_text"
 
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
-                    android:textStyle="bold"
+                    style="@style/Text.ScrollText"
+
                     android:layout_margin="15dp"
                     />
 
@@ -78,10 +128,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_custom"
                     android:outlineSpotShadowColor="#FFFFFF"
+
                     android:text="@string/get_container_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
-                    android:textStyle="bold"
+                    style="@style/Text.ScrollText"
+
                     android:layout_margin="15dp"
 
                     />
@@ -105,11 +155,11 @@
                     android:layout_height="wrap_content"
                     android:background="#FAFAFA"
                     android:outlineSpotShadowColor="#FFFFFF"
+
+                    style="@style/Text.ScrollText"
                     android:text="@string/power_mode_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
+
                     android:layout_margin="15dp"
-                    android:textStyle="bold"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -119,10 +169,8 @@
                     android:background="#FAFAFA"
                     android:outlineSpotShadowColor="#FFFFFF"
                     android:text="@string/timer_mode_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
+                    style="@style/Text.ScrollText"
                     android:layout_margin="15dp"
-                    android:textStyle="bold"
                     />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/test5"
@@ -131,10 +179,8 @@
                     android:background="#FAFAFA"
                     android:outlineSpotShadowColor="#FFFFFF"
                     android:text="@string/nonDecide_mode_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
+                    style="@style/Text.ScrollText"
                     android:layout_margin="15dp"
-                    android:textStyle="bold"
                     />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/test6"
@@ -143,10 +189,8 @@
                     android:background="#FAFAFA"
                     android:outlineSpotShadowColor="#FFFFFF"
                     android:text="@string/nonDecide_mode_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
+                    style="@style/Text.ScrollText"
                     android:layout_margin="15dp"
-                    android:textStyle="bold"
                     />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/test7"
@@ -155,10 +199,8 @@
                     android:background="#FAFAFA"
                     android:outlineSpotShadowColor="#FFFFFF"
                     android:text="@string/nonDecide_mode_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
+                    style="@style/Text.ScrollText"
                     android:layout_margin="15dp"
-                    android:textStyle="bold"
                     />
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/test8"
@@ -167,18 +209,20 @@
                     android:background="#FAFAFA"
                     android:outlineSpotShadowColor="#FFFFFF"
                     android:text="@string/nonDecide_mode_control_text"
-                    android:textColor="@drawable/select_toggle_color"
-                    android:textColorHighlight="#FFBB00"
+                    style="@style/Text.ScrollText"
                     android:layout_margin="15dp"
-                    android:textStyle="bold"
                     />
             </LinearLayout>
         </ScrollView>
         <androidx.appcompat.widget.AppCompatButton
+            android:visibility="gone"
             android:id="@+id/airconditioner_delete_AppCompactToggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/container_delete_text"
+            android:fontFamily="@font/esamanru_otf_medium"
+            tools:visibility="visible"
             android:background="@drawable/control_button_shape"
             app:layout_constraintTop_toBottomOf="@id/scrollView_AirConditionerActivity"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -68,30 +68,10 @@ class ContainerImageRecyclerViewAdapter(
         return instanceList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun submitList(list: List<ContainerInstance>?) {
         super.submitList(list)
         instanceList = list as List<ContainerInstance>
         notifyDataSetChanged()
     }
-
-    fun getContainerInstance(containerInstance: List<ContainerInstance>)
-            : List<ContainerInstance> {
-        return containerInstance
-    }
 }
-
-//class ContentDiffUtil(
-//    private val oldList: List<ContainerInstance>, private val newList: List<ContainerInstance>
-//) : DiffUtil.Callback() {
-//    override fun getOldListSize(): Int = oldList.size
-//
-//    override fun getNewListSize(): Int = newList.size
-//
-//    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-//        return oldList[oldItemPosition].containerInstanceName == newList[newItemPosition].containerInstanceName
-//    }
-//
-//    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-//        return oldList[oldItemPosition] == newList[newItemPosition]
-//    }
-//}

@@ -118,4 +118,7 @@ dependencies {
     //mqtt
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.4'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.7.0'
 }
