@@ -8,13 +8,13 @@
 :git_service: https://git.wisoft.io
 :project_root: oneM2M
 :project_group: junhyung0927
-:project_name: oneM2M-IN-AE
+:project_name: oneM2M-MVVM-Pattern
 :project_license: Private
 :experimental:
 :hardbreaks:
 
 
-= {main-title}: {sub-title}
+= {main-title}: {sub-title} 
 
 image:https://img.shields.io/badge/version-{revision}-blue.svg[link="./CHANGELOG",title="version"]  image:https://img.shields.io/badge/license-{project_license}-lightgrey.svg[link="./LICENSE",title="license"]
 
