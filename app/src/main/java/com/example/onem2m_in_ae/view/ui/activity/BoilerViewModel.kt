@@ -69,7 +69,7 @@ class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewMode
     fun getResourceName(responseCntUril: ResponseCntUril): String {
         return responseCntUril.m2mUril
             .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
-            .find { it.contains("tvoc") }!!
+            .find { it.contains("boiler") }!!
             .split("/").last()
     }
 }

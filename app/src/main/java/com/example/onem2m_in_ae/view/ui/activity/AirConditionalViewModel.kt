@@ -69,7 +69,7 @@ class AirConditionalViewModel(private val inAERepository: INAERepository) : Base
     fun getResourceName(responseCntUril: ResponseCntUril): String {
         return responseCntUril.m2mUril
             .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
-            .find { it.contains("tvoc") }!!
+            .find { it.contains("airconditioner") }!!
             .split("/").last()
     }
 }

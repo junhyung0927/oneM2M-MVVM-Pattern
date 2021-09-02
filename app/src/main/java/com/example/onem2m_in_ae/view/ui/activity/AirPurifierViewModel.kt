@@ -69,7 +69,7 @@ class AirPurifierViewModel(private val inAERepository: INAERepository) : BaseVie
     fun getResourceName(responseCntUril: ResponseCntUril): String {
         return responseCntUril.m2mUril
             .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
-            .find { it.contains("co2") }!!
+            .find { it.contains("airpurifer") }!!
             .split("/").last()
     }
 }
