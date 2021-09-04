@@ -21,7 +21,27 @@ image:https://img.shields.io/badge/version-{revision}-blue.svg[link="./CHANGELOG
 
 == 💬 Introduction
 
-* 코틀린으로 구현한 IN-AE Andorid Application 입니다.
+oneM2M 표준을 준수한 IN-AE Andorid Application입니다.
+IN-AE는 모바일 애플리케이션을 의미하며 IN-CSE(Mobius Server)와 통신하며 ADN(Virtual Device)의 데이터를 조회하고 제어하는 기능을 가지고 있습니다.  
+
+* AE 생성 - `/{CSE_RESOURCE_NAME}` `POST` 
+  
+* AE 리소스 조회 - `/{CSE_RESOURCE_NAME}/{IN_AE_RESOURCE_NAME}?fu=2&rcn=1` `GET`
+  
+* 컨테이너는 에어컨, 보일러, 제습기의 컨셉이 정해져 있기 때문에 IN-AE에서 Container의 생성 로직은 제외한다.
+
+* AE 자식 리소스 조회 - `/{CSE_RESOURCE_NAME}?fu=1&rcn=1` `GET`
+해당 컨테이너 페이지의 리소스 이름을 파싱하기 위해 AE의 자식 리소스 리스트의 정보를 가져온다.
+
+* ADN 리소스 조회 - `/{CSE_RESOURCE_NAME}/{IN_AE_RESOURCE_NAME}/{ADN_RESOURCE_NAME}?fu=2&rcn=1` `GET`
+해당 컨테이너의 정보를 조회한다.
+  
+* ADN 제어 - `/{CSE_RESOURCE_NAME}/{IN_AE_RESOURCE_NAME}/{ADN_RESOURCE_NAME}` `POST`
+해당 컨테이너의 전원을 제어하기 위해 contentInstance 값을 CSE에게 전달하여 제어 요청을 한다. `on` or `off`
+  
+* Subscription 생성 - `/{CSE_RESOURCE_NAME}/{IN_AE_RESOURCE_NAME}/{ADN_RESOURCE_NAME}` `POST`
+실시간으로 ADN의 데이터를 받아오기 위해서는 해당 Container 리소스 하위에 Subscription을 생성해야 한다.
+
 
 == 🔍 Stack & Libraries
 * maven
