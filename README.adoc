@@ -1,6 +1,6 @@
 :author: WiSoft oneM2M Team
 :email: <whwnsgud22@naver.com>
-:revision: 2021.22.0
+:revision: 2021.36.0
 :icons: font
 :main-title: oneM2M
 :sub-title: IN-AE
@@ -19,19 +19,39 @@
 image:https://img.shields.io/badge/version-{revision}-blue.svg[link="./CHANGELOG",title="version"]  image:https://img.shields.io/badge/license-{project_license}-lightgrey.svg[link="./LICENSE",title="license"]
 
 
-== Introduction
+== 💬 Introduction
 
 * 코틀린으로 구현한 IN-AE Andorid Application 입니다.
-* MVVM 패턴 사용
 
-== Status
+== 🔍 Stack & Libraries
+* maven
+* Data Binding
+* Koin - `2.2.3 version` 
+* Room - `2.3.0` 
+* Retrofit2 - `2.9.0`
+* OkHttp3 - `4.8.1`
+* Glide - `4.11.0`
+* Viewpager2 - `1.0.0`
+* RecyclerView - `1.2.1`
+* Mqtt(paho) - `1.2.4`
+* Lottie - `3.7.0`
+* Coroutine - `1.5.0`
+
+
+== ⚙️ Architecture
+### MVVM 패턴
+* View 
+* ViewModel 
+* Model 
+
+== ⭐️ Status
 
 Version {revision}
 
 * link:./CHANGELOG[History]
 * link:{git_service}/groups/{project_root}/-/issues[Issues List] / link:{git_service}/groups/{project_root}/-/boards[Issues Board]
 
-== Usage
+== 📚 Usage
 
 . Clone a copy of the repository:
 +
@@ -49,12 +69,12 @@ $ cd {project_name}
 ----
 
 
-== License
+== 💡 License
 
 * LICENSE: link:./LICENSE[{project_license}]
 
 
-== Contributors
+== 💎 Contributors
 
 * {author} {email}
 
