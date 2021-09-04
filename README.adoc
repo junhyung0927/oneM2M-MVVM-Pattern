@@ -69,7 +69,6 @@ IN-AE는 모바일 애플리케이션을 의미하며 IN-CSE(Mobius Server)와 �
 Version {revision}
 
 * link:./CHANGELOG[History]
-* link:{git_service}/groups/{project_root}/-/issues[Issues List] / link:{git_service}/groups/{project_root}/-/boards[Issues Board]
 
 == 📚 Usage
 

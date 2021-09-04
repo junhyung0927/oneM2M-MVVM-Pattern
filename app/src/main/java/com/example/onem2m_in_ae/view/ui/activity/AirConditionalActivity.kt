@@ -42,8 +42,7 @@ class AirConditionalActivity : BaseActivity() {
                 sensingDataHintTextViewAirConditionerActivity.visibility = View.VISIBLE
                 containerNameTextViewAirConditionerActivity.visibility = View.VISIBLE
 
-                containerNameTextViewAirConditionerActivity.text =
-                    containerItem.containerInstanceName
+                containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
                 if (!it.con.equals("on") && !it.con.equals("off")) {
                     sensingDataTextViewAirConditionerActivity.text = it.con
                 }
