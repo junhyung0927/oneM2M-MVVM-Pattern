@@ -31,7 +31,7 @@ class AirConditionalActivity : BaseActivity() {
 
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
-            item = containerItem.containerImage
+            item = containerItem.deviceImage
 
             mqttManager.contentInstanceData.observe(this@AirConditionalActivity) {
                 sensingDataLoadingAnimationAirConditionerActivity.visibility = View.GONE
@@ -42,7 +42,7 @@ class AirConditionalActivity : BaseActivity() {
                 sensingDataHintTextViewAirConditionerActivity.visibility = View.VISIBLE
                 containerNameTextViewAirConditionerActivity.visibility = View.VISIBLE
 
-                containerNameTextViewAirConditionerActivity.text = containerItem.containerInstanceName
+                containerNameTextViewAirConditionerActivity.text = containerItem.deviceName
                 if (!it.con.equals("on") && !it.con.equals("off")) {
                     sensingDataTextViewAirConditionerActivity.text = it.con
                 }
@@ -90,7 +90,7 @@ class AirConditionalActivity : BaseActivity() {
                     }
 
                     airconditionerDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerItem.containerInstanceName)
+                        deleteDataBaseContainer(containerItem.deviceName)
                     }
                 }
             }

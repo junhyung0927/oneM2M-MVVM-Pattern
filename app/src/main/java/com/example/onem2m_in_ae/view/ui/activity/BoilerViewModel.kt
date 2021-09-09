@@ -7,18 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.onem2m_in_ae.model.response.ResponseCin
 import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCntUril
-import com.example.onem2m_in_ae.repository.INAERepository
+import com.example.onem2m_in_ae.repository.OneM2MRepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.lang.Exception
 
-class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewModel() {
+class BoilerViewModel(private val oneM2MRepository: OneM2MRepository) : BaseViewModel() {
     private val _contentInstanceInfo: MutableLiveData<ResponseCin> = MutableLiveData()
     val contentInstanceInfo: LiveData<ResponseCin> = _contentInstanceInfo
     fun getContentInstanceInfo(resourceName: String) {
         viewModelScope.launch {
-            handle { inAERepository.getContentInstanceInfo(resourceName) }?.let {
+            handle { oneM2MRepository.getContentInstanceInfo(resourceName) }?.let {
                 _contentInstanceInfo.value = it
             }
         }
@@ -28,7 +26,7 @@ class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewMode
     val contentInstanceControl: LiveData<Unit> = _contentInstanceControl
     fun deviceControl(content: String, resourceName: String) {
         viewModelScope.launch {
-            handle { inAERepository.deviceControl(content, resourceName) }?.let {
+            handle { oneM2MRepository.deviceControl(content, resourceName) }?.let {
                 _contentInstanceControl.value = it
             }
         }
@@ -38,14 +36,14 @@ class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewMode
     val deleteContainer: LiveData<Unit> = _deleteContainer
     fun deleteDataBaseContainer(resourceName: String) {
         viewModelScope.launch {
-            handle { inAERepository.deleteDatabaseContainer(resourceName) }?.let {
+            handle { oneM2MRepository.deleteDatabaseContainer(resourceName) }?.let {
                 _deleteContainer.value = it
             }
         }
     }
 
     val getContainerInfo = liveData<ResponseCnt> {
-        handle { inAERepository.getContainerInfo() }?.let {
+        handle { oneM2MRepository.getContainerInfo() }?.let {
             emit(it)
         }
     }
@@ -55,14 +53,14 @@ class BoilerViewModel(private val inAERepository: INAERepository) : BaseViewMode
     fun createSubscription(resourceName: String) {
         viewModelScope.launch {
             handle {
-                inAERepository.createSubscription(resourceName) }?.let {
+                oneM2MRepository.createSubscription(resourceName) }?.let {
                 _createSub.value = it
             }
         }
     }
 
     val getChildResourceInfo = liveData<ResponseCntUril> {
-        handle { inAERepository.getChildResourceInfo()
+        handle { oneM2MRepository.getChildResourceInfo()
         }?.let { emit(it) }
     }
 

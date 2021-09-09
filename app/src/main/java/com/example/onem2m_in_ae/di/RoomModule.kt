@@ -4,7 +4,6 @@ import androidx.room.Room
 import com.example.onem2m_in_ae.room.AppDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
-import kotlin.math.sin
 
 val roomModule = module {
     single {
@@ -18,6 +17,6 @@ val roomModule = module {
     }
 
     single {
-        get<AppDatabase>().inAEDao()
+        get<AppDatabase>().oneM2MDao()
     }
 }

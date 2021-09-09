@@ -31,7 +31,7 @@ class BoilerActivity : BaseActivity() {
 
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
-            item = containerItem.containerImage
+            item = containerItem.deviceImage
 
             mqttManager.contentInstanceData.observe(this@BoilerActivity) {
                 sensingDataLoadingAnimationBoilerActivity.visibility = View.GONE
@@ -42,7 +42,7 @@ class BoilerActivity : BaseActivity() {
                 sensingDataHintTextViewBoilerActivity.visibility = View.VISIBLE
                 containerNameTextViewBoilerActivity.visibility = View.VISIBLE
 
-                containerNameTextViewBoilerActivity.text = containerItem.containerInstanceName
+                containerNameTextViewBoilerActivity.text = containerItem.deviceName
                 if (!it.con.equals("on") && !it.con.equals("off")) {
                     sensingDataTextViewBoilerActivity.text = it.con
                 }
@@ -87,7 +87,7 @@ class BoilerActivity : BaseActivity() {
                     }
 
                     boilerDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerItem.containerInstanceName)
+                        deleteDataBaseContainer(containerItem.deviceName)
                     }
                 }
             }

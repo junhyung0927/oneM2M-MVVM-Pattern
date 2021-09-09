@@ -5,9 +5,9 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { INAEViewModel(inAERepository = get()) }
-    viewModel { AirConditionalViewModel(inAERepository = get()) }
-    viewModel { AirPurifierViewModel(inAERepository = get()) }
-    viewModel { BoilerViewModel(inAERepository = get()) }
-    viewModel { ContainerRegisterViewModel(inAERepository = get()) }
+    viewModel { INAEViewModel(oneM2MRepository = get()) }
+    viewModel { AirConditionalViewModel(oneM2MRepository = get()) }
+    viewModel { AirPurifierViewModel(oneM2MRepository = get()) }
+    viewModel { BoilerViewModel(oneM2MRepository = get()) }
+    viewModel { ContainerRegisterViewModel(oneM2MRepository = get()) }
 }

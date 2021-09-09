@@ -55,6 +55,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEdit_ContainerName_Register_Activity"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

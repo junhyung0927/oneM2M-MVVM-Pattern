@@ -11,7 +11,7 @@ import com.example.onem2m_in_ae.model.ContainerInstance
 import com.example.onem2m_in_ae.view.ui.activity.INAEViewModel
 
 class ContainerImageRecyclerViewAdapter(
-    val inaeViewModel: INAEViewModel
+    val inAEViewModel: INAEViewModel
 ) :
     ListAdapter<ContainerInstance, ContainerImageRecyclerViewAdapter.ContainerImageViewHolder>(
         DIFF_CALLBACK
@@ -55,10 +55,10 @@ class ContainerImageRecyclerViewAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ContainerInstance) {
-            binding.itemImage = item.containerImage
-            binding.itemName = item.containerInstanceName
+            binding.itemImage = item.deviceImage
+            binding.itemName = item.deviceName
             binding.containerItemImageViewAirConditionerActivity.setOnClickListener {
-                inaeViewModel.callOnContainerImageEvent(item)
+                inAEViewModel.callOnDeviceImageEvent(item)
             }
             binding.executePendingBindings()
         }

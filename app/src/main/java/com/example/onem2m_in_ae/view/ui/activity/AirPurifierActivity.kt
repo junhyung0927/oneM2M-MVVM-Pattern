@@ -31,7 +31,7 @@ class AirPurifierActivity : BaseActivity() {
 
             val intent = intent
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
-            item = containerItem.containerImage
+            item = containerItem.deviceImage
 
 
 
@@ -44,7 +44,7 @@ class AirPurifierActivity : BaseActivity() {
                 sensingDataHintTextViewAirPurifierActivity.visibility = View.VISIBLE
                 containerNameTextViewAirPurifierActivity.visibility = View.VISIBLE
 
-                containerNameTextViewAirPurifierActivity.text = containerItem.containerInstanceName
+                containerNameTextViewAirPurifierActivity.text = containerItem.deviceName
 
                 if (!it.con.equals("on") && !it.con.equals("off")) {
 
@@ -90,7 +90,7 @@ class AirPurifierActivity : BaseActivity() {
                     }
 
                     airpurifierDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerItem.containerInstanceName)
+                        deleteDataBaseContainer(containerItem.deviceName)
                     }
                 }
             }

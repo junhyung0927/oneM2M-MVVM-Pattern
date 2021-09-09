@@ -10,7 +10,7 @@ import com.example.onem2m_in_ae.model.response.ResponseCnt
 import com.example.onem2m_in_ae.model.response.ResponseCntUril
 import retrofit2.http.*
 
-interface INAEDataService {
+interface OneM2MService {
     @Headers(
         "Content-Type: application/json;ty=2",
     )

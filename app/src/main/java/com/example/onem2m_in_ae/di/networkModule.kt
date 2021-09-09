@@ -1,8 +1,7 @@
 package com.example.onem2m_in_ae.di
 
 import com.example.onem2m_in_ae.service.HeaderInterceptor
-import com.example.onem2m_in_ae.service.INAEDataService
-import com.google.gson.Gson
+import com.example.onem2m_in_ae.service.OneM2MService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,6 +36,6 @@ fun getNetworkModule(baseUrl: String) = module {
             .baseUrl(baseUrl)
             .addConverterFactory(get())
             .build()
-            .create(INAEDataService::class.java)
+            .create(OneM2MService::class.java)
     }
 }

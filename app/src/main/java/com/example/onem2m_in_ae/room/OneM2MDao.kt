@@ -5,7 +5,7 @@ import com.example.onem2m_in_ae.model.ContainerInstance
 import org.jetbrains.annotations.NotNull
 
 @Dao
-interface INAEDao {
+interface OneM2MDao {
     @Query("SELECT * FROM container")
     fun getContainerInstanceInfoList(): List<ContainerInstance>
 
@@ -18,6 +18,6 @@ interface INAEDao {
     @Query("DELETE FROM container")
     fun deleteAll()
 
-    @Query("DELETE FROM container WHERE containerInstanceName = :resourceName ")
+    @Query("DELETE FROM container WHERE deviceName = :resourceName ")
     fun deleteContainer(resourceName: String)
 }

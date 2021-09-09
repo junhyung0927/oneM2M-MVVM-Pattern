@@ -3,20 +3,16 @@ package com.example.onem2m_in_ae.view.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import com.example.onem2m_in_ae.databinding.ActivityMainBinding
-import com.example.onem2m_in_ae.model.ContainerInstance
-import com.example.onem2m_in_ae.model.ContainerType
-import com.example.onem2m_in_ae.service.mqtt.MqttManager
+import com.example.onem2m_in_ae.model.DeviceType
 import com.example.onem2m_in_ae.util.EventObserver
 import com.example.onem2m_in_ae.view.ui.adapter.ContainerImageRecyclerViewAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.io.Serializable
 
 class INAEActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
@@ -52,11 +48,11 @@ class INAEActivity : BaseActivity() {
                 adapter.submitList(it)
             }
 
-            onContainerItemEvent.observe(this@INAEActivity, EventObserver
+            onDeviceItemEvent.observe(this@INAEActivity, EventObserver
             {
-                val destinationActivity = when (it.type) {
-                    ContainerType.AIRCONDITIONAL -> AirConditionalActivity::class.java
-                    ContainerType.AIRPURIFIER -> AirPurifierActivity::class.java
+                val destinationActivity = when (it.deviceType) {
+                    DeviceType.AIRCONDITIONAL -> AirConditionalActivity::class.java
+                    DeviceType.AIRPURIFIER -> AirPurifierActivity::class.java
                     else -> BoilerActivity::class.java
                 }
 

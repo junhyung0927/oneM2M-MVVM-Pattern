@@ -6,7 +6,7 @@
         <entry key="app/src/main/res/drawable/control_button_shape.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/drawable/ripple_custom.xml" value="0.4148148148148148" />
         <entry key="app/src/main/res/font/head_text_font.xml" value="0.5841025641025641" />
-        <entry key="app/src/main/res/layout/activity_airconditioner.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_airconditioner.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_airpurifier.xml" value="0.30404354587869364" />
         <entry key="app/src/main/res/layout/activity_boiler.xml" value="0.19427558257345492" />
         <entry key="app/src/main/res/layout/activity_container_register.xml" value="0.19427558257345492" />

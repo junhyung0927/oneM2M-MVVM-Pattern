@@ -9,7 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityContainerRegisterBinding
-import com.example.onem2m_in_ae.model.ContainerType
+import com.example.onem2m_in_ae.model.DeviceType
 import com.example.onem2m_in_ae.view.base.BaseActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -20,9 +20,9 @@ class ContainerRegisterActivity : BaseActivity() {
     companion object {
         private var pos: Int = -1
         private val containerType = listOf(
-            ContainerType.AIRCONDITIONAL,
-            ContainerType.AIRPURIFIER,
-            ContainerType.BOILER,
+            DeviceType.AIRCONDITIONAL,
+            DeviceType.AIRPURIFIER,
+            DeviceType.BOILER,
         )
     }
 
