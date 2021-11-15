@@ -14,7 +14,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class BoilerActivity : BaseActivity() {
     private val binding by binding<ActivityBoilerBinding>(R.layout.activity_boiler)
-    private val boilerViewModel: BoilerViewModel by viewModel()
+//    private val boilerViewModel: BoilerViewModel by viewModel()
+    private val containerViewModel: ContainerViewModel by viewModel()
     private val mqttManager: MqttManager by lazy {
         MqttManager(applicationContext)
     }
@@ -48,7 +49,7 @@ class BoilerActivity : BaseActivity() {
                 }
             }
 
-            boilerViewModel.apply {
+            containerViewModel.apply {
                 contentInstanceInfo.observe(this@BoilerActivity) {
                     println("장치 정보 가져오기")
                 }
@@ -64,7 +65,7 @@ class BoilerActivity : BaseActivity() {
                 }
 
                 getChildResourceInfo.observe(this@BoilerActivity) {
-                    containerResourceName = getResourceName(it)
+                    containerResourceName = getResourceName(it, "boiler")
                     println("컨테이너 리소스 이름: ${containerResourceName}")
                     createSubscription(containerResourceName)
                     mqttManager.getMqttClient(INAEActivity.APP_ID, containerResourceName)

@@ -11,7 +11,7 @@ import com.example.onem2m_in_ae.repository.OneM2MRepository
 import com.example.onem2m_in_ae.view.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class AirPurifierViewModel(private val oneM2MRepository: OneM2MRepository) : BaseViewModel() {
+class ContainerViewModel(private val oneM2MRepository: OneM2MRepository) : BaseViewModel() {
     private val _contentInstanceInfo: MutableLiveData<ResponseCin> = MutableLiveData()
     val contentInstanceInfo: LiveData<ResponseCin> = _contentInstanceInfo
     fun getContentInstanceInfo(resourceName: String) {
@@ -53,21 +53,30 @@ class AirPurifierViewModel(private val oneM2MRepository: OneM2MRepository) : Bas
     fun createSubscription(resourceName: String) {
         viewModelScope.launch {
             handle {
-                oneM2MRepository.createSubscription(resourceName) }?.let {
+                oneM2MRepository.createSubscription(resourceName)
+            }?.let {
                 _createSub.value = it
             }
         }
     }
 
     val getChildResourceInfo = liveData<ResponseCntUril> {
-        handle { oneM2MRepository.getChildResourceInfo()
+        handle {
+            oneM2MRepository.getChildResourceInfo()
         }?.let { emit(it) }
     }
 
-    fun getResourceName(responseCntUril: ResponseCntUril): String {
+    fun getResourceName(responseCntUril: ResponseCntUril, containerName: String): String {
+        val name = when (containerName) {
+            "airconditioner" -> "airconditioner"
+            "airpurifer" -> "airpurifer"
+            "boiler" -> "boiler"
+            else -> "none"
+        }
+
         return responseCntUril.m2mUril
             .filter { it.startsWith("Mobius/IYAHN_DEMO/") }
-            .find { it.contains("airpurifer") }!!
+            .find { it.contains(name) }!!
             .split("/").last()
     }
 }

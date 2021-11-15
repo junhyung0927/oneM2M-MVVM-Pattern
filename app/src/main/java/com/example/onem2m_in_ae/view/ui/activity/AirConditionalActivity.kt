@@ -2,8 +2,6 @@ package com.example.onem2m_in_ae.view.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.TimingLogger
 import android.view.View
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
@@ -16,7 +14,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class AirConditionalActivity : BaseActivity() {
     private val binding by binding<ActivityAirconditionerBinding>(R.layout.activity_airconditioner)
-    private val airConditionalViewModel: AirConditionalViewModel by viewModel()
+//    private val airConditionalViewModel: AirConditionalViewModel by viewModel()
+    private val containerViewModel: ContainerViewModel by viewModel()
     private val mqttManager: MqttManager by lazy {
         MqttManager(applicationContext)
     }
@@ -50,7 +49,7 @@ class AirConditionalActivity : BaseActivity() {
                 }
             }
 
-            airConditionalViewModel.apply {
+            containerViewModel.apply {
                 contentInstanceInfo.observe(this@AirConditionalActivity) {
                     println("장치 정보 가져오기")
                 }
@@ -69,7 +68,7 @@ class AirConditionalActivity : BaseActivity() {
                 }
 
                 getChildResourceInfo.observe(this@AirConditionalActivity) {
-                    containerResourceName = getResourceName(it)
+                    containerResourceName = getResourceName(it, "airconditioner")
                     println("컨테이너 리소스 이름: ${containerResourceName}")
                     createSubscription(containerResourceName)
                     mqttManager.getMqttClient(APP_ID, containerResourceName)
