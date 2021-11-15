@@ -7,8 +7,6 @@ import org.koin.core.context.startKoin
 
 class INAEApp : Application() {
     val MOBIUS_BASE_URL = "http://192.168.10.62:7579"
-//    val MOBIUS_BASE_URL = "http://192.168.10.59:7579"
-//    val ZINNIA_BASE_URL = "http://192.168.10.74:8072"
 
     override fun onCreate() {
         super.onCreate()

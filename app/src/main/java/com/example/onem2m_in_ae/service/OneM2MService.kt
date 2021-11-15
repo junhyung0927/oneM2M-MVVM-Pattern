@@ -37,9 +37,6 @@ interface OneM2MService {
         @Body param: RequestSub
     )
 
-//    @GET("/Mobius/IYAHN_DEMO?fu=2&rcn=1")
-//    suspend fun getAEInfo(): ResponseAE
-
     @GET("/Mobius/IYAHN_DEMO?fu=2&rcn=1")
     suspend fun getAEInfo(): ResponseAE
 

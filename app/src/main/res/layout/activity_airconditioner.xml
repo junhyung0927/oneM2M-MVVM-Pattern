@@ -8,9 +8,6 @@
         <variable
             name="item"
             type="Integer" />
-        <variable
-            name="data"
-            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

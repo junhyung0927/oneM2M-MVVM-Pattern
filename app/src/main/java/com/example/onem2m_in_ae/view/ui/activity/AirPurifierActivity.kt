@@ -57,7 +57,7 @@ class AirPurifierActivity : BaseActivity() {
                     println("장치 정보 가져오기")
                 }
                 contentInstanceControl.observe(this@AirPurifierActivity) {
-                    println("장치 제어 성공")
+                    println("장치 제어 성공 $it")
                 }
                 deleteContainer.observe(this@AirPurifierActivity) {
                     println("장치 제거 성공")

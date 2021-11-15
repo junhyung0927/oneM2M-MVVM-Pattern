@@ -2,6 +2,8 @@ package com.example.onem2m_in_ae.view.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.TimingLogger
 import android.view.View
 import com.example.onem2m_in_ae.R
 import com.example.onem2m_in_ae.databinding.ActivityAirconditionerBinding
@@ -80,6 +82,7 @@ class AirConditionalActivity : BaseActivity() {
                                 } else {
                                     "off"
                                 }
+
                                 deviceControl(content, containerResourceName)
                             }
                         }
