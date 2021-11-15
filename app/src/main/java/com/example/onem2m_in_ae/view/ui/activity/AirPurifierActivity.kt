@@ -14,7 +14,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class AirPurifierActivity : BaseActivity() {
     private val binding by binding<ActivityAirpurifierBinding>(R.layout.activity_airpurifier)
-    private val airPurifierViewModel: AirPurifierViewModel by viewModel()
+//    private val airPurifierViewModel: AirPurifierViewModel by viewModel()
+    private val containerViewModel: ContainerViewModel by viewModel()
     private val mqttManager: MqttManager by lazy {
         MqttManager(applicationContext)
     }
@@ -33,8 +34,6 @@ class AirPurifierActivity : BaseActivity() {
             val containerItem = intent.getSerializableExtra(KEY_CONTAINER_DATA) as ContainerInstance
             item = containerItem.deviceImage
 
-
-
             mqttManager.contentInstanceData.observe(this@AirPurifierActivity) {
                 sensingDataLoadingAnimationAirPurifierActivity.visibility = View.GONE
                 sensingDataTextViewAirPurifierActivity.visibility = View.VISIBLE
@@ -52,7 +51,7 @@ class AirPurifierActivity : BaseActivity() {
                 }
             }
 
-            airPurifierViewModel.apply {
+            containerViewModel.apply {
                 contentInstanceInfo.observe(this@AirPurifierActivity) {
                     println("장치 정보 가져오기")
                 }
@@ -68,7 +67,7 @@ class AirPurifierActivity : BaseActivity() {
                 }
 
                 getChildResourceInfo.observe(this@AirPurifierActivity) {
-                    containerResourceName = getResourceName(it)
+                    containerResourceName = getResourceName(it, "airpurifer")
                     mqttManager.getMqttClient(APP_ID, containerResourceName)
                     println("컨테이너 리소스 이름: ${containerResourceName}")
                     createSubscription(containerResourceName)
