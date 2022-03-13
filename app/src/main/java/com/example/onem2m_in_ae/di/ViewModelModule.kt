@@ -5,7 +5,11 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { INAEViewModel(oneM2MRepository = get()) }
+    viewModel { INAEViewModel(
+        createAEUseCase = get(),
+        getAEInfoUseCase = get(),
+        getContainerInstanceInfoListUseCase = get()
+    ) }
     viewModel { ContainerViewModel(oneM2MRepository = get()) }
     viewModel { ContainerRegisterViewModel(oneM2MRepository = get()) }
 }

@@ -39,8 +39,7 @@ class INAEActivity : BaseActivity() {
                 APP_ID = it.m2m_ae.aei
             }
 
-            getContainerDatabase.observe(this@INAEActivity) {
-                println("databaseData: ${it}")
+            getContainerInstanceInfoList.observe(this@INAEActivity) {
                 if (it.isNotEmpty()) {
                     binding.explainTextViewINAEActivity.visibility = View.GONE
                     binding.viewpager2INAEActivity.visibility = View.VISIBLE

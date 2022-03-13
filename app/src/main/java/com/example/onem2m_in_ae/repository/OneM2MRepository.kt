@@ -23,7 +23,7 @@ interface OneM2MRepository {
 
     suspend fun getContentInstanceInfo(resourceName: String) : ResponseCin
 
-    suspend fun getContentInstanceDatabase() : List<ContainerInstance>
+    suspend fun getContainerInstanceInfoList() : List<ContainerInstance>
 
     suspend fun getChildResourceInfo() : ResponseCntUril
 

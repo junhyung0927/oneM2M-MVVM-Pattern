@@ -17,7 +17,7 @@ class OneM2MRepositoryImpl(
 ) : OneM2MRepository {
 
     companion object {
-        const val resourceName = "daewon_demo"
+        const val resourceName = "demo"
     }
 
     override suspend fun createAE() {
@@ -40,8 +40,8 @@ class OneM2MRepositoryImpl(
         return remoteDataSource.getContentInstanceInfo(resourceName)
     }
 
-    override suspend fun getContentInstanceDatabase(): List<ContainerInstance> {
-        return localDataSource.getContainerInstanceDataBase()
+    override suspend fun getContainerInstanceInfoList(): List<ContainerInstance> {
+        return localDataSource.getContainerInstanceInfoList()
     }
 
     override suspend fun getChildResourceInfo(): ResponseCntUril {
