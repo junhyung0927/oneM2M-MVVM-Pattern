@@ -15,7 +15,7 @@ class OneM2MLocalDataSource(
         return oneM2MDao.getContainerInstanceInfoList()
     }
 
-    override suspend fun registerContainerInstance(containerInstance: List<ContainerInstance>) {
+    override suspend fun registerContainerInstance(containerInstance: ContainerInstance) {
         return oneM2MDao.registerContainerInstance(containerInstance)
     }
 

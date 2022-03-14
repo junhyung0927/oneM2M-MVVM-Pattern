@@ -11,5 +11,5 @@ val viewModelModule = module {
         getContainerInstanceInfoListUseCase = get()
     ) }
     viewModel { ContainerViewModel(oneM2MRepository = get()) }
-    viewModel { ContainerRegisterViewModel(oneM2MRepository = get()) }
+    viewModel { ContainerRegisterViewModel(registerContainerInstanceUseCase = get()) }
 }

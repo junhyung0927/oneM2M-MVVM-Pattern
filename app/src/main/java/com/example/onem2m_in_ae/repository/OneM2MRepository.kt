@@ -13,7 +13,7 @@ interface OneM2MRepository {
 
     //등록 및 생성
     suspend fun createAE()
-    suspend fun registerContainerInstance(deviceName: String, deviceImage: Int, deviceType: DeviceType)
+    suspend fun registerContainerInstance(containerInstance: ContainerInstance)
     suspend fun createSubscription(resourceName: String)
 
     //조회

@@ -53,18 +53,8 @@ class OneM2MRepositoryImpl(
     }
 
     override suspend fun registerContainerInstance(
-        deviceName: String,
-        deviceImage: Int,
-        deviceType: DeviceType
+        containerInstance: ContainerInstance
     ) {
-        val containerInstance = listOf(
-            ContainerInstance(
-                deviceName = deviceName,
-                deviceImage = deviceImage,
-                deviceType = deviceType
-            )
-        )
-
         return localDataSource.registerContainerInstance(containerInstance)
     }
 
