@@ -28,8 +28,8 @@ interface OneM2MRepository {
     suspend fun getChildResourceInfo() : ResponseCntUril
 
     //수정
-    suspend fun deviceControl(content: String, resourceName: String)
+    suspend fun deviceControl(contentInstance: Map<String, String>)
 
     //삭제
-    suspend fun deleteDatabaseContainer(resourceName: String)
+    suspend fun deleteContainer(resourceName: String)
 }

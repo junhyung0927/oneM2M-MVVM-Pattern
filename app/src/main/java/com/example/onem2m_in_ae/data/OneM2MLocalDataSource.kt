@@ -19,7 +19,7 @@ class OneM2MLocalDataSource(
         return oneM2MDao.registerContainerInstance(containerInstance)
     }
 
-    override suspend fun deleteDatabaseContainer(resoureName: String) {
-        return oneM2MDao.deleteContainer(resoureName)
+    override suspend fun deleteContainer(resourceName: String) {
+        return oneM2MDao.deleteContainer(resourceName)
     }
 }

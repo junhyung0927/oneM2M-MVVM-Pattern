@@ -3,7 +3,6 @@ package com.example.onem2m_in_ae.repository
 import com.example.onem2m_in_ae.data.LocalDataSource
 import com.example.onem2m_in_ae.data.RemoteDataSource
 import com.example.onem2m_in_ae.model.ContainerInstance
-import com.example.onem2m_in_ae.model.DeviceType
 import com.example.onem2m_in_ae.model.request.*
 import com.example.onem2m_in_ae.model.response.ResponseAE
 import com.example.onem2m_in_ae.model.response.ResponseCin
@@ -77,16 +76,15 @@ class OneM2MRepositoryImpl(
         return remoteDataSource.createSubscription(requestSub, resourceName)
     }
 
-    override suspend fun deviceControl(content: String, resourceName: String) {
-        val contentInstance = RequestCin(
-            RequestM2MCin(
-                content
-            )
-        )
-        return remoteDataSource.deviceControl(contentInstance, resourceName)
+    override suspend fun deviceControl(contentInstance: Map<String, String>) {
+        val content = RequestCin(
+            RequestM2MCin(contentInstance.getValue("content")))
+        val resourceName = contentInstance.getValue("resourceName")
+
+        return remoteDataSource.deviceControl(content, resourceName)
     }
 
-    override suspend fun deleteDatabaseContainer(resourceName: String) {
-        return localDataSource.deleteDatabaseContainer(resourceName)
+    override suspend fun deleteContainer(resourceName: String) {
+        return localDataSource.deleteContainer(resourceName)
     }
 }

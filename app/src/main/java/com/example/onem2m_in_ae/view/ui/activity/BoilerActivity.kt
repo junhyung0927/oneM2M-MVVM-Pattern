@@ -88,7 +88,7 @@ class BoilerActivity : BaseActivity() {
                     }
 
                     boilerDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerItem.deviceName)
+                        deleteContainer(containerItem.deviceName)
                     }
                 }
             }

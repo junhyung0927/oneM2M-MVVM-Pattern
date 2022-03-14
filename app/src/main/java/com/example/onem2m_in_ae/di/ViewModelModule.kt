@@ -10,6 +10,13 @@ val viewModelModule = module {
         getAEInfoUseCase = get(),
         getContainerInstanceInfoListUseCase = get()
     ) }
-    viewModel { ContainerViewModel(oneM2MRepository = get()) }
+    viewModel { ContainerViewModel(
+        getContentInstanceInfoUseCase = get(),
+        deviceControlUseCase = get(),
+        deleteContainerUseCase = get(),
+        getContainerInfoUseCase = get(),
+        createSubscriptionUseCase = get(),
+        getChildResourceInfoUseCase = get()
+    ) }
     viewModel { ContainerRegisterViewModel(registerContainerInstanceUseCase = get()) }
 }
