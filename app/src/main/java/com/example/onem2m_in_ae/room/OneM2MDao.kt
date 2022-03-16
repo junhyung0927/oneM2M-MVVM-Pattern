@@ -13,7 +13,7 @@ interface OneM2MDao {
     fun createContainerInstance(containerInstance: List<ContainerInstance>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun registerContainerInstance(containerInstance: List<ContainerInstance>)
+    fun registerContainerInstance(containerInstance: ContainerInstance)
 
     @Query("DELETE FROM container")
     fun deleteAll()

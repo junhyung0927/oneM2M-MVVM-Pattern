@@ -13,7 +13,7 @@ interface OneM2MRepository {
 
     //등록 및 생성
     suspend fun createAE()
-    suspend fun registerContainerInstance(deviceName: String, deviceImage: Int, deviceType: DeviceType)
+    suspend fun registerContainerInstance(containerInstance: ContainerInstance)
     suspend fun createSubscription(resourceName: String)
 
     //조회
@@ -23,13 +23,13 @@ interface OneM2MRepository {
 
     suspend fun getContentInstanceInfo(resourceName: String) : ResponseCin
 
-    suspend fun getContentInstanceDatabase() : List<ContainerInstance>
+    suspend fun getContainerInstanceInfoList() : List<ContainerInstance>
 
     suspend fun getChildResourceInfo() : ResponseCntUril
 
     //수정
-    suspend fun deviceControl(content: String, resourceName: String)
+    suspend fun deviceControl(contentInstance: Map<String, String>)
 
     //삭제
-    suspend fun deleteDatabaseContainer(resourceName: String)
+    suspend fun deleteContainer(resourceName: String)
 }

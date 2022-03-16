@@ -40,6 +40,7 @@
         <activity android:name=".view.ui.activity.ContainerRegisterActivity">
         </activity>
 
-        <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <service android:name="org.eclipse.paho.android.service.MqttService"
+            android:exported="true"/>
     </application>
 </manifest>

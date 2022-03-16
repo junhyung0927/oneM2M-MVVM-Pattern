@@ -89,7 +89,7 @@ class AirPurifierActivity : BaseActivity() {
                     }
 
                     airpurifierDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerItem.deviceName)
+                        deleteContainer(containerItem.deviceName)
                     }
                 }
             }

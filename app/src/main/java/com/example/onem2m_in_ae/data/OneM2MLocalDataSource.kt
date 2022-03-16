@@ -11,15 +11,15 @@ class OneM2MLocalDataSource(
         oneM2MDao.createContainerInstance(containerInstance)
     }
 
-    override suspend fun getContainerInstanceDataBase(): List<ContainerInstance> {
+    override suspend fun getContainerInstanceInfoList(): List<ContainerInstance> {
         return oneM2MDao.getContainerInstanceInfoList()
     }
 
-    override suspend fun registerContainerInstance(containerInstance: List<ContainerInstance>) {
+    override suspend fun registerContainerInstance(containerInstance: ContainerInstance) {
         return oneM2MDao.registerContainerInstance(containerInstance)
     }
 
-    override suspend fun deleteDatabaseContainer(resoureName: String) {
-        return oneM2MDao.deleteContainer(resoureName)
+    override suspend fun deleteContainer(resourceName: String) {
+        return oneM2MDao.deleteContainer(resourceName)
     }
 }

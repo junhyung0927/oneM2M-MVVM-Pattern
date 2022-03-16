@@ -92,7 +92,7 @@ class AirConditionalActivity : BaseActivity() {
                     }
 
                     airconditionerDeleteAppCompactToggleButton.setOnClickListener {
-                        deleteDataBaseContainer(containerItem.deviceName)
+                        deleteContainer(containerItem.deviceName)
                     }
                 }
             }

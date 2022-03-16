@@ -15,7 +15,7 @@ class MqttManager(context: Context) {
     private val _contentInstanceData: MutableLiveData<ContentInstanceMqttData> = MutableLiveData()
     val contentInstanceData: LiveData<ContentInstanceMqttData> = _contentInstanceData
 
-    fun mqttConnect(appId: String, containerName: String) {
+    private fun mqttConnect(appId: String, containerName: String) {
         try {
             mqttConnectOptions.apply {
                 isAutomaticReconnect = true
@@ -24,8 +24,8 @@ class MqttManager(context: Context) {
 
             mqttClient.connect(mqttConnectOptions, null, object: IMqttActionListener{
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
-                    val req_topic = "/oneM2M/req/Mobius2/${appId}_${containerName}/json"
-                    subscribeToTopic(req_topic)
+                    val reqTopic = "/oneM2M/req/Mobius2/${appId}_${containerName}/json"
+                    subscribeToTopic(reqTopic)
                 }
 
                 override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
@@ -52,11 +52,11 @@ class MqttManager(context: Context) {
 
                     val retrqi = MqttClientRequestParser().notificationJsonParse(message.toString())
                     val responseMessage = MqttClientRequest().notificationResponse(retrqi)
-                    val res_message = MqttMessage(responseMessage.toByteArray())
+                    val resMessage = MqttMessage(responseMessage.toByteArray())
 
                     try {
-                        val resp_topic = "/oneM2M/resp/Mobius2/${appId}_${containerName}/json"
-                        mqttClient.publish(resp_topic, res_message)
+                        val respTopic = "/oneM2M/resp/Mobius2/${appId}_${containerName}/json"
+                        mqttClient.publish(respTopic, resMessage)
                     } catch (e: MqttException) {
                         e.printStackTrace()
                     }
