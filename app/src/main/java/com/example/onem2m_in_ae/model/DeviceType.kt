@@ -9,3 +9,4 @@ enum class DeviceType(@DrawableRes val resId: Int) {
     BOILER(resId = R.drawable.boiler)
 }
 
+
