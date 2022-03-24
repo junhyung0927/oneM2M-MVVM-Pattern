@@ -46,7 +46,7 @@ IN-AE는 모바일 애플리케이션을 의미하며 IN-CSE(Mobius Server)와 �
 == 🔍 Stack & Libraries
 * maven
 * Data Binding
-* Koin - `2.2.3 version` 
+* Koin - `2.2.3` 
 * Room - `2.3.0` 
 * Retrofit2 - `2.9.0`
 * OkHttp3 - `4.8.1`
